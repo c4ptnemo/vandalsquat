@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VandalSquat – New Entry</title>
+  </head>
+
+  <body>
+    <header>
+      <h1>
+        <a href="index.html">VandalSquat</a>
+      </h1>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="entries.html">Entries</a></li>
+          <li><a href="new-entry.html">New Entry</a></li>
+          <li><a href="account.html">My Account</a></li>
+          <li><a href="login.html">Login</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr />
+
+    <main>
+      <h2>New Entry</h2>
+
+      <form action="#" method="post" enctype="multipart/form-data">
+        <p>
+          <label>
+            Name<br />
+            <input type="text" name="writer" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Address<br />
+            <input type="text" name="address" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Date<br />
+            <input type="date" name="date" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Latitude<br />
+            <input type="number" step="any" name="lat" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Longitude<br />
+            <input type="number" step="any" name="lng" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Photo<br />
+            <input type="file" name="photo" accept="image/*" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Notes<br />
+            <textarea name="notes"></textarea>
+          </label>
+        </p>
+
+        <p>
+          <button type="submit">Save entry</button>
+        </p>
+      </form>
+    </main>
+
+  </body>
+</html>

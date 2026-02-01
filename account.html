@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VandalSquat – Home</title>
+    <title>VandalSquat – My Account</title>
   </head>
 
   <body>
@@ -26,19 +26,27 @@
     <hr />
 
     <main>
-      <h2>Home</h2>
+      <h2>My Account</h2>
 
-      <p>
-        Map-first graffiti log. This box will eventually hold the Mapbox map.
-      </p>
+      <form action="#" method="post">
+        <p>
+          <label>
+            Display name<br />
+            <input type="text" name="display_name" />
+          </label>
+        </p>
 
-      <section>
-        <h3>Map</h3>
+        <p>
+          <label>
+            Email<br />
+            <input type="email" name="email" />
+          </label>
+        </p>
 
-        <div>
-          <p>[ Mapbox map placeholder ]</p>
-        </div>
-      </section>
+        <p>
+          <button type="submit">Save profile</button>
+        </p>
+      </form>
     </main>
 
   </body>
