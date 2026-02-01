@@ -3,22 +3,18 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VandalSquat – New Entry</title>
+    <title>VandalSquat – New Entry (Choose Location)</title>
   </head>
 
   <body>
     <header>
-      <h1>
-        <a href="index.html">VandalSquat</a>
-      </h1>
-
+      <h1><a href="index.html">VandalSquat</a></h1>
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="entries.html">Entries</a></li>
-          <li><a href="new-entry.html">New Entry</a></li>
+          <li><a href="new-entry-location.html">New Entry</a></li>
           <li><a href="account.html">My Account</a></li>
-          <li><a href="login.html">Login</a></li>
         </ul>
       </nav>
     </header>
@@ -26,63 +22,37 @@
     <hr />
 
     <main>
-      <h2>New Entry</h2>
+      <h2>New Entry — Choose Location</h2>
 
-      <form action="#" method="post" enctype="multipart/form-data">
+      <p>
+        Step 1 of 2: Drop a pin where you found the graffiti.
+        (Map interaction will be added later.)
+      </p>
+
+      <section>
+        <h3>Map</h3>
+
+        <!-- Later this becomes the Mapbox container -->
+        <div id="map" aria-label="Map placeholder">
+          <p>[ Map placeholder — later you can click to drop a pin ]</p>
+        </div>
+      </section>
+
+      <section>
+        <h3>Selected location (placeholder)</h3>
+
+        <!-- Later JS fills these -->
         <p>
-          <label>
-            Name<br />
-            <input type="text" name="writer" />
-          </label>
+          Latitude: <output id="selected-lat">—</output><br />
+          Longitude: <output id="selected-lng">—</output>
         </p>
 
+        <!-- For HTML-only, this is just a link.
+             Later it will include lat/lng in the URL or submit a form. -->
         <p>
-          <label>
-            Address<br />
-            <input type="text" name="address" />
-          </label>
+          <a href="new-entry-details.html">Continue to details</a>
         </p>
-
-        <p>
-          <label>
-            Date<br />
-            <input type="date" name="date" />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            Latitude<br />
-            <input type="number" step="any" name="lat" />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            Longitude<br />
-            <input type="number" step="any" name="lng" />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            Photo<br />
-            <input type="file" name="photo" accept="image/*" />
-          </label>
-        </p>
-
-        <p>
-          <label>
-            Notes<br />
-            <textarea name="notes"></textarea>
-          </label>
-        </p>
-
-        <p>
-          <button type="submit">Save entry</button>
-        </p>
-      </form>
+      </section>
     </main>
-
   </body>
 </html>
