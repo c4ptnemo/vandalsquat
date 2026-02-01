@@ -1,1 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>VandalSquat — Home</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html">
+          VandalSquat <small>vandalsquat.org</small>
+        </a>
+
+        <nav class="nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="entries.html">Entries</a>
+          <a href="new-entry.html">New Entry</a>
+          <a href="account.html">My Account</a>
+          <a href="login.html">Login</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="page-title">Home</h1>
+      <p class="page-subtitle">Map-first graffiti log. (Mapbox goes here later.)</p>
+
+      <div class="grid grid-2">
+        <section class="card">
+          <h2 style="margin-top:0;">Quick actions</h2>
+          <p style="color:var(--muted);margin-top:0;">
+            This is a static skeleton. Buttons don’t submit anywhere yet.
+          </p>
+          <div class="actions">
+            <a class="btn btn-accent" href="new-entry.html">Create new entry</a>
+            <a class="btn" href="entries.html">Browse entries</a>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2 style="margin-top:0;">Stats (placeholder)</h2>
+          <ul style="margin:0; padding-left:18px; color:var(--muted);">
+            <li>Total entries: —</li>
+            <li>Writers tracked: —</li>
+            <li>Neighborhoods: —</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="card" style="margin-top:18px;">
+        <h2 style="margin-top:0;">Map</h2>
+        <div class="map-placeholder" role="img" aria-label="Map placeholder">
+          <div>
+            <div style="font-weight:700; color: var(--text);">[ Mapbox embed placeholder ]</div>
+            <div style="margin-top:6px;">Later: initialize Mapbox GL JS inside a div like <code>#map</code>.</div>
+          </div>
+        </div>
+
+        <!-- Later you will replace the placeholder with:
+        <div id="map" style="height: 420px; border-radius: 16px;"></div>
+        -->
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">© <span id="year"></span> VandalSquat</div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
 
