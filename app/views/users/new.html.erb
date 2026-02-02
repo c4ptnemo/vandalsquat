@@ -17,34 +17,35 @@
     <hr />
 
     <main>
-      <h2>Create Account</h2>
+      <h2>Create account</h2>
 
-      <form action="#" method="post">
-        <p>
-          <label>
-            Email<br />
-            <input type="email" name="email" required />
-          </label>
-        </p>
+<%= form_with url: signup_path, scope: :user, method: :post, local: true do |f| %>
+  <p>
+    <label>
+      Email<br />
+      <%= f.email_field :email, required: true %>
+    </label>
+  </p>
 
-        <p>
-          <label>
-            Password<br />
-            <input type="password" name="password" required />
-          </label>
-        </p>
+  <p>
+    <label>
+      Password<br />
+      <%= f.password_field :password, required: true %>
+    </label>
+  </p>
 
-        <p>
-          <label>
-            Confirm password<br />
-            <input type="password" name="password_confirmation" required />
-          </label>
-        </p>
+  <p>
+    <label>
+      Confirm password<br />
+      <%= f.password_field :password_confirmation, required: true %>
+    </label>
+  </p>
 
-        <p>
-          <button type="submit">Create account</button>
-        </p>
-      </form>
+  <p>
+    <%= f.submit "Create account" %>
+  </p>
+<% end %>
+
 
       <p>
         Already have an account?
