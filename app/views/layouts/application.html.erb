@@ -22,7 +22,11 @@
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+  <%= render "shared/navbar" if logged_in? %>
+
+  <%= yield %>
+  
+</body>
+
 </html>

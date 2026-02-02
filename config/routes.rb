@@ -18,5 +18,10 @@ Rails.application.routes.draw do
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
   post "/signup", to: "users#create"
+
+  get  "/account",          to: "users#show"
+  patch "/account/email",   to: "users#update_email"
+  patch "/account/password",to: "users#update_password"
+
 end
 

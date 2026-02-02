@@ -5,23 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VandalSquat – My Account</title>
   </head>
+  
+<% if notice %><p><%= notice %></p><% end %>
+<% if flash[:alert] %><p><%= flash[:alert] %></p><% end %>
 
   <body>
-    <header>
-      <h1>
-        <a href="/">VandalSquat</a>
-      </h1>
-
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/entries">Entries</a></li>
-          <li><a href="/entries/new">New Entry</a></li>
-          <li><a href="/account">My Account</a></li>
-        </ul>
-      </nav>
-    </header>
-
     <hr />
 
     <main>
@@ -31,18 +19,24 @@
       <section>
         <h3>Change Email</h3>
 
-        <form action="#" method="post">
-          <p>
-            <label>
-              New email<br />
-              <input type="email" name="email" required />
-            </label>
-          </p>
+<%= form_with url: "/account/email", scope: :user, method: :patch, local: true do |f| %>
+  <p>
+    <label>
+      New email<br />
+      <%= f.email_field :email, required: true, value: current_user.email %>
+    </label>
+  </p>
 
-          <p>
-            <button type="submit">Update email</button>
-          </p>
-        </form>
+  <p>
+    <label>
+      Current password<br />
+      <input type="password" name="current_password" required>
+    </label>
+  </p>
+
+  <p><%= f.submit "Update email" %></p>
+<% end %>
+
       </section>
 
       <hr />
@@ -51,25 +45,31 @@
       <section>
         <h3>Change Password</h3>
 
-        <form action="#" method="post">
-          <p>
-            <label>
-              New password<br />
-              <input type="password" name="password" required />
-            </label>
-          </p>
+<%= form_with url: "/account/password", scope: :user, method: :patch, local: true do |f| %>
+  <p>
+    <label>
+      New password<br />
+      <%= f.password_field :password, required: true %>
+    </label>
+  </p>
 
-          <p>
-            <label>
-              Confirm new password<br />
-              <input type="password" name="password_confirmation" required />
-            </label>
-          </p>
+  <p>
+    <label>
+      Confirm new password<br />
+      <%= f.password_field :password_confirmation, required: true %>
+    </label>
+  </p>
 
-          <p>
-            <button type="submit">Update password</button>
-          </p>
-        </form>
+  <p>
+    <label>
+      Current password<br />
+      <input type="password" name="current_password" required>
+    </label>
+  </p>
+
+  <p><%= f.submit "Update password" %></p>
+<% end %>
+
       </section>
     </main>
   </body>

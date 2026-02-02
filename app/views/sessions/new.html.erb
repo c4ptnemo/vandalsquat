@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VandalSquat – Login</title>
   </head>
+  
+<p><%= notice %></p>
 
   <body>
     <header>
@@ -16,26 +18,32 @@
     <hr />
 
     <main>
-      <h2>Login</h2>
+<h2>Login</h2>
 
-      <form action="#" method="post">
-        <p>
-          <label>
-            Email<br />
-            <input type="email" name="email" required />
-          </label>
-        </p>
+<%= form_with url: login_path, method: :post, local: true do %>
+  <p>
+    <label>
+      Email<br />
+      <input type="email" name="email" required>
+    </label>
+  </p>
 
-        <p>
-          <label>
-            Password<br />
-            <input type="password" name="password" required />
-          </label>
-        </p>
+  <p>
+    <label>
+      Password<br />
+      <input type="password" name="password" required>
+    </label>
+  </p>
 
-        <p>
-        <button type="submit">Log in</button>
-        </p>
+  <p>
+    <button type="submit">Login</button>
+  </p>
+<% end %>
+
+<% if @error %>
+  <p style="color: red;"><%= @error %></p>
+<% end %>
+
 
         <p>
         <a href="/signup">Create an account</a>

@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    # renders login form
   end
 
   def create
@@ -18,4 +19,10 @@ class SessionsController < ApplicationController
     reset_session
     redirect_to root_path
   end
+
+  def destroy
+  reset_session
+  redirect_to login_path
+  end
+
 end
