@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VandalSquat – New Entry (Details)</title>
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/">VandalSquat</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/entries">Entries</a></li>
+          <li><a href="/entries/new">New Entry</a></li>
+          <li><a href="/account">My Account</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <hr />
+
+    <main>
+      <h2>New Entry — Details</h2>
+
+      <p>Step 2 of 2: Upload the photo and add any details.</p>
+
+      <p>
+        <a href="/entries/new">← Back to map</a>
+      </p>
+
+      <form action="#" method="post" enctype="multipart/form-data">
+        <!-- These get filled later from the map step -->
+        <input type="hidden" name="latitude" value="" />
+        <input type="hidden" name="longitude" value="" />
+
+        <p>
+          <label>
+            Photo<br />
+            <input type="file" name="photo" accept="image/*" required />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Writer / Tag<br />
+            <input type="text" name="writer_name" />
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Notes<br />
+            <textarea name="notes"></textarea>
+          </label>
+        </p>
+
+        <p>
+          <label>
+            Date found<br />
+            <input type="date" name="found_on" />
+          </label>
+        </p>
+
+        <p>
+          <button type="submit">Save entry</button>
+        </p>
+      </form>
+    </main>
+  </body>
+</html>
