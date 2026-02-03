@@ -17,6 +17,11 @@ class EntriesController < ApplicationController
 
   def create
     @entry = current_user.entries.new(entry_params)
+    @entry.address = MapboxReverseGeocoder.lookup(
+    @entry.latitude,
+    @entry.longitude
+)
+
 
     if @entry.save
       redirect_to entries_path, notice: "Entry created."

@@ -9,21 +9,76 @@
   <body>
     <hr />
 
-    <main>
-      <h2>Home</h2>
+<div
+  id="home-map"
+  data-mapbox-token="<%= ENV["MAPBOX_PUBLIC_TOKEN"] %>"
+  data-entries="<%= @entries.map { |e|
+    {
+      id: e.id,
+      lat: e.latitude,
+      lng: e.longitude,
+      writer: e.writer_name,
+      found_on: e.found_on&.to_s,
+      photo_url: (url_for(e.photo) if e.photo.attached?)
+    }
+  }.to_json %>"
+  style="width: 100%; height: 80vh;"
+></div>
 
-      <p>
-        Map-first graffiti log. This box will eventually hold the Mapbox map.
-      </p>
+<script>
+  (function () {
+    const mapEl = document.getElementById("home-map");
+    if (!mapEl) return;
 
-      <section>
-        <h3>Map</h3>
+    const token = mapEl.dataset.mapboxToken;
+    const entries = JSON.parse(mapEl.dataset.entries || "[]");
 
+    mapboxgl.accessToken = token;
+
+    const map = new mapboxgl.Map({
+      container: "home-map",
+      style: "mapbox://styles/mapbox/streets-v12",
+      center: [-87.6298, 41.8781], // default: Chicago
+      zoom: 11
+    });
+
+    // If we have entries, center/fit to them
+    map.on("load", () => {
+      if (entries.length > 0) {
+        const bounds = new mapboxgl.LngLatBounds();
+        entries.forEach(e => bounds.extend([e.lng, e.lat]));
+        map.fitBounds(bounds, { padding: 60, maxZoom: 15 });
+      }
+    });
+
+    entries.forEach((e) => {
+      if (e.lat == null || e.lng == null) return;
+
+      const writer = e.writer || "—";
+      const date = e.found_on || "—";
+
+      const photoHtml = e.photo_url
+        ? `<img src="${e.photo_url}" alt="Graffiti photo" style="max-width:180px; height:auto;" />`
+        : `<div>—</div>`;
+
+      const popupHtml = `
         <div>
-          <p>[ Mapbox map placeholder ]</p>
+          <div><strong>${writer}</strong></div>
+          <div>${date}</div>
+          <div style="margin-top:6px;">${photoHtml}</div>
         </div>
-      </section>
-    </main>
+      `;
+
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHtml);
+
+      new mapboxgl.Marker()
+        .setLngLat([e.lng, e.lat])
+        .setPopup(popup)
+        .addTo(map);
+    });
+  })();
+</script>
+
 
   </body>
 </html>
