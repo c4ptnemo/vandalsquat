@@ -1,52 +1,40 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VandalSquat – New Entry (Details)</title>
-  </head>
+<hr />
 
-  <body>
-    <hr />
+<main>
+  <h2>New Entry — Details</h2>
 
-    <main>
-      <h2>New Entry — Details</h2>
+  <% if flash[:alert] %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
 
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% end %>
+  <%= form_with model: @entry, url: entries_path, method: :post, local: true, html: { multipart: true } do |f| %>
+    <%= f.hidden_field :latitude %>
+    <%= f.hidden_field :longitude %>
 
-<%= form_with model: @entry, url: entries_path, method: :post, local: true, html: { multipart: true } do |f| %>
-  <%= f.hidden_field :latitude %>
-  <%= f.hidden_field :longitude %>
+    <p>
+      <label>Photo<br>
+        <%= f.file_field :photo, accept: "image/*", required: true %>
+      </label>
+    </p>
 
-  <p>
-    <label>Photo<br>
-      <%= f.file_field :photo, accept: "image/*", required: true %>
-    </label>
-  </p>
+    <p>
+      <label>Writer / Tag<br>
+        <%= f.text_field :writer_name %>
+      </label>
+    </p>
 
-  <p>
-    <label>Writer / Tag<br>
-      <%= f.text_field :writer_name %>
-    </label>
-  </p>
+    <p>
+      <label>Notes<br>
+        <%= f.text_area :notes %>
+      </label>
+    </p>
 
-  <p>
-    <label>Notes<br>
-      <%= f.text_area :notes %>
-    </label>
-  </p>
+    <p>
+      <label>Date found<br>
+        <%= f.date_field :found_on %>
+      </label>
+    </p>
 
-  <p>
-    <label>Date found<br>
-      <%= f.date_field :found_on %>
-    </label>
-  </p>
-
-  <p><%= f.submit "Save entry" %></p>
-<% end %>
-
-    </main>
-  </body>
-</html>
+    <p><%= f.submit "Save entry" %></p>
+  <% end %>
+</main>

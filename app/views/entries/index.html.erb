@@ -37,9 +37,7 @@
     <tr>
       <td><%= entry.found_on || "—" %></td>
       <td><%= entry.writer_name.presence || "—" %></td>
-      <td>
-        <%= entry.latitude && entry.longitude ? "#{entry.latitude}, #{entry.longitude}" : "—" %>
-      </td>
+      <td><%= entry.latitude && entry.longitude ? "#{entry.latitude}, #{entry.longitude}" : "—" %></td>
       <td><%= entry.notes.presence || "—" %></td>
       <td>
         <% if entry.photo.attached? %>
@@ -48,12 +46,12 @@
           —
         <% end %>
       </td>
-      <td>
-        <%= link_to "Edit", edit_entry_path(entry) %>
-      </td>
+      <td><%= link_to "Edit", edit_entry_path(entry) %></td>
     </tr>
   <% end %>
 </tbody>
+
+
 
       </table>
     </main>
