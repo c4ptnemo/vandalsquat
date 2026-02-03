@@ -1,13 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>VandalSquat – Home</title>
-  </head>
-
-  <body>
-    <hr />
+<hr />
 
 <div
   id="home-map"
@@ -38,22 +29,19 @@
     const map = new mapboxgl.Map({
       container: "home-map",
       style: "mapbox://styles/mapbox/streets-v12",
-      center: [-87.6298, 41.8781], // default: Chicago
+      center: [-87.6298, 41.8781],
       zoom: 11
     });
 
-    // If we have entries, center/fit to them
-    map.on("load", () => {
-      if (entries.length > 0) {
-        const bounds = new mapboxgl.LngLatBounds();
-        entries.forEach(e => bounds.extend([e.lng, e.lat]));
-        map.fitBounds(bounds, { padding: 60, maxZoom: 15 });
-      }
-    });
+    // --- State ---
+    let entryMarkers = [];
+    let newEntryMode = false;
+    let newEntryMarker = null;
+    let selectedLat = null;
+    let selectedLng = null;
 
-    entries.forEach((e) => {
-      if (e.lat == null || e.lng == null) return;
-
+    // --- Helpers: entry markers ---
+    function buildPopupHtml(e) {
       const writer = e.writer || "—";
       const date = e.found_on || "—";
 
@@ -61,24 +49,182 @@
         ? `<img src="${e.photo_url}" alt="Graffiti photo" style="max-width:180px; height:auto;" />`
         : `<div>—</div>`;
 
-      const popupHtml = `
+      return `
         <div>
           <div><strong>${writer}</strong></div>
           <div>${date}</div>
           <div style="margin-top:6px;">${photoHtml}</div>
         </div>
       `;
+    }
 
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(popupHtml);
+    function createEntryMarkers() {
+      entryMarkers = entries
+        .map((e) => {
+          if (e.lat == null || e.lng == null) return null;
 
-      new mapboxgl.Marker()
-        .setLngLat([e.lng, e.lat])
-        .setPopup(popup)
+          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
+
+          const marker = new mapboxgl.Marker()
+            .setLngLat([e.lng, e.lat])
+            .setPopup(popup)
+            .addTo(map);
+
+          return marker;
+        })
+        .filter(Boolean);
+    }
+
+    function hideEntryMarkers() {
+      entryMarkers.forEach((m) => m.remove());
+    }
+
+    function showEntryMarkers() {
+      entryMarkers.forEach((m) => m.addTo(map));
+    }
+
+    // --- UI overlay for New Entry Mode ---
+    const overlay = document.createElement("div");
+    overlay.style.position = "absolute";
+    overlay.style.left = "12px";
+    overlay.style.bottom = "12px";
+    overlay.style.background = "#fff";
+    overlay.style.border = "1px solid #999";
+    overlay.style.padding = "10px";
+    overlay.style.maxWidth = "320px";
+    overlay.style.display = "none";
+    overlay.style.zIndex = "2";
+
+    overlay.innerHTML = `
+      <div style="font-weight: 600; margin-bottom: 6px;">New Entry Mode</div>
+      <div style="margin-bottom: 8px;">Click the map to drop a pin, then continue.</div>
+      <button id="continue-to-details" disabled>Continue to details</button>
+      <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
+    `;
+
+    // Mapbox creates its own container; this reliably targets it
+    mapEl.style.position = "relative";
+    mapEl.appendChild(overlay);
+
+    const continueBtn = overlay.querySelector("#continue-to-details");
+    const cancelBtn = overlay.querySelector("#cancel-new-entry");
+
+    function enterNewEntryMode() {
+      newEntryMode = true;
+      overlay.style.display = "block";
+
+      // Hide existing entries
+      hideEntryMarkers();
+
+      // Reset selection
+      selectedLat = null;
+      selectedLng = null;
+      continueBtn.disabled = true;
+
+      if (newEntryMarker) {
+        newEntryMarker.remove();
+        newEntryMarker = null;
+      }
+    }
+
+    function exitNewEntryMode() {
+      newEntryMode = false;
+      overlay.style.display = "none";
+
+      // Remove any temporary marker
+      if (newEntryMarker) {
+        newEntryMarker.remove();
+        newEntryMarker = null;
+      }
+
+      // Restore entry markers
+      showEntryMarkers();
+    }
+
+    // --- Map click behavior ---
+    map.on("click", (e) => {
+      if (!newEntryMode) return;
+
+      selectedLng = e.lngLat.lng;
+      selectedLat = e.lngLat.lat;
+
+      if (newEntryMarker) newEntryMarker.remove();
+      newEntryMarker = new mapboxgl.Marker()
+        .setLngLat([selectedLng, selectedLat])
         .addTo(map);
+
+      continueBtn.disabled = false;
+    });
+
+    continueBtn.addEventListener("click", () => {
+      if (selectedLat == null || selectedLng == null) return;
+
+      window.location.href =
+        `/entries/new/details?lat=${encodeURIComponent(selectedLat)}&lng=${encodeURIComponent(selectedLng)}`;
+    });
+
+    cancelBtn.addEventListener("click", () => {
+      exitNewEntryMode();
+    });
+
+    // --- New Entry toggle control (+) ---
+    class NewEntryControl {
+      onAdd() {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.title = "Toggle New Entry Mode";
+        btn.setAttribute("aria-label", "Toggle New Entry Mode");
+        btn.textContent = "+";
+
+        btn.style.width = "36px";
+        btn.style.height = "36px";
+        btn.style.borderRadius = "18px";
+        btn.style.border = "1px solid #999";
+        btn.style.background = "#fff";
+        btn.style.fontSize = "22px";
+        btn.style.lineHeight = "32px";
+        btn.style.cursor = "pointer";
+
+        btn.addEventListener("click", () => {
+          if (newEntryMode) {
+            exitNewEntryMode();
+          } else {
+            enterNewEntryMode();
+          }
+        });
+
+        const container = document.createElement("div");
+        container.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+        container.appendChild(btn);
+
+        this._container = container;
+        return container;
+      }
+
+      onRemove() {
+        this._container.parentNode.removeChild(this._container);
+      }
+    }
+
+    map.addControl(new NewEntryControl(), "top-right");
+
+    // --- On load: markers + fit bounds ---
+    map.on("load", () => {
+      map.resize();
+
+      createEntryMarkers();
+
+      if (entries.length > 0) {
+        const bounds = new mapboxgl.LngLatBounds();
+        entries.forEach((e) => {
+          if (e.lat == null || e.lng == null) return;
+          bounds.extend([e.lng, e.lat]);
+        });
+
+        if (!bounds.isEmpty()) {
+          map.fitBounds(bounds, { padding: 60, maxZoom: 15 });
+        }
+      }
     });
   })();
 </script>
-
-
-  </body>
-</html>

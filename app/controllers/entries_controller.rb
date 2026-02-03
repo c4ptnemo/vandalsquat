@@ -16,20 +16,21 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = current_user.entries.new(entry_params)
-    @entry.address = MapboxReverseGeocoder.lookup(
+  @entry = current_user.entries.new(entry_params)
+
+  @entry.address = MapboxReverseGeocoder.lookup(
     @entry.latitude,
     @entry.longitude
-)
+  )
 
-
-    if @entry.save
-      redirect_to entries_path, notice: "Entry created."
-    else
-      flash.now[:alert] = @entry.errors.full_messages.to_sentence
-      render :details, status: :unprocessable_entity
-    end
+  if @entry.save
+    redirect_to root_path, notice: "Entry created."
+  else
+    flash.now[:alert] = @entry.errors.full_messages.to_sentence
+    render :details, status: :unprocessable_entity
   end
+end
+
 
   def edit
   end
