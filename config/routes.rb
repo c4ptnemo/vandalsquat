@@ -23,5 +23,9 @@ Rails.application.routes.draw do
   patch "/account/email",   to: "users#update_email"
   patch "/account/password",to: "users#update_password"
 
+  resources :entries, only: [:index, :new, :create, :edit, :update]
+  get "/entries/new/details", to: "entries#details"
+
+
 end
 

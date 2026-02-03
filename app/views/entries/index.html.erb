@@ -30,23 +30,31 @@
           </tr>
         </thead>
 
-        <tbody>
-          <tr>
-            <td>—</td>
-            <td>—</td>
-            <td>—</td>
-            <td>Placeholder row</td>
-            <td>
-              <!-- Placeholder thumbnail -->
-              <img
-                src="https://preview.redd.it/cv6972lipeyb1.jpg?auto=webp&s=63c331da08c9a51b1e5e444f8be477aa5c7b89e3"
-                alt="Graffiti photo"
-                width="400"
-                height="300"
-              />
-            </td>
-          </tr>
-        </tbody>
+        <th>Actions</th>
+
+<tbody>
+  <% @entries.each do |entry| %>
+    <tr>
+      <td><%= entry.found_on || "—" %></td>
+      <td><%= entry.writer_name.presence || "—" %></td>
+      <td>
+        <%= entry.latitude && entry.longitude ? "#{entry.latitude}, #{entry.longitude}" : "—" %>
+      </td>
+      <td><%= entry.notes.presence || "—" %></td>
+      <td>
+        <% if entry.photo.attached? %>
+          <%= image_tag entry.photo, width: 100, height: 100, alt: "Graffiti photo" %>
+        <% else %>
+          —
+        <% end %>
+      </td>
+      <td>
+        <%= link_to "Edit", edit_entry_path(entry) %>
+      </td>
+    </tr>
+  <% end %>
+</tbody>
+
       </table>
     </main>
   </body>

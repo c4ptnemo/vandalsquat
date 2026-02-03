@@ -1,0 +1,52 @@
+<h2>Edit Entry</h2>
+
+<% if flash[:alert] %>
+  <p><%= flash[:alert] %></p>
+<% end %>
+
+<%= form_with model: @entry, local: true, html: { multipart: true } do |f| %>
+  <p>
+    <label>Latitude<br>
+      <%= f.number_field :latitude, step: "any", required: true %>
+    </label>
+  </p>
+
+  <p>
+    <label>Longitude<br>
+      <%= f.number_field :longitude, step: "any", required: true %>
+    </label>
+  </p>
+
+  <p>
+    <label>Replace photo (optional)<br>
+      <%= f.file_field :photo, accept: "image/*" %>
+    </label>
+  </p>
+
+  <% if @entry.photo.attached? %>
+    <p>
+      Current photo:<br>
+      <%= image_tag @entry.photo, width: 150, height: 150, alt: "Current graffiti photo" %>
+    </p>
+  <% end %>
+
+  <p>
+    <label>Writer / Tag<br>
+      <%= f.text_field :writer_name %>
+    </label>
+  </p>
+
+  <p>
+    <label>Notes<br>
+      <%= f.text_area :notes %>
+    </label>
+  </p>
+
+  <p>
+    <label>Date found<br>
+      <%= f.date_field :found_on %>
+    </label>
+  </p>
+
+  <p><%= f.submit "Update entry" %></p>
+<% end %>
