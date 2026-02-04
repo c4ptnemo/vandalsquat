@@ -89,27 +89,26 @@
       zoom: 11
     });
 
-    // Make map globally accessible for filters
-    window.mapInstance = map;
-
     // --- State ---
-    let entryMarkers = [];
+    // Single source of truth for markers: window.entryMarkers
+    window.mapInstance = map;
+    window.allEntries = entries;
+    window.entryMarkers = [];
+
     let newEntryMode = false;
     let newEntryMarker = null;
     let selectedLat = null;
     let selectedLng = null;
 
     // --- Helpers: entry markers ---
-    
-    // Color mapping for pin types
     function getPinColor(pinType) {
       const colors = {
-        'Spot': '#3B82F6',    // Blue
-        'Tag': '#10B981',     // Green
-        'Throw': '#F59E0B',   // Orange
-        'Piece': '#EF4444'    // Red
+        Spot: "#3B82F6",
+        Tag: "#10B981",
+        Throw: "#F59E0B",
+        Piece: "#EF4444"
       };
-      return colors[pinType] || colors['Spot'];
+      return colors[pinType] || colors.Spot;
     }
 
     function buildPopupHtml(e) {
@@ -130,48 +129,52 @@
       `;
     }
 
-    function createEntryMarkers() {
-      entryMarkers = entries
-        .map((e) => {
-          if (e.lat == null || e.lng == null) return null;
+    // IMPORTANT: this MUTATES window.entryMarkers (does not reassign)
+    function createEntryMarkers(entriesToRender = entries) {
+      // remove existing markers
+      window.entryMarkers.forEach((m) => m.remove());
+      window.entryMarkers.length = 0;
 
-          const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
+      entriesToRender.forEach((e) => {
+        if (e.lat == null || e.lng == null) return;
 
-          // Create custom pin marker with SVG
-          const el = document.createElement('div');
-          el.className = 'custom-marker';
-          el.style.cursor = 'pointer';
-          
-          const pinColor = getPinColor(e.pin_type);
-          
-          // SVG pin icon
-          el.innerHTML = `
-            <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
-                    fill="${pinColor}" 
-                    stroke="#fff" 
-                    stroke-width="2"/>
-              <circle cx="15" cy="11" r="4" fill="#fff"/>
-            </svg>
-          `;
+        const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
 
-          const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
-            .setLngLat([e.lng, e.lat])
-            .setPopup(popup)
-            .addTo(map);
+        const el = document.createElement("div");
+        el.className = "custom-marker";
+        el.style.cursor = "pointer";
 
-          return marker;
-        })
-        .filter(Boolean);
+        const pinColor = getPinColor(e.pin_type);
+
+        el.innerHTML = `
+          <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z"
+                  fill="${pinColor}"
+                  stroke="#fff"
+                  stroke-width="2"/>
+            <circle cx="15" cy="11" r="4" fill="#fff"/>
+          </svg>
+        `;
+
+        const marker = new mapboxgl.Marker({ element: el, anchor: "bottom" })
+          .setLngLat([e.lng, e.lat])
+          .setPopup(popup)
+          .addTo(map);
+
+        window.entryMarkers.push(marker);
+      });
     }
 
     function hideEntryMarkers() {
-      entryMarkers.forEach((m) => m.remove());
+      window.entryMarkers.forEach((m) => m.remove());
     }
 
     function showEntryMarkers() {
-      entryMarkers.forEach((m) => m.addTo(map));
+      window.entryMarkers.forEach((m) => m.addTo(map));
     }
+
+    // expose renderer for global filter functions
+    window.renderMapboxMarkers = createEntryMarkers;
 
     // --- UI overlay for New Entry Mode ---
     const overlay = document.createElement("div");
@@ -192,7 +195,6 @@
       <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
     `;
 
-    // Mapbox creates its own container; this reliably targets it
     mapEl.style.position = "relative";
     mapEl.appendChild(overlay);
 
@@ -203,10 +205,8 @@
       newEntryMode = true;
       overlay.style.display = "block";
 
-      // Hide existing entries
       hideEntryMarkers();
 
-      // Reset selection
       selectedLat = null;
       selectedLng = null;
       continueBtn.disabled = true;
@@ -221,13 +221,11 @@
       newEntryMode = false;
       overlay.style.display = "none";
 
-      // Remove any temporary marker
       if (newEntryMarker) {
         newEntryMarker.remove();
         newEntryMarker = null;
       }
 
-      // Restore entry markers
       showEntryMarkers();
     }
 
@@ -239,20 +237,19 @@
       selectedLat = e.lngLat.lat;
 
       if (newEntryMarker) newEntryMarker.remove();
-      
-      // Create pin-shaped marker for new entry
-      const el = document.createElement('div');
+
+      const el = document.createElement("div");
       el.innerHTML = `
         <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
-                fill="#FFFF00" 
-                stroke="#000" 
+          <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z"
+                fill="#FFFF00"
+                stroke="#000"
                 stroke-width="2"/>
           <circle cx="15" cy="11" r="4" fill="#000"/>
         </svg>
       `;
-      
-      newEntryMarker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+
+      newEntryMarker = new mapboxgl.Marker({ element: el, anchor: "bottom" })
         .setLngLat([selectedLng, selectedLat])
         .addTo(map);
 
@@ -261,14 +258,11 @@
 
     continueBtn.addEventListener("click", () => {
       if (selectedLat == null || selectedLng == null) return;
-
       window.location.href =
         `/entries/new/details?lat=${encodeURIComponent(selectedLat)}&lng=${encodeURIComponent(selectedLng)}`;
     });
 
-    cancelBtn.addEventListener("click", () => {
-      exitNewEntryMode();
-    });
+    cancelBtn.addEventListener("click", () => exitNewEntryMode());
 
     // --- New Entry toggle control (+) ---
     class NewEntryControl {
@@ -291,11 +285,8 @@
         btn.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
 
         btn.addEventListener("click", () => {
-          if (newEntryMode) {
-            exitNewEntryMode();
-          } else {
-            enterNewEntryMode();
-          }
+          if (newEntryMode) exitNewEntryMode();
+          else enterNewEntryMode();
         });
 
         const container = document.createElement("div");
@@ -332,159 +323,116 @@
       }
     });
 
-    // --- Make map and data globally accessible for filters ---
-    window.mapInstance = map;
-    window.allEntries = entries;
-    window.entryMarkers = entryMarkers;
-    window.getPinColorGlobal = getPinColor;
-    window.buildPopupHtmlGlobal = buildPopupHtml;
-
     // --- Lightbox for popup photos ---
-    const lightboxModal = document.createElement('div');
-    lightboxModal.id = 'lightbox-modal';
-    lightboxModal.className = 'lightbox-modal';
+    const lightboxModal = document.createElement("div");
+    lightboxModal.id = "lightbox-modal";
+    lightboxModal.className = "lightbox-modal";
     lightboxModal.innerHTML = `
       <button class="lightbox-close" onclick="this.parentElement.style.display='none'; document.body.style.overflow='auto';">&times;</button>
       <img id="lightbox-image" class="lightbox-image" src="" alt="Fullscreen photo">
     `;
     document.body.appendChild(lightboxModal);
 
-    // Delegate clicks on popup images
-    document.addEventListener('click', (e) => {
-      if (e.target.classList.contains('popup-photo')) {
-        const modal = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-image');
+    document.addEventListener("click", (e) => {
+      if (e.target.classList.contains("popup-photo")) {
+        const modal = document.getElementById("lightbox-modal");
+        const lightboxImg = document.getElementById("lightbox-image");
         lightboxImg.src = e.target.src;
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        modal.style.display = "flex";
+        document.body.style.overflow = "hidden";
       }
     });
 
-    // Close on background click
-    lightboxModal.addEventListener('click', function(e) {
+    lightboxModal.addEventListener("click", function (e) {
       if (e.target === this) {
-        this.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        this.style.display = "none";
+        document.body.style.overflow = "auto";
       }
     });
 
-    // Close on escape key
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        lightboxModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        lightboxModal.style.display = "none";
+        document.body.style.overflow = "auto";
       }
     });
-
   })();
 
   // --- MAP FILTER FUNCTIONS (Global scope) ---
-  let entryMarkers = [];
-  
   function toggleMapFilters() {
-    const content = document.getElementById('map-filter-content');
-    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+    const content = document.getElementById("map-filter-content");
+    content.style.display = content.style.display === "none" ? "block" : "none";
   }
 
   function applyMapFilters() {
-    // Get all entries from global
     const allEntries = window.allEntries;
-    if (!allEntries) return;
-    
-    // Get selected pin types
-    const pinTypeCheckboxes = document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]');
+    if (!allEntries || !window.renderMapboxMarkers) return;
+
+    // selected pin types
+    const pinTypeCheckboxes = document.querySelectorAll(
+      '.checkbox-group-horizontal input[type="checkbox"]'
+    );
     const selectedPinTypes = Array.from(pinTypeCheckboxes)
-      .filter(cb => cb.checked)
-      .map(cb => cb.value);
+      .filter((cb) => cb.checked)
+      .map((cb) => cb.value);
 
-    // Get writer filter
-    const writerFilter = document.getElementById('writer-filter').value.toLowerCase();
+    // writer
+    const writerFilter = document.getElementById("writer-filter").value.toLowerCase();
 
-    // Get date filters
-    const dateFrom = document.getElementById('date-from-filter').value;
-    const dateTo = document.getElementById('date-to-filter').value;
+    // date range
+    const dateFrom = document.getElementById("date-from-filter").value;
+    const dateTo = document.getElementById("date-to-filter").value;
 
-    // Filter entries
-    const filteredEntries = allEntries.filter(e => {
-      // Pin type filter
-      if (selectedPinTypes.length > 0 && !selectedPinTypes.includes(e.pin_type || 'Spot')) {
-        return false;
+    const fromDate = dateFrom ? new Date(dateFrom + "T00:00:00") : null;
+    const toDate = dateTo ? new Date(dateTo + "T23:59:59") : null;
+
+    const filteredEntries = allEntries.filter((e) => {
+      // pin type
+      const pinType = e.pin_type || "Spot";
+      if (selectedPinTypes.length > 0 && !selectedPinTypes.includes(pinType)) return false;
+
+      // writer
+      if (writerFilter) {
+        const w = (e.writer || "").toLowerCase();
+        if (!w.includes(writerFilter)) return false;
       }
 
-      // Writer filter (case insensitive)
-      if (writerFilter && (!e.writer || !e.writer.toLowerCase().includes(writerFilter))) {
-        return false;
-      }
-
-      // Date range filter
-      if (dateFrom && e.found_on && e.found_on < dateFrom) {
-        return false;
-      }
-      if (dateTo && e.found_on && e.found_on > dateTo) {
-        return false;
+      // date
+      if ((fromDate || toDate) && e.found_on) {
+        const d = new Date(e.found_on);
+        if (fromDate && d < fromDate) return false;
+        if (toDate && d > toDate) return false;
       }
 
       return true;
     });
 
-    // Remove all existing markers
-    window.entryMarkers.forEach(m => m.remove());
-    window.entryMarkers = [];
+    // ✅ re-render markers (this removes old + adds new)
+    window.renderMapboxMarkers(filteredEntries);
 
-    // Create new markers for filtered entries
-    filteredEntries.forEach((e) => {
-      if (e.lat == null || e.lng == null) return;
-
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(window.buildPopupHtmlGlobal(e));
-
-      const el = document.createElement('div');
-      el.className = 'custom-marker';
-      el.style.cursor = 'pointer';
-      
-      const pinColor = window.getPinColorGlobal(e.pin_type);
-      
-      el.innerHTML = `
-        <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
-                fill="${pinColor}" 
-                stroke="#fff" 
-                stroke-width="2"/>
-          <circle cx="15" cy="11" r="4" fill="#fff"/>
-        </svg>
-      `;
-
-      const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
-        .setLngLat([e.lng, e.lat])
-        .setPopup(popup)
-        .addTo(window.mapInstance);
-
-      window.entryMarkers.push(marker);
-    });
-
-    // Update filter count
     updateMapFilterCount();
   }
 
   function clearMapFilters() {
-    // Reset all checkboxes
-    document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]').forEach(cb => {
-      cb.checked = true;
-    });
+    document
+      .querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]')
+      .forEach((cb) => (cb.checked = true));
 
-    // Clear text inputs
-    document.getElementById('writer-filter').value = '';
-    document.getElementById('date-from-filter').value = '';
-    document.getElementById('date-to-filter').value = '';
+    document.getElementById("writer-filter").value = "";
+    document.getElementById("date-from-filter").value = "";
+    document.getElementById("date-to-filter").value = "";
 
-    // Reapply filters (which now shows all)
     applyMapFilters();
   }
 
   function updateMapFilterCount() {
-    const pinTypeCount = document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]:not(:checked)').length;
-    const writerFilter = document.getElementById('writer-filter').value;
-    const dateFrom = document.getElementById('date-from-filter').value;
-    const dateTo = document.getElementById('date-to-filter').value;
+    const pinTypeCount = document.querySelectorAll(
+      '.checkbox-group-horizontal input[type="checkbox"]:not(:checked)'
+    ).length;
+
+    const writerFilter = document.getElementById("writer-filter").value;
+    const dateFrom = document.getElementById("date-from-filter").value;
+    const dateTo = document.getElementById("date-to-filter").value;
 
     let count = 0;
     if (pinTypeCount > 0) count += pinTypeCount;
@@ -492,43 +440,12 @@
     if (dateFrom) count++;
     if (dateTo) count++;
 
-    const badge = document.getElementById('map-filter-count');
+    const badge = document.getElementById("map-filter-count");
     if (count > 0) {
       badge.textContent = count;
-      badge.style.display = 'inline-block';
+      badge.style.display = "inline-block";
     } else {
-      badge.style.display = 'none';
+      badge.style.display = "none";
     }
   }
-
-  // Helper functions need to be global too
-  function getPinColor(pinType) {
-    const colors = {
-      'Spot': '#3B82F6',
-      'Tag': '#10B981',
-      'Throw': '#F59E0B',
-      'Piece': '#EF4444'
-    };
-    return colors[pinType] || colors['Spot'];
-  }
-
-  function buildPopupHtml(e) {
-    const writer = e.writer || "—";
-    const date = e.found_on || "—";
-    const pinType = e.pin_type || "Spot";
-
-    const photoHtml = e.photo_url
-      ? `<img src="${e.photo_url}" alt="Graffiti photo" class="popup-photo" style="max-width:180px; height:auto; cursor:pointer;" />`
-      : `<div>—</div>`;
-
-    return `
-      <div>
-        <div><strong>${pinType}</strong> - <strong>${writer}</strong></div>
-        <div>${date}</div>
-        <div style="margin-top:6px;">${photoHtml}</div>
-      </div>
-    `;
-  }
-
-  
 </script>
