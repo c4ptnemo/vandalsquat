@@ -262,18 +262,17 @@ input[type="button"]:hover,
   background: #161616;
   padding: 16px 20px 20px 20px;
   display: flex;
-  justify-content: center; /* Centers the content */
-  align-items: flex-start; /* Aligns content to top */
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%; /* Ensure full width */
 }
 
-/* Center column stack */
+/* Center column stack - no margin needed, pure centering */
 .navbar.navbar--stacked .nav-stack {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
-  width: auto; /* Key change: don't take full width */
-  flex-shrink: 0; /* Prevents shrinking */
 }
 
 /* Logo (keep your 44px height) */
@@ -356,68 +355,6 @@ input[type="button"]:hover,
   font-size: 2rem;
   margin: 0 0 24px 0;
   color: #fff;
-}
-
-.search-wrapper {
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.search-form {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
-
-.search-input {
-  flex: 1;
-  padding: 12px 16px;
-  background: #0f0f0f;
-  border: 1px solid #333;
-  color: #fff;
-  font-size: 0.95rem;
-  border-radius: 4px;
-}
-
-.search-input::placeholder {
-  color: #666;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #555;
-}
-
-.search-btn {
-  padding: 12px 20px;
-  background: #fff;
-  color: #000;
-  border: none;
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background 0.2s ease;
-}
-
-.search-btn:hover {
-  background: #eaeaea;
-}
-
-.clear-btn {
-  padding: 12px 16px;
-  background: transparent;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  text-decoration: none;
-  font-size: 0.9rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-}
-
-.clear-btn:hover {
-  color: #fff;
-  border-color: #555;
 }
 
 /* Container for all entries */
@@ -594,120 +531,6 @@ input[type="button"]:hover,
 
 /* =========================
    ADDITIONAL STYLES FOR FORM PAGES
-   Add these to the bottom of your application.css
-   ========================= */
-
-/* Wider auth box for account page with multiple sections */
-.auth-box--wide {
-  max-width: 520px;
-}
-
-/* Account page sections */
-.account-section h3 {
-  font-size: 1.1rem;
-  margin: 0 0 16px 0;
-  color: #fff;
-}
-
-/* Success message styling */
-.auth-success {
-  color: #4caf50;
-  text-align: center;
-  margin: 0 0 12px 0;
-  padding: 8px;
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.3);
-}
-
-/* Textarea styling for auth boxes */
-.auth-box textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #fff;
-  border: 1px solid #333;
-  font-family: inherit;
-  resize: vertical;
-  min-height: 80px;
-}
-
-.auth-box textarea:focus {
-  outline: none;
-  border-color: #555;
-}
-
-/* File input styling */
-.auth-box input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  cursor: pointer;
-}
-
-.auth-box input[type="file"]::-webkit-file-upload-button {
-  padding: 6px 12px;
-  background: transparent;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  cursor: pointer;
-  margin-right: 8px;
-}
-
-.auth-box input[type="file"]::-webkit-file-upload-button:hover {
-  color: #fff;
-  border-color: #555;
-}
-
-/* Date and number inputs */
-.auth-box input[type="date"],
-.auth-box input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-.auth-box input[type="date"]:focus,
-.auth-box input[type="number"]:focus {
-  outline: none;
-  border-color: #555;
-}
-
-/* Danger button for delete */
-.btn-danger {
-  width: 100%;
-  background: transparent;
-  color: #ff6b6b;
-  border: 1px solid #ff6b6b;
-  padding: 10px 12px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-danger:hover {
-  background: rgba(255, 107, 107, 0.1);
-  border-color: #ff5252;
-  color: #ff5252;
-}
-
-/* Current photo display in edit form */
-.current-photo {
-  margin: 12px 0;
-  padding: 12px;
-  background: #0b0b0b;
-  border: 1px solid #222;
-}
-
-/* =========================
-   ADDITIONAL STYLES FOR FORM PAGES
-   Add these to the bottom of your application.css
    ========================= */
 
 /* Wider auth box for account page with multiple sections */
@@ -836,7 +659,6 @@ input[type="button"]:hover,
 
 /* =========================
    FILTER SECTION STYLES
-   Add these to your application.css
    ========================= */
 
 .search-wrapper {
@@ -1080,6 +902,192 @@ input[type="button"]:hover,
   }
   
   .search-input {
+    min-width: 100%;
+  }
+}
+
+/* =========================
+   MAP FILTER PANEL STYLES
+   ========================= */
+
+.map-filter-panel {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  max-width: none;
+}
+
+.map-filter-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #fff;
+  border: 1px solid #999;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: fit-content;
+}
+
+.map-filter-toggle:hover {
+  background: #f9f9f9;
+}
+
+.map-filter-content {
+  margin-top: 8px;
+  padding: 16px;
+  background: #fff;
+  border: 1px solid #999;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-group-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-group-compact label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.filter-group-compact input[type="text"],
+.filter-group-compact input[type="date"] {
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  min-width: 140px;
+}
+
+.filter-group-compact input[type="text"]:focus,
+.filter-group-compact input[type="date"]:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.checkbox-group-horizontal {
+  display: flex;
+  gap: 12px;
+}
+
+.checkbox-label-compact {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: #333;
+  white-space: nowrap;
+}
+
+.checkbox-label-compact input {
+  cursor: pointer;
+}
+
+.pin-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.date-range-compact {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.date-range-compact input {
+  width: 130px;
+}
+
+.btn-clear-filters {
+  padding: 8px 16px;
+  background: #f3f4f6;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.btn-clear-filters:hover {
+  background: #e5e7eb;
+}
+
+.btn-apply-filters {
+  padding: 8px 16px;
+  background: #3B82F6;
+  color: #fff;
+  border: 1px solid #3B82F6;
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.btn-apply-filters:hover {
+  background: #2563EB;
+  border-color: #2563EB;
+}
+
+.filter-actions-map {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #ddd;
+  width: 100%;
+}
+
+/* Responsive adjustments for map filters */
+@media (max-width: 1024px) {
+  .map-filter-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .checkbox-group-horizontal {
+    flex-wrap: wrap;
+  }
+  
+  .date-range-compact {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .date-range-compact input {
+    width: 100%;
+  }
+  
+  .btn-clear-filters {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-filter-panel {
+    left: 8px;
+    right: 8px;
+  }
+  
+  .filter-group-compact input[type="text"],
+  .filter-group-compact input[type="date"] {
     min-width: 100%;
   }
 }

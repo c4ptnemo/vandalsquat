@@ -28,22 +28,22 @@
         <label>Pin Type</label>
         <div class="checkbox-group-horizontal">
           <label class="checkbox-label-compact">
-            <input type="checkbox" value="Spot" checked onchange="applyMapFilters()">
+            <input type="checkbox" value="Spot" checked>
             <span class="pin-dot" style="background: #3B82F6;"></span>
             <span>Spot</span>
           </label>
           <label class="checkbox-label-compact">
-            <input type="checkbox" value="Tag" checked onchange="applyMapFilters()">
+            <input type="checkbox" value="Tag" checked>
             <span class="pin-dot" style="background: #10B981;"></span>
             <span>Tag</span>
           </label>
           <label class="checkbox-label-compact">
-            <input type="checkbox" value="Throw" checked onchange="applyMapFilters()">
+            <input type="checkbox" value="Throw" checked>
             <span class="pin-dot" style="background: #F59E0B;"></span>
             <span>Throw</span>
           </label>
           <label class="checkbox-label-compact">
-            <input type="checkbox" value="Piece" checked onchange="applyMapFilters()">
+            <input type="checkbox" value="Piece" checked>
             <span class="pin-dot" style="background: #EF4444;"></span>
             <span>Piece</span>
           </label>
@@ -52,19 +52,22 @@
 
       <div class="filter-group-compact">
         <label>Writer</label>
-        <input type="text" id="writer-filter" placeholder="Filter by writer..." oninput="applyMapFilters()">
+        <input type="text" id="writer-filter" placeholder="Filter by writer...">
       </div>
 
       <div class="filter-group-compact">
         <label>Date Range</label>
         <div class="date-range-compact">
-          <input type="date" id="date-from-filter" onchange="applyMapFilters()">
+          <input type="date" id="date-from-filter">
           <span>to</span>
-          <input type="date" id="date-to-filter" onchange="applyMapFilters()">
+          <input type="date" id="date-to-filter">
         </div>
       </div>
 
-      <button type="button" class="btn-clear-filters" onclick="clearMapFilters()">Clear All</button>
+      <div class="filter-actions-map">
+        <button type="button" class="btn-apply-filters" onclick="applyMapFilters()">Apply Filters</button>
+        <button type="button" class="btn-clear-filters" onclick="clearMapFilters()">Clear All</button>
+      </div>
     </div>
   </div>
 </div>
@@ -85,6 +88,9 @@
       center: [-87.6298, 41.8781],
       zoom: 11
     });
+
+    // Make map globally accessible for filters
+    window.mapInstance = map;
 
     // --- State ---
     let entryMarkers = [];
@@ -326,6 +332,13 @@
       }
     });
 
+    // --- Make map and data globally accessible for filters ---
+    window.mapInstance = map;
+    window.allEntries = entries;
+    window.entryMarkers = entryMarkers;
+    window.getPinColorGlobal = getPinColor;
+    window.buildPopupHtmlGlobal = buildPopupHtml;
+
     // --- Lightbox for popup photos ---
     const lightboxModal = document.createElement('div');
     lightboxModal.id = 'lightbox-modal';
@@ -365,13 +378,19 @@
 
   })();
 
-  // --- MAP FILTER FUNCTIONS ---
+  // --- MAP FILTER FUNCTIONS (Global scope) ---
+  let entryMarkers = [];
+  
   function toggleMapFilters() {
     const content = document.getElementById('map-filter-content');
     content.style.display = content.style.display === 'none' ? 'block' : 'none';
   }
 
   function applyMapFilters() {
+    // Get all entries from global
+    const allEntries = window.allEntries;
+    if (!allEntries) return;
+    
     // Get selected pin types
     const pinTypeCheckboxes = document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]');
     const selectedPinTypes = Array.from(pinTypeCheckboxes)
@@ -385,9 +404,6 @@
     const dateFrom = document.getElementById('date-from-filter').value;
     const dateTo = document.getElementById('date-to-filter').value;
 
-    // Get the entries array from the global scope
-    const allEntries = JSON.parse(document.getElementById('home-map').dataset.entries || "[]");
-
     // Filter entries
     const filteredEntries = allEntries.filter(e => {
       // Pin type filter
@@ -395,7 +411,7 @@
         return false;
       }
 
-      // Writer filter
+      // Writer filter (case insensitive)
       if (writerFilter && (!e.writer || !e.writer.toLowerCase().includes(writerFilter))) {
         return false;
       }
@@ -412,20 +428,20 @@
     });
 
     // Remove all existing markers
-    entryMarkers.forEach(m => m.remove());
-    entryMarkers = [];
+    window.entryMarkers.forEach(m => m.remove());
+    window.entryMarkers = [];
 
     // Create new markers for filtered entries
     filteredEntries.forEach((e) => {
       if (e.lat == null || e.lng == null) return;
 
-      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(window.buildPopupHtmlGlobal(e));
 
       const el = document.createElement('div');
       el.className = 'custom-marker';
       el.style.cursor = 'pointer';
       
-      const pinColor = getPinColor(e.pin_type);
+      const pinColor = window.getPinColorGlobal(e.pin_type);
       
       el.innerHTML = `
         <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
@@ -440,9 +456,9 @@
       const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([e.lng, e.lat])
         .setPopup(popup)
-        .addTo(map);
+        .addTo(window.mapInstance);
 
-      entryMarkers.push(marker);
+      window.entryMarkers.push(marker);
     });
 
     // Update filter count
@@ -484,4 +500,35 @@
       badge.style.display = 'none';
     }
   }
+
+  // Helper functions need to be global too
+  function getPinColor(pinType) {
+    const colors = {
+      'Spot': '#3B82F6',
+      'Tag': '#10B981',
+      'Throw': '#F59E0B',
+      'Piece': '#EF4444'
+    };
+    return colors[pinType] || colors['Spot'];
+  }
+
+  function buildPopupHtml(e) {
+    const writer = e.writer || "—";
+    const date = e.found_on || "—";
+    const pinType = e.pin_type || "Spot";
+
+    const photoHtml = e.photo_url
+      ? `<img src="${e.photo_url}" alt="Graffiti photo" class="popup-photo" style="max-width:180px; height:auto; cursor:pointer;" />`
+      : `<div>—</div>`;
+
+    return `
+      <div>
+        <div><strong>${pinType}</strong> - <strong>${writer}</strong></div>
+        <div>${date}</div>
+        <div style="margin-top:6px;">${photoHtml}</div>
+      </div>
+    `;
+  }
+
+  
 </script>

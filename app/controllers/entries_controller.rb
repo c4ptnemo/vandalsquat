@@ -3,7 +3,48 @@ class EntriesController < ApplicationController
   before_action :set_entry, only: [:edit, :update, :destroy]
 
   def index
-    @entries = current_user.entries.order(created_at: :desc)
+    @entries = current_user.entries
+
+    # Text search (searches across writer, address, notes) - case insensitive
+    if params[:query].present?
+      search_query = "%#{params[:query].downcase}%"
+      @entries = @entries.where(
+        "LOWER(writer_name) LIKE ? OR LOWER(address) LIKE ? OR LOWER(notes) LIKE ?",
+        search_query, search_query, search_query
+      )
+    end
+
+    # Pin type filter (multiple selection)
+    if params[:pin_types].present?
+      @entries = @entries.where(pin_type: params[:pin_types])
+    end
+
+    # Writer filter - case insensitive
+    if params[:writer].present?
+      @entries = @entries.where("LOWER(writer_name) LIKE ?", "%#{params[:writer].downcase}%")
+    end
+
+    # Location filter - case insensitive
+    if params[:location].present?
+      @entries = @entries.where("LOWER(address) LIKE ?", "%#{params[:location].downcase}%")
+    end
+
+    # Date range filter
+    if params[:date_from].present?
+      @entries = @entries.where("found_on >= ?", params[:date_from])
+    end
+
+    if params[:date_to].present?
+      @entries = @entries.where("found_on <= ?", params[:date_to])
+    end
+
+    # Notes filter - case insensitive
+    if params[:notes].present?
+      @entries = @entries.where("LOWER(notes) LIKE ?", "%#{params[:notes].downcase}%")
+    end
+
+    # Order by most recent first (nulls last)
+    @entries = @entries.order(Arel.sql("COALESCE(found_on, '1900-01-01') DESC"))
   end
 
   # Step 1 (map) now lives on the homepage.
@@ -57,53 +98,6 @@ class EntriesController < ApplicationController
   end
 
   def entry_params
-  params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
+    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
   end
-end
-
-# Update your EntriesController index action with this comprehensive filter logic
-
-def index
-  @entries = current_user.entries
-
-  # Text search (searches across writer, address, notes)
-  if params[:query].present?
-    search_query = "%#{params[:query]}%"
-    @entries = @entries.where(
-      "writer_name LIKE ? OR address LIKE ? OR notes LIKE ?",
-      search_query, search_query, search_query
-    )
-  end
-
-  # Pin type filter (multiple selection)
-  if params[:pin_types].present?
-    @entries = @entries.where(pin_type: params[:pin_types])
-  end
-
-  # Writer filter
-  if params[:writer].present?
-    @entries = @entries.where("writer_name LIKE ?", "%#{params[:writer]}%")
-  end
-
-  # Location filter
-  if params[:location].present?
-    @entries = @entries.where("address LIKE ?", "%#{params[:location]}%")
-  end
-
-  # Date range filter
-  if params[:date_from].present?
-    @entries = @entries.where("found_on >= ?", params[:date_from])
-  end
-
-  if params[:date_to].present?
-    @entries = @entries.where("found_on <= ?", params[:date_to])
-  end
-
-  # Notes filter
-  if params[:notes].present?
-    @entries = @entries.where("notes LIKE ?", "%#{params[:notes]}%")
-  end
-
-  # Order by most recent first
-  @entries = @entries.order(found_on: :desc)
 end
