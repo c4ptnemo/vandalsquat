@@ -28,7 +28,7 @@
 
     const map = new mapboxgl.Map({
       container: "home-map",
-      style: "mapbox://styles/mapbox/streets-v12",
+      style: "mapbox://styles/mapbox/dark-v11",
       center: [-87.6298, 41.8781],
       zoom: 11
     });
@@ -176,14 +176,17 @@
         btn.setAttribute("aria-label", "Toggle New Entry Mode");
         btn.textContent = "+";
 
-        btn.style.width = "36px";
-        btn.style.height = "36px";
-        btn.style.borderRadius = "18px";
+        btn.style.width = "52px";
+        btn.style.height = "52px";
+        btn.style.borderRadius = "50%";
         btn.style.border = "1px solid #999";
         btn.style.background = "#fff";
-        btn.style.fontSize = "22px";
-        btn.style.lineHeight = "32px";
+        btn.style.fontSize = "30px";
+        btn.style.lineHeight = "48px";
         btn.style.cursor = "pointer";
+        btn.style.fontWeight = "600";
+        btn.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
+
 
         btn.addEventListener("click", () => {
           if (newEntryMode) {
@@ -194,7 +197,7 @@
         });
 
         const container = document.createElement("div");
-        container.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
+        container.className = "mapboxgl-ctrl";
         container.appendChild(btn);
 
         this._container = container;

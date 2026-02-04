@@ -1,10 +1,74 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+/* Base */
+body {
+  margin: 0;
+  background: #161616;
+  color: #eaeaea;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+/* Navbar layout */
+.navbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  padding: 16px 20px; /* slightly more breathing room */
+  background: #161616;
+}
+
+
+/* Left: Brand */
+.brand {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #fff;
+  letter-spacing: 0.4px;
+}
+
+/* Center: Nav links */
+.nav-center {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+}
+
+.nav-center a {
+  text-decoration: none;
+  color: #bdbdbd;
+  font-size: 0.95rem;
+}
+
+.nav-center a:hover {
+  color: #fff;
+}
+
+/* Right: Logout/Login */
+.nav-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.logout-form {
+  display: inline;
+  margin: 0;
+}
+
+.logout-btn {
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  color: #fff;
+  border-color: #555;
+}

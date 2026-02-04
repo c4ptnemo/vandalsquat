@@ -6,9 +6,10 @@ class EntriesController < ApplicationController
     @entries = current_user.entries.order(created_at: :desc)
   end
 
-  # Step 1: map page (no DB write)
+  # Step 1 (map) now lives on the homepage.
+  # Keep this route for compatibility, but redirect users to the map-first flow.
   def new
-    @entry = Entry.new
+    redirect_to root_path
   end
 
   # Step 2: details form page (still no DB write)
@@ -37,7 +38,7 @@ class EntriesController < ApplicationController
 
   def update
     if @entry.update(entry_params)
-      redirect_to entries_path, notice: "Entry updated."
+      redirect_to root_path, notice: "Entry updated."
     else
       flash.now[:alert] = @entry.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
@@ -46,7 +47,7 @@ class EntriesController < ApplicationController
 
   def destroy
     @entry.destroy
-    redirect_to entries_path, notice: "Entry deleted."
+    redirect_to root_path, notice: "Entry deleted."
   end
 
   private

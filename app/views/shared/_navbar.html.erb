@@ -1,20 +1,23 @@
-<nav>
-  <ul>
-    <h1><a href="/">VandalSquat</a></h1>
-    <li><a href="/">Home</a></li>
-    <li><a href="/entries">Entries</a></li>
-    <li><a href="/entries/new">New Entry</a></li>
-    <li><a href="/account">My Account</a></li>
+<nav class="navbar">
+  <div class="nav-left">
+    <a href="/" class="brand">VandalSquat</a>
+  </div>
 
+  <div class="nav-center">
+    <a href="/">Home</a>
+    <a href="/entries">Entries</a>
+    <a href="/account">My Account</a>
+  </div>
+
+  <div class="nav-right">
     <% if logged_in? %>
-      <li>
-        <%= button_to "Log out",
-              logout_path,
-              method: :delete,
-              form: { style: "display:inline" } %>
-      </li>
+      <%= button_to "Log out",
+            logout_path,
+            method: :delete,
+            class: "logout-btn",
+            form: { class: "logout-form" } %>
     <% else %>
-      <li><a href="/login">Login</a></li>
+      <a href="/login">Login</a>
     <% end %>
-  </ul>
+  </div>
 </nav>
