@@ -50,3 +50,10 @@
 
   <p><%= f.submit "Update entry" %></p>
 <% end %>
+
+<hr />
+
+<%= button_to "Delete entry",
+      entry_path(@entry),
+      method: :delete,
+      data: { confirm: "Delete this entry permanently?" } %>

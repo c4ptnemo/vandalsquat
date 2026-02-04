@@ -1,6 +1,6 @@
 class EntriesController < ApplicationController
   before_action :require_login
-  before_action :set_entry, only: [:edit, :update]
+  before_action :set_entry, only: [:edit, :update, :destroy]
 
   def index
     @entries = current_user.entries.order(created_at: :desc)
@@ -8,6 +8,7 @@ class EntriesController < ApplicationController
 
   # Step 1: map page (no DB write)
   def new
+    @entry = Entry.new
   end
 
   # Step 2: details form page (still no DB write)
@@ -16,21 +17,20 @@ class EntriesController < ApplicationController
   end
 
   def create
-  @entry = current_user.entries.new(entry_params)
+    @entry = current_user.entries.new(entry_params)
 
-  @entry.address = MapboxReverseGeocoder.lookup(
-    @entry.latitude,
-    @entry.longitude
-  )
+    @entry.address = MapboxReverseGeocoder.lookup(
+      @entry.latitude,
+      @entry.longitude
+    )
 
-  if @entry.save
-    redirect_to root_path, notice: "Entry created."
-  else
-    flash.now[:alert] = @entry.errors.full_messages.to_sentence
-    render :details, status: :unprocessable_entity
+    if @entry.save
+      redirect_to root_path, notice: "Entry created."
+    else
+      flash.now[:alert] = @entry.errors.full_messages.to_sentence
+      render :details, status: :unprocessable_entity
+    end
   end
-end
-
 
   def edit
   end
@@ -44,10 +44,14 @@ end
     end
   end
 
+  def destroy
+    @entry.destroy
+    redirect_to entries_path, notice: "Entry deleted."
+  end
+
   private
 
   def set_entry
-    # Ownership enforcement: users can only edit their own entries
     @entry = current_user.entries.find(params[:id])
   end
 
