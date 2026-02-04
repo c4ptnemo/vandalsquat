@@ -14506,3 +14506,1179 @@ Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.5ms (1 query, 0 cached) 
 
 
 Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:18:02 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+Caused by: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+
+Information for: ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:69:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'Class#new'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.2) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.1) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.4) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.4) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.3-x86_64 (linux) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'Class#new'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.2) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.1) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.4) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.4) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:18:17 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  
+ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+Caused by: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+)
+
+Information for: ActiveRecord::ConnectionNotEstablished (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:69:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'Class#new'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.2) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.1) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.4) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.4) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+
+Information for cause: PG::ConnectionBad (connection to server at "::1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+connection to server at "127.0.0.1", port 5432 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+):
+  
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:751:in 'PG::Connection::Pollable#polling_loop'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:795:in 'PG::Connection#async_connect_or_reset'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:951:in 'PG::Connection.connect_to_hosts'
+pg-1.6.3-x86_64 (linux) lib/pg/connection.rb:871:in 'PG::Connection.new'
+pg-1.6.3-x86_64 (linux) lib/pg.rb:88:in 'PG.connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:58:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter.new_client'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:960:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#connect'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql_adapter.rb:972:in 'ActiveRecord::ConnectionAdapters::PostgreSQLAdapter#reconnect'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:719:in 'block (2 levels) in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1290:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#attempt_configure_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:716:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:715:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#reconnect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:830:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:817:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#verify!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:839:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#connect!'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1056:in 'block in ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activesupport (8.1.2) lib/active_support/concurrency/null_lock.rb:9:in 'ActiveSupport::Concurrency::NullLock#synchronize'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract_adapter.rb:1055:in 'ActiveRecord::ConnectionAdapters::AbstractAdapter#with_raw_connection'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:128:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote_string'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/quoting.rb:75:in 'ActiveRecord::ConnectionAdapters::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/quoting.rb:122:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::Quoting#quote'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1180:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#quoted_scope'
+activerecord (8.1.2) lib/active_record/connection_adapters/postgresql/schema_statements.rb:1157:in 'ActiveRecord::ConnectionAdapters::PostgreSQL::SchemaStatements#data_source_sql'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/schema_statements.rb:61:in 'ActiveRecord::ConnectionAdapters::SchemaStatements#table_exists?'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:55:in 'block in ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/connection_adapters/abstract/connection_pool.rb:463:in 'ActiveRecord::ConnectionAdapters::ConnectionPool#with_connection'
+activerecord (8.1.2) lib/active_record/schema_migration.rb:54:in 'ActiveRecord::SchemaMigration#create_table'
+activerecord (8.1.2) lib/active_record/migration.rb:1440:in 'ActiveRecord::Migrator#initialize'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'Class#new'
+activerecord (8.1.2) lib/active_record/migration.rb:1288:in 'ActiveRecord::MigrationContext#open'
+activerecord (8.1.2) lib/active_record/migration.rb:763:in 'block (2 levels) in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration/pending_migration_connection.rb:8:in 'ActiveRecord::PendingMigrationConnection.with_temporary_pool'
+activerecord (8.1.2) lib/active_record/migration.rb:762:in 'block in ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'Array#each'
+activerecord (8.1.2) lib/active_record/migration.rb:761:in 'ActiveRecord::Migration.pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:740:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.2) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.1) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.4) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.4) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:26:51 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY) /*application='Vandalsquat'*/[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (2.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate
+
+You have 4 pending migrations:
+
+db/migrate/20260202191214_create_users.rb
+db/migrate/20260203044328_create_active_storage_tables.active_storage.rb
+db/migrate/20260203044512_create_entries.rb
+db/migrate/20260203071255_add_address_to_entries.rb
+
+
+):
+  
+activerecord (8.1.2) lib/active_record/migration.rb:743:in 'ActiveRecord::Migration.check_pending_migrations'
+activerecord (8.1.2) lib/active_record/migration.rb:660:in 'block (2 levels) in ActiveRecord::Migration::CheckPending#call'
+activesupport (8.1.2) lib/active_support/file_update_checker.rb:88:in 'ActiveSupport::FileUpdateChecker#execute'
+activerecord (8.1.2) lib/active_record/migration.rb:665:in 'block in ActiveRecord::Migration::CheckPending#call'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'Thread::Mutex#synchronize'
+activerecord (8.1.2) lib/active_record/migration.rb:657:in 'ActiveRecord::Migration::CheckPending#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:31:in 'block in ActionDispatch::Callbacks#call'
+activesupport (8.1.2) lib/active_support/callbacks.rb:101:in 'ActiveSupport::Callbacks#run_callbacks'
+actionpack (8.1.2) lib/action_dispatch/middleware/callbacks.rb:30:in 'ActionDispatch::Callbacks#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in 'ActionDispatch::ActionableExceptions#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/debug_exceptions.rb:31:in 'ActionDispatch::DebugExceptions#call'
+web-console (4.2.1) lib/web_console/middleware.rb:132:in 'WebConsole::Middleware#call_app'
+web-console (4.2.1) lib/web_console/middleware.rb:19:in 'block in WebConsole::Middleware#call'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'Kernel#catch'
+web-console (4.2.1) lib/web_console/middleware.rb:17:in 'WebConsole::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/show_exceptions.rb:32:in 'ActionDispatch::ShowExceptions#call'
+railties (8.1.2) lib/rails/rack/logger.rb:41:in 'Rails::Rack::Logger#call_app'
+railties (8.1.2) lib/rails/rack/logger.rb:29:in 'Rails::Rack::Logger#call'
+propshaft (1.3.1) lib/propshaft/quiet_assets.rb:11:in 'Propshaft::QuietAssets#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/remote_ip.rb:98:in 'ActionDispatch::RemoteIp#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/request_id.rb:34:in 'ActionDispatch::RequestId#call'
+rack (3.2.4) lib/rack/method_override.rb:28:in 'Rack::MethodOverride#call'
+rack (3.2.4) lib/rack/runtime.rb:24:in 'Rack::Runtime#call'
+activesupport (8.1.2) lib/active_support/cache/strategy/local_cache_middleware.rb:30:in 'ActiveSupport::Cache::Strategy::LocalCache::Middleware#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:61:in 'block in ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:26:in 'ActionDispatch::ServerTiming::Subscriber#collect_events'
+actionpack (8.1.2) lib/action_dispatch/middleware/server_timing.rb:60:in 'ActionDispatch::ServerTiming#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/executor.rb:20:in 'ActionDispatch::Executor#call'
+propshaft (1.3.1) lib/propshaft/server.rb:37:in 'Propshaft::Server#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/static.rb:27:in 'ActionDispatch::Static#call'
+rack (3.2.4) lib/rack/sendfile.rb:131:in 'Rack::Sendfile#call'
+actionpack (8.1.2) lib/action_dispatch/middleware/host_authorization.rb:143:in 'ActionDispatch::HostAuthorization#call'
+railties (8.1.2) lib/rails/engine.rb:534:in 'Rails::Engine#call'
+puma (7.2.0) lib/puma/configuration.rb:296:in 'Puma::Configuration::ConfigMiddleware#call'
+puma (7.2.0) lib/puma/request.rb:103:in 'block in Puma::Request#handle_request'
+puma (7.2.0) lib/puma/thread_pool.rb:355:in 'Puma::ThreadPool#with_force_shutdown'
+puma (7.2.0) lib/puma/request.rb:102:in 'Puma::Request#handle_request'
+puma (7.2.0) lib/puma/server.rb:503:in 'Puma::Server#process_client'
+puma (7.2.0) lib/puma/server.rb:262:in 'block in Puma::Server#run'
+puma (7.2.0) lib/puma/thread_pool.rb:182:in 'block in Puma::ThreadPool#spawn_thread'
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5762967617521542855) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2026-02-04 08:28:34.640385', '2026-02-04 08:28:34.640387') RETURNING "key" /*application='Vandalsquat'*/[0m
+Migrating to CreateUsers (20260202191214)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Vandalsquat'*/[0m
+  [1m[35m (7.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260202191214') RETURNING "version" /*application='Vandalsquat'*/[0m
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat'*/[0m
+Migrating to CreateActiveStorageTables (20260203044328)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*application='Vandalsquat'*/[0m
+  [1m[35m (5.4ms)[0m  [1m[35mCREATE TABLE "active_storage_blobs" ("id" bigserial primary key, "key" character varying NOT NULL, "filename" character varying NOT NULL, "content_type" character varying, "metadata" text, "service_name" character varying NOT NULL, "byte_size" bigint NOT NULL, "checksum" character varying, "created_at" timestamp(6) NOT NULL) /*application='Vandalsquat'*/[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_blobs_on_key" ON "active_storage_blobs" ("key") /*application='Vandalsquat'*/[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "active_storage_attachments" ("id" bigserial primary key, "name" character varying NOT NULL, "record_type" character varying NOT NULL, "record_id" bigint NOT NULL, "blob_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_c3b3935057"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Vandalsquat'*/[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE INDEX "index_active_storage_attachments_on_blob_id" ON "active_storage_attachments" ("blob_id") /*application='Vandalsquat'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_attachments_uniqueness" ON "active_storage_attachments" ("record_type", "record_id", "name", "blob_id") /*application='Vandalsquat'*/[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE TABLE "active_storage_variant_records" ("id" bigserial primary key, "blob_id" bigint NOT NULL, "variation_digest" character varying NOT NULL, CONSTRAINT "fk_rails_993965df05"
+FOREIGN KEY ("blob_id")
+  REFERENCES "active_storage_blobs" ("id")
+) /*application='Vandalsquat'*/[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_active_storage_variant_records_uniqueness" ON "active_storage_variant_records" ("blob_id", "variation_digest") /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260203044328') RETURNING "version" /*application='Vandalsquat'*/[0m
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat'*/[0m
+Migrating to CreateEntries (20260203044512)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN /*application='Vandalsquat'*/[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE TABLE "entries" ("id" bigserial primary key, "user_id" bigint NOT NULL, "writer_name" character varying, "notes" text, "found_on" date, "latitude" float, "longitude" float, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_99dc12d4fd"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Vandalsquat'*/[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE INDEX "index_entries_on_user_id" ON "entries" ("user_id") /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260203044512') RETURNING "version" /*application='Vandalsquat'*/[0m
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat'*/[0m
+Migrating to AddAddressToEntries (20260203071255)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN /*application='Vandalsquat'*/[0m
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "entries" ADD "address" character varying /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260203071255') RETURNING "version" /*application='Vandalsquat'*/[0m
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat'*/[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(5762967617521542855) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Vandalsquat'*/[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m
+[dotenv] Loaded [33m.env[0m
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:28:43 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/login
+↳ app/controllers/application_controller.rb:14:in 'ApplicationController#require_login'
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 64ms (ActiveRecord: 8.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 73.44.6.8 at 2026-02-04 08:28:43 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.6ms | GC: 0.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='new',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 26.6ms | GC: 0.0ms)
+Completed 200 OK in 37ms (Views: 33.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 73.44.6.8 at 2026-02-04 08:28:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'c4ptnem0@proton.me' LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.5ms | GC: 0.0ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | GC: 0.0ms)
+Completed 422 Unprocessable Content in 6ms (Views: 3.1ms | ActiveRecord: 0.9ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 73.44.6.8 at 2026-02-04 08:28:49 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'c4ptnem0@proton.me' LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.6ms | GC: 0.0ms)
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 3.8ms | GC: 0.0ms)
+Completed 422 Unprocessable Content in 7ms (Views: 3.9ms | ActiveRecord: 1.1ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 73.44.6.8 at 2026-02-04 08:28:52 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'omarioansario@gmail.com' LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.7ms | GC: 0.0ms)
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 6.0ms | GC: 0.0ms)
+Completed 422 Unprocessable Content in 9ms (Views: 4.6ms | ActiveRecord: 2.5ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/signup" for 73.44.6.8 at 2026-02-04 08:28:54 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (Duration: 4.3ms | GC: 0.0ms)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='new',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | GC: 0.0ms)
+Completed 200 OK in 13ms (Views: 7.3ms | ActiveRecord: 1.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/signup" for 73.44.6.8 at 2026-02-04 08:28:58 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "user" => {"email" => "[FILTERED]", "password" => "[FILTERED]", "password_confirmation" => "[FILTERED]"}, "commit" => "Create account"}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN /*action='create',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:11:in 'UsersController#create'
+  [1m[36mUser Exists? (2.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'c4ptnem0@proton.me' LIMIT 1 /*action='create',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:11:in 'UsersController#create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "password_digest", "created_at", "updated_at") VALUES ('c4ptnem0@proton.me', '$2a$12$QJLcJh9GaOGLvFO/qa/FgOZsFPxYxNU34LLB/FBXPW5gh14pwNGS6', '2026-02-04 08:28:58.800017', '2026-02-04 08:28:58.800017') RETURNING "id" /*action='create',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:11:in 'UsersController#create'
+  [1m[36mTRANSACTION (3.2ms)[0m  [1m[35mCOMMIT /*action='create',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/users_controller.rb:11:in 'UsersController#create'
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/login
+↳ app/controllers/users_controller.rb:12:in 'UsersController#create'
+Completed 302 Found in 240ms (ActiveRecord: 6.2ms (2 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 73.44.6.8 at 2026-02-04 08:28:58 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.4ms | GC: 0.6ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='new',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 5.8ms | GC: 2.5ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 2.5ms)
+
+
+Started POST "/login" for 73.44.6.8 at 2026-02-04 08:29:01 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'c4ptnem0@proton.me' LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/
+↳ app/controllers/sessions_controller.rb:11:in 'SessionsController#create'
+Completed 302 Found in 243ms (ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 5.6ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:29:02 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.7ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  Rendered home/index.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | GC: 0.0ms)
+Completed 200 OK in 54ms (Views: 4.8ms | ActiveRecord: 2.7ms (2 queries, 0 cached) | GC: 26.2ms)
+
+
+Started GET "/entries/new/details?lat=41.880321608679196&lng=-87.65186671319074" for 73.44.6.8 at 2026-02-04 08:29:20 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EntriesController#details as HTML
+  Parameters: {"lat" => "41.880321608679196", "lng" => "-87.65186671319074"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='details',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering entries/details.html.erb within layouts/application
+  Rendered entries/details.html.erb within layouts/application (Duration: 5.3ms | GC: 0.7ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.4ms | GC: 0.7ms)
+Completed 200 OK in 14ms (Views: 7.2ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 1.4ms)
+
+
+Started POST "/entries" for 73.44.6.8 at 2026-02-04 08:29:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EntriesController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "entry" => {"latitude" => "41.880321608679196", "longitude" => "-87.65186671319074", "photo" => #<ActionDispatch::Http::UploadedFile:0x000075ab0fe25dd0 @tempfile=#<Tempfile:/tmp/RackMultipart20260204-16348-vj1zvz.jpg>, @content_type="image/jpeg", @original_filename="Alwet TDM1.jpg", @headers="Content-Disposition: form-data; name=\"entry[photo]\"; filename=\"Alwet TDM1.jpg\"\r\nContent-Type: image/jpeg\r\n">, "writer_name" => "ALWET", "notes" => "test", "found_on" => "2026-02-02"}, "commit" => "Save entry"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mBEGIN /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mEntry Create (2.3ms)[0m  [1m[32mINSERT INTO "entries" ("user_id", "writer_name", "notes", "found_on", "latitude", "longitude", "created_at", "updated_at", "address") VALUES (1, 'ALWET', 'test', '2026-02-02', 41.880321608679196, -87.65186671319074, '2026-02-04 08:29:46.463369', '2026-02-04 08:29:46.463369', '955 West Monroe Street, Chicago, Illinois 60607, United States') RETURNING "id" /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mActiveStorage::Attachment Load (2.0ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mActiveStorage::Blob Create (4.6ms)[0m  [1m[32mINSERT INTO "active_storage_blobs" ("key", "filename", "content_type", "metadata", "service_name", "byte_size", "checksum", "created_at") VALUES ('l72fwkyo094i2xn3momdef7ne2fi', 'Alwet TDM1.jpg', 'image/jpeg', '{"identified":true}', 'local', 327669, 'jXspIsZroI7hhEvl9XFxXA==', '2026-02-04 08:29:46.492098') RETURNING "id" /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mActiveStorage::Attachment Create (2.6ms)[0m  [1m[32mINSERT INTO "active_storage_attachments" ("name", "record_type", "record_id", "blob_id", "created_at") VALUES ('photo', 'Entry', 1, 1, '2026-02-04 08:29:46.502827') RETURNING "id" /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mEntry Update (3.3ms)[0m  [1m[33mUPDATE "entries" SET "updated_at" = '2026-02-04 08:29:46.512598' WHERE "entries"."id" = 1 /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+  [1m[36mTRANSACTION (1.7ms)[0m  [1m[35mCOMMIT /*action='create',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+[36m  Disk Storage (65.8ms) [0m[32mUploaded file to key: l72fwkyo094i2xn3momdef7ne2fi (checksum: jXspIsZroI7hhEvl9XFxXA==)[0m
+[ActiveJob] Enqueued ActiveStorage::AnalyzeJob (Job ID: 43aedf1d-0bf2-4454-88e9-aa418a637a4c) to Async(default) with arguments: #<GlobalID:0x000075ab0ffa8c20 @uri=#<URI::GID gid://vandalsquat/ActiveStorage::Blob/1>>
+[ActiveJob] ↳ app/controllers/entries_controller.rb:28:in 'EntriesController#create'
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/
+↳ app/controllers/entries_controller.rb:29:in 'EntriesController#create'
+Completed 302 Found in 449ms (ActiveRecord: 36.0ms (6 queries, 0 cached) | GC: 6.8ms)
+
+
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mActiveStorage::Blob Load (6.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*application='Vandalsquat'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c] Performing ActiveStorage::AnalyzeJob (Job ID: 43aedf1d-0bf2-4454-88e9-aa418a637a4c) from Async(default) enqueued at 2026-02-04T08:29:46.623998866Z with arguments: #<GlobalID:0x000075ab34016fa8 @uri=#<URI::GID gid://vandalsquat/ActiveStorage::Blob/1>>
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c] Skipping image analysis because the ruby-vips gem isn't installed
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mTRANSACTION (1.0ms)[0m  [1m[35mBEGIN /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mActiveStorage::Blob Update (6.4ms)[0m  [1m[33mUPDATE "active_storage_blobs" SET "metadata" = '{"identified":true,"analyzed":true}' WHERE "active_storage_blobs"."id" = 1 /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."blob_id" = 1 /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mEntry Load (0.8ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."id" = 1 /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mEntry Update (1.0ms)[0m  [1m[33mUPDATE "entries" SET "updated_at" = '2026-02-04 08:29:46.676089' WHERE "entries"."id" = 1 /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c]   [1m[36mTRANSACTION (1.9ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat',job='ActiveStorage%3A%3AAnalyzeJob'*/[0m
+[ActiveJob] [ActiveStorage::AnalyzeJob] [43aedf1d-0bf2-4454-88e9-aa418a637a4c] Performed ActiveStorage::AnalyzeJob (Job ID: 43aedf1d-0bf2-4454-88e9-aa418a637a4c) from Async(default) in 60.65ms
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:29:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.6ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 10.0ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | GC: 0.0ms)
+Completed 200 OK in 18ms (Views: 12.0ms | ActiveRecord: 2.3ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:29:47 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: l72fwkyo094i2xn3momdef7ne2fi (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6MzQ6NDcuNzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--57079919eff7b06d3c758702556afde05ca4124b/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6MzQ6NDcuNzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--57079919eff7b06d3c758702556afde05ca4124b/Alwet%20TDM1.jpg
+Completed 302 Found in 6ms (ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6MzQ6NDcuNzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--57079919eff7b06d3c758702556afde05ca4124b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:29:47 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/entries" for 73.44.6.8 at 2026-02-04 08:29:57 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EntriesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering entries/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.5ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:37
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:50
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:51
+  Rendered entries/index.html.erb within layouts/application (Duration: 9.3ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | GC: 0.0ms)
+Completed 200 OK in 15ms (Views: 10.0ms | ActiveRecord: 1.9ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6MzQ6NDcuNzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--57079919eff7b06d3c758702556afde05ca4124b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:29:57 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/account" for 73.44.6.8 at 2026-02-04 08:29:58 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 2.2ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.5ms | GC: 0.0ms)
+Completed 200 OK in 9ms (Views: 4.2ms | ActiveRecord: 0.8ms (1 query, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:30:00 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.4ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.6ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 8.4ms | GC: 0.5ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | GC: 0.5ms)
+Completed 200 OK in 14ms (Views: 9.3ms | ActiveRecord: 2.1ms (4 queries, 0 cached) | GC: 0.5ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6MzQ6NDcuNzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--57079919eff7b06d3c758702556afde05ca4124b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:30:01 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:35:55 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (19.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.6ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.9ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (1.0ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 7.2ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.0ms)
+Completed 200 OK in 32ms (Views: 6.3ms | ActiveRecord: 26.5ms (4 queries, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:35:57 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.3ms) [0m[34mGenerated URL for file at key: l72fwkyo094i2xn3momdef7ne2fi (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg
+Completed 302 Found in 4ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:35:57 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:37:40 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.4ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 25.0ms | GC: 1.6ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 27.3ms | GC: 1.6ms)
+Completed 200 OK in 69ms (Views: 24.9ms | ActiveRecord: 9.1ms (4 queries, 0 cached) | GC: 21.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:37:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:38:28 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 21.1ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.9ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.9ms | GC: 0.0ms)
+Completed 200 OK in 43ms (Views: 21.1ms | ActiveRecord: 7.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:38:29 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:39:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.5ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (1.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 14.4ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 1.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 18.6ms | GC: 0.0ms)
+Completed 200 OK in 24ms (Views: 17.8ms | ActiveRecord: 3.0ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDA6NTcuMDE5WiIsInB1ciI6ImJsb2Jfa2V5In19--a182a7de40ae47e6191caca698a31c4ded0b113c/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:39:27 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:41:55 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 6.0ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.5ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | GC: 0.0ms)
+Completed 200 OK in 11ms (Views: 6.9ms | ActiveRecord: 1.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:41:56 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.4ms) [0m[34mGenerated URL for file at key: l72fwkyo094i2xn3momdef7ne2fi (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDY6NTYuMjQwWiIsInB1ciI6ImJsb2Jfa2V5In19--ced4e400cba8a49799422de44997a7f4853d8bf2/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDY6NTYuMjQwWiIsInB1ciI6ImJsb2Jfa2V5In19--ced4e400cba8a49799422de44997a7f4853d8bf2/Alwet%20TDM1.jpg
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDY6NTYuMjQwWiIsInB1ciI6ImJsb2Jfa2V5In19--ced4e400cba8a49799422de44997a7f4853d8bf2/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:41:56 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:42:02 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 5.9ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 6.6ms | ActiveRecord: 1.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDY6NTYuMjQwWiIsInB1ciI6ImJsb2Jfa2V5In19--ced4e400cba8a49799422de44997a7f4853d8bf2/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:42:03 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:46:51 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 39.8ms | GC: 16.7ms)
+  Rendered shared/_navbar.html.erb (Duration: 1.9ms | GC: 1.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 43.4ms | GC: 17.6ms)
+Completed 200 OK in 64ms (Views: 40.2ms | ActiveRecord: 8.1ms (4 queries, 0 cached) | GC: 17.6ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NDY6NTYuMjQwWiIsInB1ciI6ImJsb2Jfa2V5In19--ced4e400cba8a49799422de44997a7f4853d8bf2/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:46:53 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:47:25 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.7ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 6.3ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.6ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | GC: 0.0ms)
+Completed 200 OK in 12ms (Views: 7.9ms | ActiveRecord: 1.8ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:47:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.5ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.4ms) [0m[34mGenerated URL for file at key: l72fwkyo094i2xn3momdef7ne2fi (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg
+Completed 302 Found in 5ms (ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:47:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:48:14 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 6.4ms | GC: 0.6ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 7.8ms | GC: 0.6ms)
+Completed 200 OK in 11ms (Views: 7.2ms | ActiveRecord: 1.4ms (4 queries, 0 cached) | GC: 0.6ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:48:16 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:50:24 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 21.5ms | GC: 0.6ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | GC: 0.6ms)
+Completed 200 OK in 43ms (Views: 21.1ms | ActiveRecord: 6.9ms (4 queries, 0 cached) | GC: 1.1ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:50:25 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:50:43 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (3.0ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 33.2ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 36.1ms | GC: 0.0ms)
+Completed 200 OK in 59ms (Views: 31.4ms | ActiveRecord: 11.6ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDg6NTI6MjYuNTU4WiIsInB1ciI6ImJsb2Jfa2V5In19--7ea81cb0c99f032d6e8395981dec7ecad9f26a2b/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:50:44 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:55:04 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.4ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 21.4ms | GC: 0.9ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.7ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 23.8ms | GC: 0.9ms)
+Completed 200 OK in 46ms (Views: 21.9ms | ActiveRecord: 7.9ms (4 queries, 0 cached) | GC: 3.7ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:55:05 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.6ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.7ms) [0m[34mGenerated URL for file at key: l72fwkyo094i2xn3momdef7ne2fi (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDk6MDA6MDUuNDA5WiIsInB1ciI6ImJsb2Jfa2V5In19--1c276f140f0ac07f961d827d3bd13ad40d8624ba/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDk6MDA6MDUuNDA5WiIsInB1ciI6ImJsb2Jfa2V5In19--1c276f140f0ac07f961d827d3bd13ad40d8624ba/Alwet%20TDM1.jpg
+Completed 302 Found in 6ms (ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDk6MDA6MDUuNDA5WiIsInB1ciI6ImJsb2Jfa2V5In19--1c276f140f0ac07f961d827d3bd13ad40d8624ba/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:55:05 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:57:28 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.6ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.8ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 8.6ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | GC: 0.0ms)
+Completed 200 OK in 16ms (Views: 9.6ms | ActiveRecord: 2.3ms (4 queries, 0 cached) | GC: 0.5ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDk6MDA6MDUuNDA5WiIsInB1ciI6ImJsb2Jfa2V5In19--1c276f140f0ac07f961d827d3bd13ad40d8624ba/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:57:29 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 08:57:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.4ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 5.5ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | GC: 0.0ms)
+Completed 200 OK in 10ms (Views: 6.3ms | ActiveRecord: 1.5ms (4 queries, 0 cached) | GC: 0.0ms)
+
+
+Unable to resolve '/assets/Mont-HeavyDEMO.woff2' for missing asset 'assets/Mont-HeavyDEMO.woff2' in application.css
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJsNzJmd2t5bzA5NGkyeG4zbW9tZGVmN25lMmZpIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMDk6MDA6MDUuNDA5WiIsInB1ciI6ImJsb2Jfa2V5In19--1c276f140f0ac07f961d827d3bd13ad40d8624ba/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 08:57:42 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
