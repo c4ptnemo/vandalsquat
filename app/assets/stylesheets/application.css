@@ -205,3 +205,70 @@ a {
   display: block;
 }
 
+/* =========================
+   Navbar: centered logo + centered links under it
+   Logout stays top-right
+   ========================= */
+
+.navbar.navbar--stacked {
+  position: relative;
+  background: #161616;
+  padding: 16px 20px 20px 20px; /* extra bottom padding for stacked layout */
+}
+
+/* Center column stack */
+.navbar.navbar--stacked .nav-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Logo (keep your 44px height) */
+.navbar.navbar--stacked .brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.navbar.navbar--stacked .brand-img {
+  height: 44px;
+  width: auto;
+  max-width: min(520px, 90vw); /* prevents overflow on mobile */
+  display: block;
+}
+
+/* Links centered under logo */
+.navbar.navbar--stacked .nav-center {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.navbar.navbar--stacked .nav-center a {
+  text-decoration: none;
+  color: #bdbdbd;
+  font-size: 0.95rem;
+}
+
+.navbar.navbar--stacked .nav-center a:hover {
+  color: #fff;
+}
+
+/* Logout/Login pinned to the top-right */
+.navbar.navbar--stacked .nav-right--corner {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Keep the logout button as a button (don’t restyle it into a link) */
+.navbar.navbar--stacked .logout-form {
+  margin: 0;
+}
+
