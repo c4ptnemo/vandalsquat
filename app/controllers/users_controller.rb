@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     end
 
     if @user.update(email_params)
-      redirect_to account_path, notice: "Email updated."
+      redirect_to account_path, flash: { success: "Email updated." }
     else
       render :show, status: :unprocessable_entity
     end
@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 
     if @user.update(password_params)
       reset_session
-      redirect_to login_path, notice: "Password updated. Please log in again."
+      redirect_to login_path, flash: { success: "Password updated. Please log in again." }
     else
       render :show, status: :unprocessable_entity
     end

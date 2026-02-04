@@ -19,6 +19,59 @@ a {
   color: inherit;
 }
 
+/* =========================
+   GLOBAL BUTTON STYLES
+   ========================= */
+
+/* Primary button style - muted dark */
+button,
+input[type="submit"],
+input[type="button"],
+.btn,
+.btn-primary {
+  display: inline-block;
+  padding: 10px 20px;
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.btn:hover,
+.btn-primary:hover {
+  color: #fff;
+  border-color: #555;
+  background: #1a1a1a;
+}
+
+/* Secondary button - for less emphasis */
+.btn-secondary {
+  padding: 8px 16px;
+  background: transparent;
+  color: #999;
+  border: 1px solid #2a2a2a;
+  font-size: 0.85rem;
+}
+
+.btn-secondary:hover {
+  color: #bdbdbd;
+  border-color: #333;
+}
+
+/* Small button variant */
+.btn-small {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
 /* Navbar layout */
 .navbar {
   display: grid;
@@ -80,17 +133,9 @@ a {
 }
 
 .logout-btn {
-  background: transparent;
-  color: #bdbdbd;
-  border: 1px solid #333;
+  /* Inherits from global button styles */
   padding: 6px 12px;
   font-size: 0.85rem;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  color: #fff;
-  border-color: #555;
 }
 
 .auth-alt {
@@ -167,6 +212,7 @@ a {
   border: 1px solid #333;
 }
 
+/* Auth box buttons - override global for inverted style */
 .auth-box button,
 .auth-box input[type="submit"] {
   width: 100%;
@@ -214,7 +260,10 @@ a {
 .navbar.navbar--stacked {
   position: relative;
   background: #161616;
-  padding: 16px 20px 20px 20px; /* extra bottom padding for stacked layout */
+  padding: 16px 20px 20px 20px;
+  display: flex;
+  justify-content: center; /* Centers the content */
+  align-items: flex-start; /* Aligns content to top */
 }
 
 /* Center column stack */
@@ -223,6 +272,8 @@ a {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  width: auto; /* Key change: don't take full width */
+  flex-shrink: 0; /* Prevents shrinking */
 }
 
 /* Logo (keep your 44px height) */
@@ -268,7 +319,7 @@ a {
   justify-content: flex-end;
 }
 
-/* Keep the logout button as a button (don’t restyle it into a link) */
+/* Keep the logout button as a button (don't restyle it into a link) */
 .navbar.navbar--stacked .logout-form {
   margin: 0;
 }
@@ -284,4 +335,372 @@ a {
   width: auto;
   max-width: min(520px, 90vw);
   display: block;
+}
+
+/* =========================
+   ENTRIES PAGE - Picture-Centric Layout (Side-by-Side)
+   ========================= */
+
+.entries-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.entries-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.entries-header h2 {
+  font-size: 2rem;
+  margin: 0 0 24px 0;
+  color: #fff;
+}
+
+.search-wrapper {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  background: #0f0f0f;
+  border: 1px solid #333;
+  color: #fff;
+  font-size: 0.95rem;
+  border-radius: 4px;
+}
+
+.search-input::placeholder {
+  color: #666;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.search-btn {
+  padding: 12px 20px;
+  background: #fff;
+  color: #000;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+.search-btn:hover {
+  background: #eaeaea;
+}
+
+.clear-btn {
+  padding: 12px 16px;
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.clear-btn:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+/* Container for all entries */
+.entries-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+/* Individual entry - side by side layout */
+.entry-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Photo section - left side */
+.entry-photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #0b0b0b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #222;
+}
+
+.entry-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.entry-photo img:hover {
+  opacity: 0.9;
+}
+
+.entry-photo-placeholder {
+  color: #444;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Content section - right side */
+.entry-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+}
+
+.entry-text {
+  color: #eaeaea;
+  line-height: 1.7;
+}
+
+.entry-text p {
+  margin: 0 0 16px 0;
+  font-size: 1rem;
+}
+
+.entry-text strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Actions */
+.entry-actions {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #222;
+}
+
+.edit-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  color: #fff;
+  border-color: #555;
+  background: #1a1a1a;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .entry-row {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .entries-container {
+    gap: 40px;
+  }
+  
+  .entries-main {
+    padding: 24px 16px;
+  }
+}
+
+/* =========================
+   LIGHTBOX MODAL
+   ========================= */
+
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.lightbox-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 48px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  color: #ff6b6b;
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    font-size: 36px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* =========================
+   ADDITIONAL STYLES FOR FORM PAGES
+   Add these to the bottom of your application.css
+   ========================= */
+
+/* Wider auth box for account page with multiple sections */
+.auth-box--wide {
+  max-width: 520px;
+}
+
+/* Account page sections */
+.account-section h3 {
+  font-size: 1.1rem;
+  margin: 0 0 16px 0;
+  color: #fff;
+}
+
+/* Success message styling */
+.auth-success {
+  color: #4caf50;
+  text-align: center;
+  margin: 0 0 12px 0;
+  padding: 8px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+/* Textarea styling for auth boxes */
+.auth-box textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.auth-box textarea:focus {
+  outline: none;
+  border-color: #555;
+}
+
+/* File input styling */
+.auth-box input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+.auth-box input[type="file"]::-webkit-file-upload-button {
+  padding: 6px 12px;
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.auth-box input[type="file"]::-webkit-file-upload-button:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+/* Date and number inputs */
+.auth-box input[type="date"],
+.auth-box input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.auth-box input[type="date"]:focus,
+.auth-box input[type="number"]:focus {
+  outline: none;
+  border-color: #555;
+}
+
+/* Danger button for delete */
+.btn-danger {
+  width: 100%;
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-danger:hover {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: #ff5252;
+  color: #ff5252;
+}
+
+/* Current photo display in edit form */
+.current-photo {
+  margin: 12px 0;
+  padding: 12px;
+  background: #0b0b0b;
+  border: 1px solid #222;
 }

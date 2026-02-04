@@ -46,7 +46,7 @@
       const date = e.found_on || "—";
 
       const photoHtml = e.photo_url
-        ? `<img src="${e.photo_url}" alt="Graffiti photo" style="max-width:180px; height:auto;" />`
+        ? `<img src="${e.photo_url}" alt="Graffiti photo" class="popup-photo" style="max-width:180px; height:auto; cursor:pointer;" />`
         : `<div>—</div>`;
 
       return `
@@ -187,7 +187,6 @@
         btn.style.fontWeight = "600";
         btn.style.boxShadow = "0 2px 8px rgba(0,0,0,0.2)";
 
-
         btn.addEventListener("click", () => {
           if (newEntryMode) {
             exitNewEntryMode();
@@ -229,5 +228,43 @@
         }
       }
     });
+
+    // --- Lightbox for popup photos ---
+    const lightboxModal = document.createElement('div');
+    lightboxModal.id = 'lightbox-modal';
+    lightboxModal.className = 'lightbox-modal';
+    lightboxModal.innerHTML = `
+      <button class="lightbox-close" onclick="this.parentElement.style.display='none'; document.body.style.overflow='auto';">&times;</button>
+      <img id="lightbox-image" class="lightbox-image" src="" alt="Fullscreen photo">
+    `;
+    document.body.appendChild(lightboxModal);
+
+    // Delegate clicks on popup images
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('popup-photo')) {
+        const modal = document.getElementById('lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-image');
+        lightboxImg.src = e.target.src;
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+
+    // Close on background click
+    lightboxModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        lightboxModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      }
+    });
+
   })();
 </script>

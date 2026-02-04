@@ -9,56 +9,97 @@
   <body>
     <hr />
 
-    <main>
-      <h2>Entries</h2>
-
-      <p>
-        <label>
-          Search
-          <input type="search" name="search" />
-        </label>
-      </p>
-
-<table border="1">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Writer</th>
-      <th>Coordinates</th>
-      <th>Address</th>
-      <th>Notes</th>
-      <th>Photo</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @entries.each do |entry| %>
-      <tr>
-        <td><%= entry.found_on || "—" %></td>
-        <td><%= entry.writer_name.presence || "—" %></td>
-        <td><%= entry.latitude && entry.longitude ? "#{entry.latitude}, #{entry.longitude}" : "—" %></td>
-
-        <!-- ✅ Address column prints address -->
-        <td><%= entry.address.presence || "—" %></td>
-
-        <!-- ✅ Notes column prints notes -->
-        <td><%= entry.notes.presence || "—" %></td>
-
-        <td>
-          <% if entry.photo.attached? %>
-            <%= image_tag entry.photo, width: 100, height: 100, alt: "Graffiti photo" %>
-          <% else %>
-            —
+    <main class="entries-main">
+      <div class="entries-header">
+        <h2>Entries</h2>
+        
+        <div class="search-wrapper">
+          <%= form_with url: entries_path, method: :get, local: true, class: "search-form" do |form| %>
+            <%= form.search_field :query, 
+                value: params[:query], 
+                placeholder: "Search by writer, location, or notes...",
+                class: "search-input" %>
+            <%= form.submit "Search", class: "search-btn" %>
+            <% if params[:query].present? %>
+              <%= link_to "Clear", entries_path, class: "clear-btn" %>
+            <% end %>
           <% end %>
-        </td>
+        </div>
+      </div>
 
-        <td><%= link_to "Edit", edit_entry_path(entry) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      <div class="entries-container">
+        <% @entries.each do |entry| %>
+          <article class="entry-row">
+            <div class="entry-photo">
+              <% if entry.photo.attached? %>
+                <%= image_tag entry.photo, alt: "Graffiti photo", class: "entry-photo-img", data: { action: "click->lightbox#open", lightbox_url: url_for(entry.photo) } %>
+              <% else %>
+                <div class="entry-photo-placeholder">No photo available</div>
+              <% end %>
+            </div>
 
+            <div class="entry-content">
+              <div class="entry-text">
+                <p><strong>Writer:</strong> <%= entry.writer_name.presence || "Unknown" %></p>
+                <p><strong>Date:</strong> <%= entry.found_on || "—" %></p>
+                <p><strong>Location:</strong> <%= entry.address.presence || "—" %></p>
+                
+                <% if entry.latitude && entry.longitude %>
+                  <p><strong>Coordinates:</strong> <%= "#{entry.latitude}, #{entry.longitude}" %></p>
+                <% end %>
+                
+                <% if entry.notes.present? %>
+                  <p><strong>Notes:</strong> <%= entry.notes %></p>
+                <% end %>
+              </div>
+
+              <div class="entry-actions">
+                <%= button_to "Edit", edit_entry_path(entry), method: :get, class: "btn" %>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      </div>
+
+      <!-- Lightbox Modal -->
+      <div id="lightbox-modal" class="lightbox-modal">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-image" class="lightbox-image" src="" alt="Fullscreen photo">
+      </div>
+
+      <script>
+        // Open lightbox
+        document.querySelectorAll('.entry-photo-img').forEach(img => {
+          img.addEventListener('click', function() {
+            const modal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-image');
+            lightboxImg.src = this.src;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+          });
+        });
+
+        // Close lightbox
+        function closeLightbox() {
+          const modal = document.getElementById('lightbox-modal');
+          modal.style.display = 'none';
+          document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close on background click
+        document.getElementById('lightbox-modal').addEventListener('click', function(e) {
+          if (e.target === this) {
+            closeLightbox();
+          }
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          }
+        });
+      </script>
     </main>
   </body>
 </html>

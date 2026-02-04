@@ -5,72 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>VandalSquat – My Account</title>
   </head>
-  
-<% if notice %><p><%= notice %></p><% end %>
-<% if flash[:alert] %><p><%= flash[:alert] %></p><% end %>
 
   <body>
-    <hr />
+    <div class="auth-container">
+      <div class="auth-box auth-box--wide">
+        <h2>My Account</h2>
 
-    <main>
-      <h2>My Account</h2>
+        <% if flash[:success] %>
+          <p class="auth-success"><%= flash[:success] %></p>
+        <% end %>
 
-      <!-- Change email -->
-      <section>
-        <h3>Change Email</h3>
+        <% if flash[:alert] %>
+          <p class="auth-error"><%= flash[:alert] %></p>
+        <% end %>
 
-<%= form_with url: "/account/email", scope: :user, method: :patch, local: true do |f| %>
-  <p>
-    <label>
-      New email<br />
-      <%= f.email_field :email, required: true, value: current_user.email %>
-    </label>
-  </p>
+        <!-- Change email -->
+        <section class="account-section">
+          <h3>Change Email</h3>
 
-  <p>
-    <label>
-      Current password<br />
-      <input type="password" name="current_password" required>
-    </label>
-  </p>
+          <%= form_with url: "/account/email", scope: :user, method: :patch, local: true do |f| %>
+            <p>
+              <label>
+                New email
+                <%= f.email_field :email, required: true, value: current_user.email %>
+              </label>
+            </p>
 
-  <p><%= f.submit "Update email" %></p>
-<% end %>
+            <p>
+              <label>
+                Current password
+                <input type="password" name="current_password" required>
+              </label>
+            </p>
 
-      </section>
+            <p><%= f.submit "Update email" %></p>
+          <% end %>
+        </section>
 
-      <hr />
+        <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
 
-      <!-- Change password -->
-      <section>
-        <h3>Change Password</h3>
+        <!-- Change password -->
+        <section class="account-section">
+          <h3>Change Password</h3>
 
-<%= form_with url: "/account/password", scope: :user, method: :patch, local: true do |f| %>
-  <p>
-    <label>
-      New password<br />
-      <%= f.password_field :password, required: true %>
-    </label>
-  </p>
+          <%= form_with url: "/account/password", scope: :user, method: :patch, local: true do |f| %>
+            <p>
+              <label>
+                New password
+                <%= f.password_field :password, required: true %>
+              </label>
+            </p>
 
-  <p>
-    <label>
-      Confirm new password<br />
-      <%= f.password_field :password_confirmation, required: true %>
-    </label>
-  </p>
+            <p>
+              <label>
+                Confirm new password
+                <%= f.password_field :password_confirmation, required: true %>
+              </label>
+            </p>
 
-  <p>
-    <label>
-      Current password<br />
-      <input type="password" name="current_password" required>
-    </label>
-  </p>
+            <p>
+              <label>
+                Current password
+                <input type="password" name="current_password" required>
+              </label>
+            </p>
 
-  <p><%= f.submit "Update password" %></p>
-<% end %>
-
-      </section>
-    </main>
+            <p><%= f.submit "Update password" %></p>
+          <% end %>
+        </section>
+      </div>
+    </div>
   </body>
 </html>

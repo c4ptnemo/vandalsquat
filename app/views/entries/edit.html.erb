@@ -1,59 +1,81 @@
-<h2>Edit Entry</h2>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VandalSquat – Edit Entry</title>
+  </head>
 
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% end %>
+  <body>
+    <div class="auth-container">
+      <div class="auth-box">
+        <h2>Edit Entry</h2>
 
-<%= form_with model: @entry, local: true, html: { multipart: true } do |f| %>
-  <p>
-    <label>Latitude<br>
-      <%= f.number_field :latitude, step: "any", required: true %>
-    </label>
-  </p>
+        <% if flash[:alert] %>
+          <p class="auth-error"><%= flash[:alert] %></p>
+        <% end %>
 
-  <p>
-    <label>Longitude<br>
-      <%= f.number_field :longitude, step: "any", required: true %>
-    </label>
-  </p>
+        <%= form_with model: @entry, local: true, html: { multipart: true } do |f| %>
+          <p>
+            <label>
+              Latitude
+              <%= f.number_field :latitude, step: "any", required: true %>
+            </label>
+          </p>
 
-  <p>
-    <label>Replace photo (optional)<br>
-      <%= f.file_field :photo, accept: "image/*" %>
-    </label>
-  </p>
+          <p>
+            <label>
+              Longitude
+              <%= f.number_field :longitude, step: "any", required: true %>
+            </label>
+          </p>
 
-  <% if @entry.photo.attached? %>
-    <p>
-      Current photo:<br>
-      <%= image_tag @entry.photo, width: 150, height: 150, alt: "Current graffiti photo" %>
-    </p>
-  <% end %>
+          <% if @entry.photo.attached? %>
+            <div class="current-photo">
+              <p style="font-size: 0.9rem; color: #bdbdbd; margin-bottom: 8px;">Current photo:</p>
+              <%= image_tag @entry.photo, alt: "Current graffiti photo", style: "width: 100%; max-width: 200px; height: auto; border: 1px solid #333; margin-bottom: 12px;" %>
+            </div>
+          <% end %>
 
-  <p>
-    <label>Writer / Tag<br>
-      <%= f.text_field :writer_name %>
-    </label>
-  </p>
+          <p>
+            <label>
+              Replace photo (optional)
+              <%= f.file_field :photo, accept: "image/*" %>
+            </label>
+          </p>
 
-  <p>
-    <label>Notes<br>
-      <%= f.text_area :notes %>
-    </label>
-  </p>
+          <p>
+            <label>
+              Writer / Tag
+              <%= f.text_field :writer_name %>
+            </label>
+          </p>
 
-  <p>
-    <label>Date found<br>
-      <%= f.date_field :found_on %>
-    </label>
-  </p>
+          <p>
+            <label>
+              Notes
+              <%= f.text_area :notes, rows: 4 %>
+            </label>
+          </p>
 
-  <p><%= f.submit "Update entry" %></p>
-<% end %>
+          <p>
+            <label>
+              Date found
+              <%= f.date_field :found_on %>
+            </label>
+          </p>
 
-<hr />
+          <p><%= f.submit "Update entry" %></p>
+        <% end %>
 
-<%= button_to "Delete entry",
-      entry_path(@entry),
-      method: :delete,
-      data: { confirm: "Delete this entry permanently?" } %>
+        <div style="margin-top: 24px; padding-top: 24px; border-top: 1px solid #222;">
+          <%= button_to "Delete entry",
+                entry_path(@entry),
+                method: :delete,
+                data: { confirm: "Delete this entry permanently?" },
+                class: "btn-danger" %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -38,7 +38,7 @@ class EntriesController < ApplicationController
 
   def update
     if @entry.update(entry_params)
-      redirect_to root_path, notice: "Entry updated."
+      redirect_to entries_path, notice: "Entry updated."
     else
       flash.now[:alert] = @entry.errors.full_messages.to_sentence
       render :edit, status: :unprocessable_entity
@@ -47,7 +47,7 @@ class EntriesController < ApplicationController
 
   def destroy
     @entry.destroy
-    redirect_to root_path, notice: "Entry deleted."
+    redirect_to entries_path, notice: "Entry deleted."
   end
 
   private
@@ -59,4 +59,20 @@ class EntriesController < ApplicationController
   def entry_params
     params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo)
   end
+end
+
+def index
+  @entries = Entry.all
+  
+  # Search functionality
+  if params[:query].present?
+    search_query = "%#{params[:query]}%"
+    @entries = @entries.where(
+      "writer_name LIKE ? OR address LIKE ? OR notes LIKE ?",
+      search_query, search_query, search_query
+    )
+  end
+  
+  # Optional: Order by most recent first
+  @entries = @entries.order(found_on: :desc)
 end
