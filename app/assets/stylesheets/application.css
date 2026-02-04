@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Mont";
+  src: url("/assets/Mont-HeavyDEMO.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* Base */
 body {
   margin: 0;
@@ -23,12 +32,14 @@ a {
 
 /* Left: Brand */
 .brand {
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-family: "Mont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.6px;
   text-decoration: none;
   color: #fff;
-  letter-spacing: 0.4px;
 }
+
 
 /* Center: Nav links */
 .nav-center {
@@ -71,4 +82,100 @@ a {
 .logout-btn:hover {
   color: #fff;
   border-color: #555;
+}
+
+.auth-alt {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #bdbdbd;
+}
+
+.auth-alt a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.auth-alt a:hover {
+  text-decoration: underline;
+}
+
+/* Centered auth layout (login + signup) */
+.auth-container {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 360px;
+  padding: 28px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+}
+
+/* Mont Heavy brand on auth pages */
+.auth-brand {
+  font-family: "Mont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: 1.2px;
+  text-align: center;
+  margin: 0 0 18px 0;
+  text-transform: uppercase;
+}
+
+
+.auth-brand a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.auth-brand a:hover {
+  opacity: 0.9;
+}
+
+.auth-box h2 {
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+.auth-box label {
+  font-size: 0.9rem;
+  color: #bdbdbd;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+}
+
+.auth-box button,
+.auth-box input[type="submit"] {
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: #fff;
+  color: #000;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.auth-box button:hover,
+.auth-box input[type="submit"]:hover {
+  background: #eaeaea;
+}
+
+.auth-error {
+  color: #ff6b6b;
+  text-align: center;
+  margin: 0 0 12px 0;
 }
