@@ -10,11 +10,64 @@
       lng: e.longitude,
       writer: e.writer_name,
       found_on: e.found_on&.to_s,
-      photo_url: (url_for(e.photo) if e.photo.attached?)
+      photo_url: (url_for(e.photo) if e.photo.attached?),
+      pin_type: e.pin_type || "Spot"
     }
   }.to_json %>"
-  style="width: 100%; height: 80vh;"
-></div>
+  style="width: 100%; height: 80vh; position: relative;"
+>
+  <!-- Map Filter Panel - inside map div -->
+  <div class="map-filter-panel">
+    <button type="button" class="map-filter-toggle" onclick="toggleMapFilters()">
+      <span>Filters</span>
+      <span class="filter-count" id="map-filter-count" style="display: none;"></span>
+    </button>
+
+    <div class="map-filter-content" id="map-filter-content" style="display: none;">
+      <div class="filter-group-compact">
+        <label>Pin Type</label>
+        <div class="checkbox-group-horizontal">
+          <label class="checkbox-label-compact">
+            <input type="checkbox" value="Spot" checked onchange="applyMapFilters()">
+            <span class="pin-dot" style="background: #3B82F6;"></span>
+            <span>Spot</span>
+          </label>
+          <label class="checkbox-label-compact">
+            <input type="checkbox" value="Tag" checked onchange="applyMapFilters()">
+            <span class="pin-dot" style="background: #10B981;"></span>
+            <span>Tag</span>
+          </label>
+          <label class="checkbox-label-compact">
+            <input type="checkbox" value="Throw" checked onchange="applyMapFilters()">
+            <span class="pin-dot" style="background: #F59E0B;"></span>
+            <span>Throw</span>
+          </label>
+          <label class="checkbox-label-compact">
+            <input type="checkbox" value="Piece" checked onchange="applyMapFilters()">
+            <span class="pin-dot" style="background: #EF4444;"></span>
+            <span>Piece</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="filter-group-compact">
+        <label>Writer</label>
+        <input type="text" id="writer-filter" placeholder="Filter by writer..." oninput="applyMapFilters()">
+      </div>
+
+      <div class="filter-group-compact">
+        <label>Date Range</label>
+        <div class="date-range-compact">
+          <input type="date" id="date-from-filter" onchange="applyMapFilters()">
+          <span>to</span>
+          <input type="date" id="date-to-filter" onchange="applyMapFilters()">
+        </div>
+      </div>
+
+      <button type="button" class="btn-clear-filters" onclick="clearMapFilters()">Clear All</button>
+    </div>
+  </div>
+</div>
 
 <script>
   (function () {
@@ -41,9 +94,22 @@
     let selectedLng = null;
 
     // --- Helpers: entry markers ---
+    
+    // Color mapping for pin types
+    function getPinColor(pinType) {
+      const colors = {
+        'Spot': '#3B82F6',    // Blue
+        'Tag': '#10B981',     // Green
+        'Throw': '#F59E0B',   // Orange
+        'Piece': '#EF4444'    // Red
+      };
+      return colors[pinType] || colors['Spot'];
+    }
+
     function buildPopupHtml(e) {
       const writer = e.writer || "—";
       const date = e.found_on || "—";
+      const pinType = e.pin_type || "Spot";
 
       const photoHtml = e.photo_url
         ? `<img src="${e.photo_url}" alt="Graffiti photo" class="popup-photo" style="max-width:180px; height:auto; cursor:pointer;" />`
@@ -51,7 +117,7 @@
 
       return `
         <div>
-          <div><strong>${writer}</strong></div>
+          <div><strong>${pinType}</strong> - <strong>${writer}</strong></div>
           <div>${date}</div>
           <div style="margin-top:6px;">${photoHtml}</div>
         </div>
@@ -65,7 +131,25 @@
 
           const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
 
-          const marker = new mapboxgl.Marker()
+          // Create custom pin marker with SVG
+          const el = document.createElement('div');
+          el.className = 'custom-marker';
+          el.style.cursor = 'pointer';
+          
+          const pinColor = getPinColor(e.pin_type);
+          
+          // SVG pin icon
+          el.innerHTML = `
+            <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
+                    fill="${pinColor}" 
+                    stroke="#fff" 
+                    stroke-width="2"/>
+              <circle cx="15" cy="11" r="4" fill="#fff"/>
+            </svg>
+          `;
+
+          const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
             .setLngLat([e.lng, e.lat])
             .setPopup(popup)
             .addTo(map);
@@ -149,7 +233,20 @@
       selectedLat = e.lngLat.lat;
 
       if (newEntryMarker) newEntryMarker.remove();
-      newEntryMarker = new mapboxgl.Marker()
+      
+      // Create pin-shaped marker for new entry
+      const el = document.createElement('div');
+      el.innerHTML = `
+        <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
+                fill="#FFFF00" 
+                stroke="#000" 
+                stroke-width="2"/>
+          <circle cx="15" cy="11" r="4" fill="#000"/>
+        </svg>
+      `;
+      
+      newEntryMarker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([selectedLng, selectedLat])
         .addTo(map);
 
@@ -267,4 +364,124 @@
     });
 
   })();
+
+  // --- MAP FILTER FUNCTIONS ---
+  function toggleMapFilters() {
+    const content = document.getElementById('map-filter-content');
+    content.style.display = content.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function applyMapFilters() {
+    // Get selected pin types
+    const pinTypeCheckboxes = document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]');
+    const selectedPinTypes = Array.from(pinTypeCheckboxes)
+      .filter(cb => cb.checked)
+      .map(cb => cb.value);
+
+    // Get writer filter
+    const writerFilter = document.getElementById('writer-filter').value.toLowerCase();
+
+    // Get date filters
+    const dateFrom = document.getElementById('date-from-filter').value;
+    const dateTo = document.getElementById('date-to-filter').value;
+
+    // Get the entries array from the global scope
+    const allEntries = JSON.parse(document.getElementById('home-map').dataset.entries || "[]");
+
+    // Filter entries
+    const filteredEntries = allEntries.filter(e => {
+      // Pin type filter
+      if (selectedPinTypes.length > 0 && !selectedPinTypes.includes(e.pin_type || 'Spot')) {
+        return false;
+      }
+
+      // Writer filter
+      if (writerFilter && (!e.writer || !e.writer.toLowerCase().includes(writerFilter))) {
+        return false;
+      }
+
+      // Date range filter
+      if (dateFrom && e.found_on && e.found_on < dateFrom) {
+        return false;
+      }
+      if (dateTo && e.found_on && e.found_on > dateTo) {
+        return false;
+      }
+
+      return true;
+    });
+
+    // Remove all existing markers
+    entryMarkers.forEach(m => m.remove());
+    entryMarkers = [];
+
+    // Create new markers for filtered entries
+    filteredEntries.forEach((e) => {
+      if (e.lat == null || e.lng == null) return;
+
+      const popup = new mapboxgl.Popup({ offset: 25 }).setHTML(buildPopupHtml(e));
+
+      const el = document.createElement('div');
+      el.className = 'custom-marker';
+      el.style.cursor = 'pointer';
+      
+      const pinColor = getPinColor(e.pin_type);
+      
+      el.innerHTML = `
+        <svg width="30" height="40" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15 0C8.925 0 4 4.925 4 11c0 8.25 11 24 11 24s11-15.75 11-24c0-6.075-4.925-11-11-11z" 
+                fill="${pinColor}" 
+                stroke="#fff" 
+                stroke-width="2"/>
+          <circle cx="15" cy="11" r="4" fill="#fff"/>
+        </svg>
+      `;
+
+      const marker = new mapboxgl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat([e.lng, e.lat])
+        .setPopup(popup)
+        .addTo(map);
+
+      entryMarkers.push(marker);
+    });
+
+    // Update filter count
+    updateMapFilterCount();
+  }
+
+  function clearMapFilters() {
+    // Reset all checkboxes
+    document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]').forEach(cb => {
+      cb.checked = true;
+    });
+
+    // Clear text inputs
+    document.getElementById('writer-filter').value = '';
+    document.getElementById('date-from-filter').value = '';
+    document.getElementById('date-to-filter').value = '';
+
+    // Reapply filters (which now shows all)
+    applyMapFilters();
+  }
+
+  function updateMapFilterCount() {
+    const pinTypeCount = document.querySelectorAll('.checkbox-group-horizontal input[type="checkbox"]:not(:checked)').length;
+    const writerFilter = document.getElementById('writer-filter').value;
+    const dateFrom = document.getElementById('date-from-filter').value;
+    const dateTo = document.getElementById('date-to-filter').value;
+
+    let count = 0;
+    if (pinTypeCount > 0) count += pinTypeCount;
+    if (writerFilter) count++;
+    if (dateFrom) count++;
+    if (dateTo) count++;
+
+    const badge = document.getElementById('map-filter-count');
+    if (count > 0) {
+      badge.textContent = count;
+      badge.style.display = 'inline-block';
+    } else {
+      badge.style.display = 'none';
+    }
+  }
 </script>

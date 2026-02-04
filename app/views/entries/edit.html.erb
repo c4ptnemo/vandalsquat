@@ -30,6 +30,16 @@
             </label>
           </p>
 
+          <p>
+            <label>
+              Pin Type
+              <%= f.select :pin_type, 
+                [['Spot', 'Spot'], ['Tag', 'Tag'], ['Throw', 'Throw'], ['Piece', 'Piece']], 
+                {}, 
+                { required: true } %>
+            </label>
+          </p>
+
           <% if @entry.photo.attached? %>
             <div class="current-photo">
               <p style="font-size: 0.9rem; color: #bdbdbd; margin-bottom: 8px;">Current photo:</p>

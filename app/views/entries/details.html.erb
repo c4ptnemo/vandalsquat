@@ -28,6 +28,16 @@
 
           <p>
             <label>
+              Pin Type
+              <%= f.select :pin_type, 
+                [['Spot', 'Spot'], ['Tag', 'Tag'], ['Throw', 'Throw'], ['Piece', 'Piece']], 
+                {}, 
+                { required: true } %>
+            </label>
+          </p>
+
+          <p>
+            <label>
               Writer / Tag
               <%= f.text_field :writer_name %>
             </label>

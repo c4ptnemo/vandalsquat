@@ -57,14 +57,16 @@ class EntriesController < ApplicationController
   end
 
   def entry_params
-    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo)
+  params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
   end
 end
 
+# Update your EntriesController index action with this comprehensive filter logic
+
 def index
-  @entries = Entry.all
-  
-  # Search functionality
+  @entries = current_user.entries
+
+  # Text search (searches across writer, address, notes)
   if params[:query].present?
     search_query = "%#{params[:query]}%"
     @entries = @entries.where(
@@ -72,7 +74,36 @@ def index
       search_query, search_query, search_query
     )
   end
-  
-  # Optional: Order by most recent first
+
+  # Pin type filter (multiple selection)
+  if params[:pin_types].present?
+    @entries = @entries.where(pin_type: params[:pin_types])
+  end
+
+  # Writer filter
+  if params[:writer].present?
+    @entries = @entries.where("writer_name LIKE ?", "%#{params[:writer]}%")
+  end
+
+  # Location filter
+  if params[:location].present?
+    @entries = @entries.where("address LIKE ?", "%#{params[:location]}%")
+  end
+
+  # Date range filter
+  if params[:date_from].present?
+    @entries = @entries.where("found_on >= ?", params[:date_from])
+  end
+
+  if params[:date_to].present?
+    @entries = @entries.where("found_on <= ?", params[:date_to])
+  end
+
+  # Notes filter
+  if params[:notes].present?
+    @entries = @entries.where("notes LIKE ?", "%#{params[:notes]}%")
+  end
+
+  # Order by most recent first
   @entries = @entries.order(found_on: :desc)
 end

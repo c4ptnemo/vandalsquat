@@ -17,14 +17,118 @@
           <%= form_with url: entries_path, method: :get, local: true, class: "search-form" do |form| %>
             <%= form.search_field :query, 
                 value: params[:query], 
-                placeholder: "Search by writer, location, or notes...",
+                placeholder: "Quick search...",
                 class: "search-input" %>
             <%= form.submit "Search", class: "search-btn" %>
             <% if params[:query].present? %>
               <%= link_to "Clear", entries_path, class: "clear-btn" %>
             <% end %>
           <% end %>
+          
+          <!-- Advanced Filters button next to search -->
+          <button type="button" class="filter-toggle-btn" onclick="toggleFilters()">
+            <span>Advanced Filters</span>
+            <span class="filter-count" id="filter-count" style="display: none;"></span>
+          </button>
         </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <div class="filter-panel" id="filter-panel" style="display: none;">
+            <%= form_with url: entries_path, method: :get, local: true, id: "filter-form" do |f| %>
+              
+              <div class="filter-grid">
+                <!-- Pin Type Filter -->
+                <div class="filter-group">
+                  <label>Pin Type</label>
+                  <div class="checkbox-group">
+                    <label class="checkbox-label">
+                      <%= check_box_tag 'pin_types[]', 'Spot', params[:pin_types]&.include?('Spot') %>
+                      <span class="pin-type-badge" style="background: #3B82F6;">Spot</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <%= check_box_tag 'pin_types[]', 'Tag', params[:pin_types]&.include?('Tag') %>
+                      <span class="pin-type-badge" style="background: #10B981;">Tag</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <%= check_box_tag 'pin_types[]', 'Throw', params[:pin_types]&.include?('Throw') %>
+                      <span class="pin-type-badge" style="background: #F59E0B;">Throw</span>
+                    </label>
+                    <label class="checkbox-label">
+                      <%= check_box_tag 'pin_types[]', 'Piece', params[:pin_types]&.include?('Piece') %>
+                      <span class="pin-type-badge" style="background: #EF4444;">Piece</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Writer Filter -->
+                <div class="filter-group">
+                  <label>Writer</label>
+                  <%= text_field_tag :writer, params[:writer], placeholder: "Search by writer..." %>
+                </div>
+
+                <!-- Location Filter -->
+                <div class="filter-group">
+                  <label>Location</label>
+                  <%= text_field_tag :location, params[:location], placeholder: "Search by address..." %>
+                </div>
+
+                <!-- Date Range Filter -->
+                <div class="filter-group">
+                  <label>Date Range</label>
+                  <div class="date-range">
+                    <%= date_field_tag :date_from, params[:date_from], placeholder: "From" %>
+                    <span>to</span>
+                    <%= date_field_tag :date_to, params[:date_to], placeholder: "To" %>
+                  </div>
+                </div>
+
+                <!-- Notes Filter -->
+                <div class="filter-group">
+                  <label>Notes</label>
+                  <%= text_field_tag :notes, params[:notes], placeholder: "Search in notes..." %>
+                </div>
+              </div>
+
+              <div class="filter-actions">
+                <%= f.submit "Apply Filters", class: "btn" %>
+                <%= link_to "Clear All", entries_path, class: "btn btn-secondary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <script>
+          function toggleFilters() {
+            const panel = document.getElementById('filter-panel');
+            panel.style.display = panel.style.display === 'none' ? 'block' : 'none';
+          }
+
+          // Update filter count badge
+          function updateFilterCount() {
+            const params = new URLSearchParams(window.location.search);
+            let count = 0;
+            
+            if (params.get('query')) count++;
+            if (params.getAll('pin_types[]').length > 0) count += params.getAll('pin_types[]').length;
+            if (params.get('writer')) count++;
+            if (params.get('location')) count++;
+            if (params.get('date_from')) count++;
+            if (params.get('date_to')) count++;
+            if (params.get('notes')) count++;
+            
+            const badge = document.getElementById('filter-count');
+            if (count > 0) {
+              badge.textContent = count;
+              badge.style.display = 'inline-block';
+              document.getElementById('filter-panel').style.display = 'block';
+            } else {
+              badge.style.display = 'none';
+            }
+          }
+
+          document.addEventListener('DOMContentLoaded', updateFilterCount);
+        </script>
       </div>
 
       <div class="entries-container">
@@ -40,6 +144,7 @@
 
             <div class="entry-content">
               <div class="entry-text">
+                <p><strong>Pin Type:</strong> <%= entry.pin_type || "Spot" %></p>
                 <p><strong>Writer:</strong> <%= entry.writer_name.presence || "Unknown" %></p>
                 <p><strong>Date:</strong> <%= entry.found_on || "—" %></p>
                 <p><strong>Location:</strong> <%= entry.address.presence || "—" %></p>
