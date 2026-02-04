@@ -120,11 +120,12 @@ a {
 
 .auth-box {
   width: 100%;
-  max-width: 360px;
-  padding: 28px;
+  max-width: 480px;   /* wider to comfortably fit the logo */
+  padding: 32px;
   background: #0f0f0f;
   border: 1px solid #222;
 }
+
 
 /* Mont Heavy brand on auth pages */
 .auth-brand {
@@ -272,3 +273,15 @@ a {
   margin: 0;
 }
 
+.auth-logo {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 18px 0;
+}
+
+.auth-logo-img {
+  height: 56px; /* feels good on auth pages */
+  width: auto;
+  max-width: min(520px, 90vw);
+  display: block;
+}
