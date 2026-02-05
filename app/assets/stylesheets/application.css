@@ -248,10 +248,6 @@ input[type="button"]:hover,
   display: block;
 }
 
-
-  display: block;
-}
-
 /* =========================
    Navbar: centered logo + centered links under it
    Logout stays top-right
@@ -1090,8 +1086,4 @@ input[type="button"]:hover,
   .filter-group-compact input[type="date"] {
     min-width: 100%;
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> acc6e6e (Fix asset pipeline: use application.scss)
