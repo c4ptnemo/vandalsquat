@@ -308,7 +308,7 @@ input[type="button"]:hover,
 .navbar.navbar--stacked .nav-right--corner {
   position: absolute;
   top: 16px;
-  right: 20px;
+  right: 30px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -1085,5 +1085,298 @@ input[type="button"]:hover,
   .filter-group-compact input[type="text"],
   .filter-group-compact input[type="date"] {
     min-width: 100%;
+  }
+}
+
+/* =========================
+   MOBILE RESPONSIVE IMPROVEMENTS
+   Add these to the bottom of application.css
+   ========================= */
+
+/* Mobile viewport settings */
+@media (max-width: 768px) {
+  
+  /* Body and base text */
+  body {
+    font-size: 14px;
+  }
+
+  /* Navbar adjustments */
+  .navbar.navbar--stacked {
+    padding: 12px 16px 16px 16px;
+  }
+
+  .navbar.navbar--stacked .brand-img {
+    height: 36px; /* Smaller logo on mobile */
+  }
+
+  .navbar.navbar--stacked .nav-center {
+    gap: 20px;
+    font-size: 0.9rem;
+  }
+
+  .navbar.navbar--stacked .nav-right--corner {
+    top: 12px;
+    right: 16px;
+  }
+
+  .logout-btn {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+
+  /* Auth pages (login/signup) */
+  .auth-container {
+    padding: 16px;
+  }
+
+  .auth-box {
+    padding: 24px 20px;
+  }
+
+  .auth-logo-img {
+    height: 44px;
+  }
+
+  /* Map */
+  #home-map {
+    height: 70vh !important; /* More room for controls on mobile */
+  }
+
+  /* Map filter panel */
+  .map-filter-panel {
+    left: 8px;
+    right: 8px;
+    top: 8px;
+  }
+
+  .map-filter-toggle {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .map-filter-content {
+    padding: 12px;
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+
+  .filter-group-compact label {
+    font-size: 0.75rem;
+  }
+
+  .filter-group-compact input[type="text"],
+  .filter-group-compact input[type="date"] {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .checkbox-label-compact {
+    font-size: 0.8rem;
+  }
+
+  .btn-apply-filters,
+  .btn-clear-filters {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+
+  /* New Entry overlay on map */
+  .mapboxgl-ctrl {
+    margin: 8px !important;
+  }
+
+  /* Entries page */
+  .entries-main {
+    padding: 24px 16px;
+  }
+
+  .entries-header h2 {
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+  }
+
+  /* Search and filters */
+  .search-wrapper {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .search-form {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .search-input {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .search-btn,
+  .clear-btn {
+    width: 100%;
+  }
+
+  .filter-toggle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-panel {
+    padding: 16px;
+  }
+
+  .filter-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .filter-grid > .filter-group {
+    grid-column: 1 !important;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .filter-actions .btn {
+    width: 100%;
+  }
+
+  /* Entry cards */
+  .entries-container {
+    gap: 40px;
+  }
+
+  .entry-row {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .entry-photo {
+    aspect-ratio: 16 / 9; /* Wider aspect on mobile */
+  }
+
+  .entry-text p {
+    font-size: 0.95rem;
+  }
+
+  /* Form pages */
+  .auth-box input[type="text"],
+  .auth-box input[type="email"],
+  .auth-box input[type="password"],
+  .auth-box input[type="date"],
+  .auth-box input[type="number"],
+  .auth-box textarea,
+  .auth-box select {
+    font-size: 16px; /* Prevents iOS zoom on input focus */
+  }
+
+  .auth-box button,
+  .auth-box input[type="submit"] {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Buttons globally */
+  button,
+  .btn,
+  input[type="submit"] {
+    min-height: 44px; /* Touch-friendly size */
+    font-size: 0.9rem;
+  }
+
+  /* Lightbox on mobile */
+  .lightbox-image {
+    max-width: 95%;
+    max-height: 85%;
+  }
+
+  .lightbox-close {
+    top: 10px;
+    right: 10px;
+    font-size: 36px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  
+  .navbar.navbar--stacked .nav-center {
+    gap: 16px;
+    font-size: 0.85rem;
+  }
+
+  .entries-header h2 {
+    font-size: 1.4rem;
+  }
+
+  .entry-text p {
+    font-size: 0.9rem;
+  }
+
+  /* Stack date range filters vertically on very small screens */
+  .date-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .date-range input {
+    width: 100%;
+  }
+
+  .date-range span {
+    text-align: center;
+    padding: 4px 0;
+  }
+}
+
+/* Landscape mode on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  #home-map {
+    height: 85vh !important; /* More map in landscape */
+  }
+
+  .map-filter-content {
+    max-height: 70vh;
+  }
+}
+
+/* Touch-friendly improvements for all mobile devices */
+@media (hover: none) and (pointer: coarse) {
+  
+  /* Larger touch targets */
+  a, button, input[type="submit"], .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover effects on touch devices */
+  button:hover,
+  .btn:hover,
+  input[type="submit"]:hover {
+    background: transparent;
+    color: #bdbdbd;
+    border-color: #333;
+  }
+
+  .btn-apply-filters:hover {
+    background: #3B82F6;
+    color: #fff;
+  }
+
+  /* Easier to tap checkboxes */
+  input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+
+  .checkbox-label,
+  .checkbox-label-compact {
+    padding: 8px 4px;
   }
 }
