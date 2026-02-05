@@ -59,6 +59,8 @@ gem 'cloudinary'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
+gem 'mini_magick'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"

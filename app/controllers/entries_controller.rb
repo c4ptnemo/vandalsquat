@@ -1,3 +1,8 @@
+# frozen_string_literal: true
+
+# Updated EntriesController with EXIF Scrubbing
+# Replace your existing app/controllers/entries_controller.rb with this
+
 class EntriesController < ApplicationController
   before_action :require_login
   before_action :set_entry, only: [:edit, :update, :destroy]
@@ -59,12 +64,30 @@ class EntriesController < ApplicationController
   end
 
   def create
-    @entry = current_user.entries.new(entry_params)
+    @entry = current_user.entries.new(entry_params_without_photo)
 
     @entry.address = MapboxReverseGeocoder.lookup(
       @entry.latitude,
       @entry.longitude
     )
+
+    # CRITICAL: Scrub EXIF before attaching photo
+    if params.dig(:entry, :photo).present?
+      begin
+        scrubbed_file = ExifScrubberService.scrub(params[:entry][:photo])
+        @entry.photo.attach(
+          io: scrubbed_file,
+          filename: params[:entry][:photo].original_filename,
+          content_type: params[:entry][:photo].content_type
+        )
+      rescue ExifScrubberService::ExifScrubbingError => e
+        flash.now[:alert] = "Photo upload failed: #{e.message}"
+        render :details, status: :unprocessable_entity
+        return
+      ensure
+        scrubbed_file&.close! # Clean up temp file
+      end
+    end
 
     if @entry.save
       redirect_to root_path, notice: "Entry created."
@@ -78,7 +101,25 @@ class EntriesController < ApplicationController
   end
 
   def update
-    if @entry.update(entry_params)
+    # CRITICAL: Scrub EXIF before updating photo
+    if params.dig(:entry, :photo).present?
+      begin
+        scrubbed_file = ExifScrubberService.scrub(params[:entry][:photo])
+        @entry.photo.attach(
+          io: scrubbed_file,
+          filename: params[:entry][:photo].original_filename,
+          content_type: params[:entry][:photo].content_type
+        )
+      rescue ExifScrubberService::ExifScrubbingError => e
+        flash.now[:alert] = "Photo upload failed: #{e.message}"
+        render :edit, status: :unprocessable_entity
+        return
+      ensure
+        scrubbed_file&.close! # Clean up temp file
+      end
+    end
+
+    if @entry.update(entry_params_without_photo)
       redirect_to entries_path, notice: "Entry updated."
     else
       flash.now[:alert] = @entry.errors.full_messages.to_sentence
@@ -99,5 +140,10 @@ class EntriesController < ApplicationController
 
   def entry_params
     params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
+  end
+
+  # Same as entry_params but without :photo (handled separately to scrub EXIF)
+  def entry_params_without_photo
+    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :pin_type)
   end
 end
