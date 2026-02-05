@@ -6,7 +6,6 @@
   font-display: swap;
 }
 
-
 /* Base */
 body {
   margin: 0;
@@ -23,12 +22,10 @@ a {
    GLOBAL BUTTON STYLES
    ========================= */
 
-/* Primary button style - muted dark */
 button,
 input[type="submit"],
 input[type="button"],
-.btn,
-.btn-primary {
+.btn {
   display: inline-block;
   padding: 10px 20px;
   background: transparent;
@@ -45,19 +42,16 @@ input[type="button"],
 button:hover,
 input[type="submit"]:hover,
 input[type="button"]:hover,
-.btn:hover,
-.btn-primary:hover {
+.btn:hover {
   color: #fff;
   border-color: #555;
   background: #1a1a1a;
 }
 
-/* Secondary button - for less emphasis */
 .btn-secondary {
   padding: 8px 16px;
-  background: transparent;
   color: #999;
-  border: 1px solid #2a2a2a;
+  border-color: #2a2a2a;
   font-size: 0.85rem;
 }
 
@@ -66,95 +60,105 @@ input[type="button"]:hover,
   border-color: #333;
 }
 
-/* Small button variant */
 .btn-small {
   padding: 6px 12px;
   font-size: 0.85rem;
 }
 
-/* Navbar layout */
-.navbar {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
+.btn-danger {
+  width: 100%;
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+}
 
-  padding: 16px 20px;
+.btn-danger:hover {
+  background: rgba(255, 107, 107, 0.1);
+  border-color: #ff5252;
+  color: #ff5252;
+}
+
+/* =========================
+   NAVBAR - CENTERED LOGO & LINKS
+   ========================= */
+
+.navbar.navbar--stacked {
+  position: relative;
   background: #161616;
-}
-
-
-
-/* Left: Brand */
-.brand {
-  font-family: "Mont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 800;
-  font-size: 1.15rem;
-  letter-spacing: 0.6px;
-  text-decoration: none;
-  color: #fff;
-}
-
-
-/* Center: Nav links */
-.nav-center {
+  padding: 16px 20px 20px 20px;
   display: flex;
   justify-content: center;
-  gap: 28px;
+  align-items: flex-start;
+  width: 100%;
 }
 
-.nav-center a {
+.navbar.navbar--stacked .nav-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar.navbar--stacked .brand-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.navbar.navbar--stacked .brand-img {
+  height: 44px;
+  width: auto;
+  max-width: min(520px, 90vw);
+  display: block;
+}
+
+.navbar.navbar--stacked .nav-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.navbar.navbar--stacked .nav-center a {
   text-decoration: none;
   color: #bdbdbd;
   font-size: 0.95rem;
 }
 
-.nav-center a:hover {
+.navbar.navbar--stacked .nav-center a:hover {
   color: #fff;
 }
 
-/* Right: Logout/Login */
-.nav-left {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.nav-right {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-
-
-.logout-form {
+/* Inline logout button - styled like nav links */
+.logout-form-inline {
   display: inline;
   margin: 0;
 }
 
-.logout-btn {
-  /* Inherits from global button styles */
-  padding: 6px 12px;
-  font-size: 0.85rem;
-}
-
-.auth-alt {
-  margin-top: 16px;
-  text-align: center;
-  font-size: 0.9rem;
+.logout-btn-inline {
+  background: transparent;
   color: #bdbdbd;
+  border: none;
+  padding: 0;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: normal;
 }
 
-.auth-alt a {
+.logout-btn-inline:hover {
   color: #fff;
-  text-decoration: none;
+  background: transparent;
 }
 
-.auth-alt a:hover {
-  text-decoration: underline;
-}
+/* =========================
+   AUTH PAGES (LOGIN/SIGNUP)
+   ========================= */
 
-/* Centered auth layout (login + signup) */
 .auth-container {
   min-height: calc(100vh - 64px);
   display: flex;
@@ -165,32 +169,27 @@ input[type="button"]:hover,
 
 .auth-box {
   width: 100%;
-  max-width: 480px;   /* wider to comfortably fit the logo */
+  max-width: 480px;
   padding: 32px;
   background: #0f0f0f;
   border: 1px solid #222;
 }
 
+.auth-box--wide {
+  max-width: 520px;
+}
 
-/* Mont Heavy brand on auth pages */
-.auth-brand {
-  font-family: "Mont", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
-  letter-spacing: 1.2px;
-  text-align: center;
+.auth-logo {
+  display: flex;
+  justify-content: center;
   margin: 0 0 18px 0;
-  text-transform: uppercase;
 }
 
-
-.auth-brand a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-.auth-brand a:hover {
-  opacity: 0.9;
+.auth-logo-img {
+  height: 56px;
+  width: auto;
+  max-width: min(520px, 90vw);
+  display: block;
 }
 
 .auth-box h2 {
@@ -212,7 +211,55 @@ input[type="button"]:hover,
   border: 1px solid #333;
 }
 
-/* Auth box buttons - override global for inverted style */
+.auth-box textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.auth-box textarea:focus,
+.auth-box input:focus,
+.auth-box select:focus {
+  outline: none;
+  border-color: #555;
+}
+
+.auth-box select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  background: #0b0b0b;
+  color: #fff;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+
+.auth-box input[type="file"] {
+  color: #bdbdbd;
+  cursor: pointer;
+}
+
+.auth-box input[type="file"]::-webkit-file-upload-button {
+  padding: 6px 12px;
+  background: transparent;
+  color: #bdbdbd;
+  border: 1px solid #333;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.auth-box input[type="file"]::-webkit-file-upload-button:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+/* Auth box buttons - inverted style */
 .auth-box button,
 .auth-box input[type="submit"] {
   width: 100%;
@@ -221,7 +268,6 @@ input[type="button"]:hover,
   background: #fff;
   color: #000;
   border: none;
-  cursor: pointer;
   font-weight: 600;
 }
 
@@ -236,109 +282,40 @@ input[type="button"]:hover,
   margin: 0 0 12px 0;
 }
 
-.brand-logo {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
+.auth-success {
+  color: #4caf50;
+  text-align: center;
+  margin: 0 0 12px 0;
+  padding: 8px;
+  background: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
 }
 
-.brand-img {
-  height: 44px;
-  width: auto;
-  display: block;
-}
-
-/* =========================
-   Navbar: centered logo + centered links under it
-   Logout stays top-right
-   ========================= */
-
-.navbar.navbar--stacked {
-  position: relative;
-  background: #161616;
-  padding: 16px 20px 20px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%; /* Ensure full width */
-}
-
-/* Center column stack - no margin needed, pure centering */
-.navbar.navbar--stacked .nav-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-/* Logo (keep your 44px height) */
-.navbar.navbar--stacked .brand-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-
-.navbar.navbar--stacked .brand-img {
-  height: 44px;
-  width: auto;
-  max-width: min(520px, 90vw); /* prevents overflow on mobile */
-  display: block;
-}
-
-/* Links centered under logo */
-.navbar.navbar--stacked .nav-center {
-  display: flex;
-  justify-content: center;
-  gap: 28px;
-  flex-wrap: wrap;
-}
-
-.navbar.navbar--stacked .nav-center a {
-  text-decoration: none;
+.auth-alt {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 0.9rem;
   color: #bdbdbd;
-  font-size: 0.95rem;
 }
 
-.navbar.navbar--stacked .nav-center a:hover {
+.auth-alt a {
   color: #fff;
+  text-decoration: none;
 }
 
-/* Logout/Login pinned to the top-right */
-.navbar.navbar--stacked .nav-right--corner {
-  position: absolute;
-  top: 16px;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 20px;
+.auth-alt a:hover {
+  text-decoration: underline;
 }
 
-/* Keep the logout button as a button (don't restyle it into a link) */
-.navbar.navbar--stacked .logout-form {
-  margin: 0;
-}
-
-.logout-btn {
-  white-space: nowrap;
-}
-
-.auth-logo {
-  display: flex;
-  justify-content: center;
-  margin: 0 0 18px 0;
-}
-
-.auth-logo-img {
-  height: 56px; /* feels good on auth pages */
-  width: auto;
-  max-width: min(520px, 90vw);
-  display: block;
+.current-photo {
+  margin: 12px 0;
+  padding: 12px;
+  background: #0b0b0b;
+  border: 1px solid #222;
 }
 
 /* =========================
-   ENTRIES PAGE - Picture-Centric Layout (Side-by-Side)
+   ENTRIES PAGE
    ========================= */
 
 .entries-main {
@@ -358,14 +335,12 @@ input[type="button"]:hover,
   color: #fff;
 }
 
-/* Container for all entries */
 .entries-container {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
 
-/* Individual entry - side by side layout */
 .entry-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -376,7 +351,6 @@ input[type="button"]:hover,
   width: 100%;
 }
 
-/* Photo section - left side */
 .entry-photo {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -408,7 +382,6 @@ input[type="button"]:hover,
   padding: 20px;
 }
 
-/* Content section - right side */
 .entry-content {
   display: flex;
   flex-direction: column;
@@ -431,235 +404,14 @@ input[type="button"]:hover,
   font-weight: 600;
 }
 
-/* Actions */
 .entry-actions {
   margin-top: 24px;
   padding-top: 20px;
   border-top: 1px solid #222;
 }
 
-.edit-btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background: transparent;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: all 0.2s ease;
-}
-
-.edit-btn:hover {
-  color: #fff;
-  border-color: #555;
-  background: #1a1a1a;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .entry-row {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  
-  .entries-container {
-    gap: 40px;
-  }
-  
-  .entries-main {
-    padding: 24px 16px;
-  }
-}
-
 /* =========================
-   LIGHTBOX MODAL
-   ========================= */
-
-.lightbox-modal {
-  display: none;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.95);
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.lightbox-image {
-  max-width: 90%;
-  max-height: 90%;
-  object-fit: contain;
-  display: block;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  font-size: 48px;
-  color: #fff;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  line-height: 1;
-}
-
-.lightbox-close:hover {
-  color: #ff6b6b;
-  transform: rotate(90deg);
-}
-
-@media (max-width: 768px) {
-  .lightbox-close {
-    top: 10px;
-    right: 10px;
-    font-size: 36px;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-/* =========================
-   ADDITIONAL STYLES FOR FORM PAGES
-   ========================= */
-
-/* Wider auth box for account page with multiple sections */
-.auth-box--wide {
-  max-width: 520px;
-}
-
-/* Account page sections */
-.account-section h3 {
-  font-size: 1.1rem;
-  margin: 0 0 16px 0;
-  color: #fff;
-}
-
-/* Success message styling */
-.auth-success {
-  color: #4caf50;
-  text-align: center;
-  margin: 0 0 12px 0;
-  padding: 8px;
-  background: rgba(76, 175, 80, 0.1);
-  border: 1px solid rgba(76, 175, 80, 0.3);
-}
-
-/* Textarea styling for auth boxes */
-.auth-box textarea {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #fff;
-  border: 1px solid #333;
-  font-family: inherit;
-  resize: vertical;
-  min-height: 80px;
-}
-
-.auth-box textarea:focus {
-  outline: none;
-  border-color: #555;
-}
-
-/* File input styling */
-.auth-box input[type="file"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  cursor: pointer;
-}
-
-.auth-box input[type="file"]::-webkit-file-upload-button {
-  padding: 6px 12px;
-  background: transparent;
-  color: #bdbdbd;
-  border: 1px solid #333;
-  cursor: pointer;
-  margin-right: 8px;
-}
-
-.auth-box input[type="file"]::-webkit-file-upload-button:hover {
-  color: #fff;
-  border-color: #555;
-}
-
-/* Date and number inputs */
-.auth-box input[type="date"],
-.auth-box input[type="number"] {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #fff;
-  border: 1px solid #333;
-}
-
-.auth-box input[type="date"]:focus,
-.auth-box input[type="number"]:focus {
-  outline: none;
-  border-color: #555;
-}
-
-/* Select/dropdown styling */
-.auth-box select {
-  width: 100%;
-  padding: 8px;
-  margin-top: 4px;
-  background: #0b0b0b;
-  color: #fff;
-  border: 1px solid #333;
-  cursor: pointer;
-}
-
-.auth-box select:focus {
-  outline: none;
-  border-color: #555;
-}
-
-/* Danger button for delete */
-.btn-danger {
-  width: 100%;
-  background: transparent;
-  color: #ff6b6b;
-  border: 1px solid #ff6b6b;
-  padding: 10px 12px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.btn-danger:hover {
-  background: rgba(255, 107, 107, 0.1);
-  border-color: #ff5252;
-  color: #ff5252;
-}
-
-/* Current photo display in edit form */
-.current-photo {
-  margin: 12px 0;
-  padding: 12px;
-  background: #0b0b0b;
-  border: 1px solid #222;
-}
-
-/* =========================
-   FILTER SECTION STYLES
+   SEARCH & FILTERS
    ========================= */
 
 .search-wrapper {
@@ -697,13 +449,9 @@ input[type="button"]:hover,
   border-color: #555;
 }
 
-.search-btn {
-  padding: 12px 20px;
-  border-radius: 4px;
-}
-
+.search-btn,
 .clear-btn {
-  padding: 12px 16px;
+  padding: 12px 20px;
   border-radius: 4px;
 }
 
@@ -759,30 +507,11 @@ input[type="button"]:hover,
   margin-bottom: 20px;
 }
 
-/* Pin Type takes up full first column */
-.filter-grid > .filter-group:nth-child(1) {
-  grid-column: 1;
-}
-
-/* Writer in second column */
-.filter-grid > .filter-group:nth-child(2) {
-  grid-column: 2;
-}
-
-/* Location in third column */
-.filter-grid > .filter-group:nth-child(3) {
-  grid-column: 3;
-}
-
-/* Date Range spans first column of second row */
-.filter-grid > .filter-group:nth-child(4) {
-  grid-column: 1;
-}
-
-/* Notes spans second and third columns of second row */
-.filter-grid > .filter-group:nth-child(5) {
-  grid-column: 2 / 4;
-}
+.filter-grid > .filter-group:nth-child(1) { grid-column: 1; }
+.filter-grid > .filter-group:nth-child(2) { grid-column: 2; }
+.filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
+.filter-grid > .filter-group:nth-child(4) { grid-column: 1; }
+.filter-grid > .filter-group:nth-child(5) { grid-column: 2 / 4; }
 
 .filter-group {
   display: flex;
@@ -818,7 +547,6 @@ input[type="button"]:hover,
   color: #666;
 }
 
-/* Checkbox group for pin types */
 .checkbox-group {
   display: flex;
   flex-direction: column;
@@ -851,7 +579,6 @@ input[type="button"]:hover,
   font-weight: 600;
 }
 
-/* Date range */
 .date-range {
   display: flex;
   align-items: center;
@@ -867,7 +594,6 @@ input[type="button"]:hover,
   flex: 1;
 }
 
-/* Filter actions */
 .filter-actions {
   display: flex;
   gap: 12px;
@@ -879,36 +605,8 @@ input[type="button"]:hover,
   flex: 1;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .filter-grid {
-    grid-template-columns: 1fr !important;
-  }
-  
-  .filter-grid > .filter-group {
-    grid-column: 1 !important;
-  }
-  
-  .filter-actions {
-    flex-direction: column;
-  }
-  
-  .search-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .search-form {
-    flex-direction: column;
-  }
-  
-  .search-input {
-    min-width: 100%;
-  }
-}
-
 /* =========================
-   MAP FILTER PANEL STYLES
+   MAP FILTERS
    ========================= */
 
 .map-filter-panel {
@@ -916,7 +614,6 @@ input[type="button"]:hover,
   top: 12px;
   left: 12px;
   z-index: 10;
-  max-width: none;
 }
 
 .map-filter-toggle {
@@ -1056,63 +753,68 @@ input[type="button"]:hover,
   width: 100%;
 }
 
-/* Responsive adjustments for map filters */
-@media (max-width: 1024px) {
-  .map-filter-content {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .checkbox-group-horizontal {
-    flex-wrap: wrap;
-  }
-  
-  .date-range-compact {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  
-  .date-range-compact input {
-    width: 100%;
-  }
-  
-  .btn-clear-filters {
-    align-self: stretch;
-  }
+/* =========================
+   LIGHTBOX
+   ========================= */
+
+.lightbox-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
 }
 
-@media (max-width: 768px) {
-  .map-filter-panel {
-    left: 8px;
-    right: 8px;
-  }
-  
-  .filter-group-compact input[type="text"],
-  .filter-group-compact input[type="date"] {
-    min-width: 100%;
-  }
+.lightbox-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 48px;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.lightbox-close:hover {
+  color: #ff6b6b;
+  transform: rotate(90deg);
 }
 
 /* =========================
-   MOBILE RESPONSIVE IMPROVEMENTS
-   Add these to the bottom of application.css
+   MOBILE RESPONSIVE
    ========================= */
 
-/* Mobile viewport settings */
 @media (max-width: 768px) {
-  
-  /* Body and base text */
-  body {
-    font-size: 14px;
-  }
+  body { font-size: 14px; }
 
-  /* Navbar adjustments */
   .navbar.navbar--stacked {
     padding: 12px 16px 16px 16px;
   }
 
   .navbar.navbar--stacked .brand-img {
-    height: 36px; /* Smaller logo on mobile */
+    height: 36px;
   }
 
   .navbar.navbar--stacked .nav-center {
@@ -1120,17 +822,6 @@ input[type="button"]:hover,
     font-size: 0.9rem;
   }
 
-  .navbar.navbar--stacked .nav-right--corner {
-    top: 12px;
-    right: 16px;
-  }
-
-  .logout-btn {
-    padding: 4px 8px;
-    font-size: 0.8rem;
-  }
-
-  /* Auth pages (login/signup) */
   .auth-container {
     padding: 16px;
   }
@@ -1143,12 +834,10 @@ input[type="button"]:hover,
     height: 44px;
   }
 
-  /* Map */
   #home-map {
-    height: 70vh !important; /* More room for controls on mobile */
+    height: 70vh !important;
   }
 
-  /* Map filter panel */
   .map-filter-panel {
     left: 8px;
     right: 8px;
@@ -1170,8 +859,7 @@ input[type="button"]:hover,
     font-size: 0.75rem;
   }
 
-  .filter-group-compact input[type="text"],
-  .filter-group-compact input[type="date"] {
+  .filter-group-compact input {
     font-size: 0.85rem;
     padding: 8px;
   }
@@ -1186,12 +874,10 @@ input[type="button"]:hover,
     padding: 8px 12px;
   }
 
-  /* New Entry overlay on map */
   .mapboxgl-ctrl {
     margin: 8px !important;
   }
 
-  /* Entries page */
   .entries-main {
     padding: 24px 16px;
   }
@@ -1201,7 +887,6 @@ input[type="button"]:hover,
     margin-bottom: 20px;
   }
 
-  /* Search and filters */
   .search-wrapper {
     flex-direction: column;
     gap: 12px;
@@ -1250,7 +935,6 @@ input[type="button"]:hover,
     width: 100%;
   }
 
-  /* Entry cards */
   .entries-container {
     gap: 40px;
   }
@@ -1261,14 +945,13 @@ input[type="button"]:hover,
   }
 
   .entry-photo {
-    aspect-ratio: 16 / 9; /* Wider aspect on mobile */
+    aspect-ratio: 16 / 9;
   }
 
   .entry-text p {
     font-size: 0.95rem;
   }
 
-  /* Form pages */
   .auth-box input[type="text"],
   .auth-box input[type="email"],
   .auth-box input[type="password"],
@@ -1276,7 +959,7 @@ input[type="button"]:hover,
   .auth-box input[type="number"],
   .auth-box textarea,
   .auth-box select {
-    font-size: 16px; /* Prevents iOS zoom on input focus */
+    font-size: 16px;
   }
 
   .auth-box button,
@@ -1285,15 +968,13 @@ input[type="button"]:hover,
     font-size: 1rem;
   }
 
-  /* Buttons globally */
   button,
   .btn,
   input[type="submit"] {
-    min-height: 44px; /* Touch-friendly size */
+    min-height: 44px;
     font-size: 0.9rem;
   }
 
-  /* Lightbox on mobile */
   .lightbox-image {
     max-width: 95%;
     max-height: 85%;
@@ -1308,9 +989,7 @@ input[type="button"]:hover,
   }
 }
 
-/* Extra small devices */
 @media (max-width: 480px) {
-  
   .navbar.navbar--stacked .nav-center {
     gap: 16px;
     font-size: 0.85rem;
@@ -1324,7 +1003,6 @@ input[type="button"]:hover,
     font-size: 0.9rem;
   }
 
-  /* Stack date range filters vertically on very small screens */
   .date-range {
     flex-direction: column;
     align-items: stretch;
@@ -1340,10 +1018,9 @@ input[type="button"]:hover,
   }
 }
 
-/* Landscape mode on mobile */
 @media (max-width: 768px) and (orientation: landscape) {
   #home-map {
-    height: 85vh !important; /* More map in landscape */
+    height: 85vh !important;
   }
 
   .map-filter-content {
@@ -1351,16 +1028,32 @@ input[type="button"]:hover,
   }
 }
 
-/* Touch-friendly improvements for all mobile devices */
-@media (hover: none) and (pointer: coarse) {
+@media (max-width: 1024px) {
+  .map-filter-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
   
-  /* Larger touch targets */
+  .checkbox-group-horizontal {
+    flex-wrap: wrap;
+  }
+  
+  .date-range-compact {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .date-range-compact input {
+    width: 100%;
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
   a, button, input[type="submit"], .btn {
     min-height: 44px;
     min-width: 44px;
   }
 
-  /* Remove hover effects on touch devices */
   button:hover,
   .btn:hover,
   input[type="submit"]:hover {
@@ -1374,7 +1067,6 @@ input[type="button"]:hover,
     color: #fff;
   }
 
-  /* Easier to tap checkboxes */
   input[type="checkbox"] {
     width: 20px;
     height: 20px;
