@@ -1,17 +1,4 @@
 <nav class="navbar navbar--stacked">
-  <!-- Top-right auth (stays a button) -->
-  <div class="nav-right nav-right--corner">
-    <% if logged_in? %>
-      <%= button_to "Log out",
-            logout_path,
-            method: :delete,
-            class: "logout-btn",
-            form: { class: "logout-form" } %>
-    <% else %>
-      <a href="/login">Login</a>
-    <% end %>
-  </div>
-
   <!-- Centered logo + centered links underneath -->
   <div class="nav-stack">
     <a href="/" class="brand brand-logo" aria-label="VandalSquat home">
@@ -25,6 +12,15 @@
       <a href="/">Home</a>
       <a href="/entries">Entries</a>
       <a href="/account">My Account</a>
+      <% if logged_in? %>
+        <%= button_to "Log out",
+              logout_path,
+              method: :delete,
+              class: "logout-btn-inline",
+              form: { class: "logout-form-inline" } %>
+      <% else %>
+        <a href="/login">Login</a>
+      <% end %>
     </div>
   </div>
 </nav>
