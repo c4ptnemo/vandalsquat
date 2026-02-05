@@ -23295,3 +23295,368 @@ Processing by ActiveStorage::DiskController#show as JPEG
 Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
 
 
+Started GET "/entries" for 73.44.6.8 at 2026-02-04 23:20:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EntriesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering entries/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.4ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY COALESCE(found_on, '1900-01-01') DESC /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:136
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:139
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:140
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:139
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:140
+  Rendered entries/index.html.erb within layouts/application (Duration: 12.2ms | GC: 0.6ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.2ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 13.2ms | GC: 0.6ms)
+Completed 200 OK in 17ms (Views: 12.2ms | ActiveRecord: 2.1ms (6 queries, 0 cached) | GC: 0.6ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTQwWiIsInB1ciI6ImJsb2Jfa2V5In19--5efeda406c5dff0b76ac28b9bfce50ed715a3391/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:20:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTM0WiIsInB1ciI6ImJsb2Jfa2V5In19--4424723ded1250b880edb6fd0368c08661e3c120/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:20:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/account" for 73.44.6.8 at 2026-02-04 23:20:44 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by UsersController#show as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='users'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | GC: 0.0ms)
+Completed 200 OK in 6ms (Views: 3.7ms | ActiveRecord: 0.5ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/entries" for 73.44.6.8 at 2026-02-04 23:20:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by EntriesController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering entries/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY COALESCE(found_on, '1900-01-01') DESC /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:136
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:139
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:140
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:139
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='entries'*/[0m
+  ↳ app/views/entries/index.html.erb:140
+  Rendered entries/index.html.erb within layouts/application (Duration: 11.0ms | GC: 1.3ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | GC: 1.3ms)
+Completed 200 OK in 15ms (Views: 11.2ms | ActiveRecord: 1.8ms (6 queries, 0 cached) | GC: 1.3ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTM0WiIsInB1ciI6ImJsb2Jfa2V5In19--4424723ded1250b880edb6fd0368c08661e3c120/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:20:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTQwWiIsInB1ciI6ImJsb2Jfa2V5In19--5efeda406c5dff0b76ac28b9bfce50ed715a3391/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:20:46 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 304 Not Modified in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 23:20:47 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 8.9ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | GC: 0.7ms)
+Completed 200 OK in 14ms (Views: 9.9ms | ActiveRecord: 1.8ms (6 queries, 0 cached) | GC: 0.7ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTM0WiIsInB1ciI6ImJsb2Jfa2V5In19--4424723ded1250b880edb6fd0368c08661e3c120/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:20:48 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MjQ6NTEuOTQwWiIsInB1ciI6ImJsb2Jfa2V5In19--5efeda406c5dff0b76ac28b9bfce50ed715a3391/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:20:48 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Completed 304 Not Modified in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for 73.44.6.8 at 2026-02-04 23:24:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/login
+↳ app/controllers/sessions_controller.rb:25:in 'SessionsController#destroy'
+Completed 302 Found in 2ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/login" for 73.44.6.8 at 2026-02-04 23:24:41 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 1.8ms | GC: 0.0ms)
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='new',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 6.8ms | GC: 0.0ms)
+Completed 200 OK in 8ms (Views: 6.3ms | ActiveRecord: 1.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started POST "/login" for 73.44.6.8 at 2026-02-04 23:25:22 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]", "email" => "[FILTERED]", "password" => "[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = 'c4ptnem0@proton.me' LIMIT 1 /*action='create',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/sessions_controller.rb:7:in 'SessionsController#create'
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/
+↳ app/controllers/sessions_controller.rb:11:in 'SessionsController#create'
+Completed 302 Found in 231ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 23:25:22 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.5ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 9.0ms | GC: 0.2ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | GC: 0.2ms)
+Completed 200 OK in 13ms (Views: 9.1ms | ActiveRecord: 1.9ms (6 queries, 0 cached) | GC: 0.2ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:25:23 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (1.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.5ms) [0m[34mGenerated URL for file at key: v59aj0mt7pw9uwbhnfaddt4n7ox6 (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNjU1WiIsInB1ciI6ImJsb2Jfa2V5In19--13ffb56781d10a405a2c4c44b7cf6d6bee9d348f/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNjU1WiIsInB1ciI6ImJsb2Jfa2V5In19--13ffb56781d10a405a2c4c44b7cf6d6bee9d348f/Alwet%20TDM1.jpg
+Completed 302 Found in 8ms (ActiveRecord: 1.7ms (1 query, 0 cached) | GC: 0.4ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--c0fb58a40cbc81ab7409833c957925800bd8446f/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:25:23 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--c0fb58a40cbc81ab7409833c957925800bd8446f", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+  [1m[36mActiveStorage::Blob Load (0.4ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.3ms) [0m[34mGenerated URL for file at key: e81ee2j7ii84eg9f390mx5i25xke (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNzUyWiIsInB1ciI6ImJsb2Jfa2V5In19--9c3b53b37873173416eeb7c7d1fdf803db863580/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNzUyWiIsInB1ciI6ImJsb2Jfa2V5In19--9c3b53b37873173416eeb7c7d1fdf803db863580/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNjU1WiIsInB1ciI6ImJsb2Jfa2V5In19--13ffb56781d10a405a2c4c44b7cf6d6bee9d348f/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:25:23 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNzUyWiIsInB1ciI6ImJsb2Jfa2V5In19--9c3b53b37873173416eeb7c7d1fdf803db863580/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:25:23 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 23:28:44 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 10.6ms | GC: 0.3ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.3ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | GC: 0.3ms)
+Completed 200 OK in 15ms (Views: 10.9ms | ActiveRecord: 1.7ms (6 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNzUyWiIsInB1ciI6ImJsb2Jfa2V5In19--9c3b53b37873173416eeb7c7d1fdf803db863580/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:28:45 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6MzA6MjMuNjU1WiIsInB1ciI6ImJsb2Jfa2V5In19--13ffb56781d10a405a2c4c44b7cf6d6bee9d348f/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:28:45 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 0ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 23:32:25 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.4ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 9.3ms | GC: 0.3ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.7ms | GC: 0.3ms)
+Completed 200 OK in 14ms (Views: 9.8ms | ActiveRecord: 1.8ms (6 queries, 0 cached) | GC: 0.3ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--c0fb58a40cbc81ab7409833c957925800bd8446f/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:32:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MiwicHVyIjoiYmxvYl9pZCJ9fQ==--c0fb58a40cbc81ab7409833c957925800bd8446f", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+  [1m[36mActiveStorage::Blob Load (0.7ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.5ms) [0m[34mGenerated URL for file at key: e81ee2j7ii84eg9f390mx5i25xke (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--9411d8ac43c8ec5840e8ea69d3ca2e532704d627/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--9411d8ac43c8ec5840e8ea69d3ca2e532704d627/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg
+Completed 302 Found in 7ms (ActiveRecord: 0.6ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:32:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::Blobs::RedirectController#show as JPEG
+  Parameters: {"signed_id" => "eyJfcmFpbHMiOnsiZGF0YSI6MSwicHVyIjoiYmxvYl9pZCJ9fQ==--64babb763b5c7f76f59e8aea51e4d72c9ff59aaa", "filename" => "Alwet TDM1"}
+  [1m[36mActiveStorage::Blob Load (0.2ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='show',application='Vandalsquat',controller='redirect'*/[0m
+[36m  Disk Storage (0.2ms) [0m[34mGenerated URL for file at key: v59aj0mt7pw9uwbhnfaddt4n7ox6 (https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzM4WiIsInB1ciI6ImJsb2Jfa2V5In19--fb04357b38d0c3f0c3fdaf0d25c8e16d7355cf19/Alwet%20TDM1.jpg)[0m
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzM4WiIsInB1ciI6ImJsb2Jfa2V5In19--fb04357b38d0c3f0c3fdaf0d25c8e16d7355cf19/Alwet%20TDM1.jpg
+Completed 302 Found in 4ms (ActiveRecord: 0.2ms (1 query, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--9411d8ac43c8ec5840e8ea69d3ca2e532704d627/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:32:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzM4WiIsInB1ciI6ImJsb2Jfa2V5In19--fb04357b38d0c3f0c3fdaf0d25c8e16d7355cf19/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:32:26 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 200 OK in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/" for 73.44.6.8 at 2026-02-04 23:32:34 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mEntry Load (0.3ms)[0m  [1m[34mSELECT "entries".* FROM "entries" WHERE "entries"."user_id" = 1 ORDER BY "entries"."created_at" DESC /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:7:in 'Enumerable#map'
+  [1m[36mActiveStorage::Attachment Load (0.3ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 2 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 2 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Attachment Load (0.2ms)[0m  [1m[34mSELECT "active_storage_attachments".* FROM "active_storage_attachments" WHERE "active_storage_attachments"."record_id" = 1 AND "active_storage_attachments"."record_type" = 'Entry' AND "active_storage_attachments"."name" = 'photo' LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  [1m[36mActiveStorage::Blob Load (0.3ms)[0m  [1m[34mSELECT "active_storage_blobs".* FROM "active_storage_blobs" WHERE "active_storage_blobs"."id" = 1 LIMIT 1 /*action='index',application='Vandalsquat',controller='home'*/[0m
+  ↳ app/views/home/index.html.erb:14
+  Rendered home/index.html.erb within layouts/application (Duration: 9.1ms | GC: 0.0ms)
+  Rendered shared/_navbar.html.erb (Duration: 0.4ms | GC: 0.0ms)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | GC: 0.0ms)
+Completed 200 OK in 14ms (Views: 10.4ms | ActiveRecord: 1.7ms (6 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJ2NTlhajBtdDdwdzl1d2JobmZhZGR0NG43b3g2IiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiQWx3ZXQgVERNMS5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydBbHdldCUyMFRETTEuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzM4WiIsInB1ciI6ImJsb2Jfa2V5In19--fb04357b38d0c3f0c3fdaf0d25c8e16d7355cf19/Alwet%20TDM1.jpg" for 73.44.6.8 at 2026-02-04 23:32:35 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "Alwet TDM1"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/rails/active_storage/disk/eyJfcmFpbHMiOnsiZGF0YSI6eyJrZXkiOiJlODFlZTJqN2lpODRlZzlmMzkwbXg1aTI1eGtlIiwiZGlzcG9zaXRpb24iOiJpbmxpbmU7IGZpbGVuYW1lPVwiV2hhdHNBcHAgSW1hZ2UgMjAyNC0xMC0yNyBhdCAxOC4wOS4wM184ZDAyY2FjMi5qcGdcIjsgZmlsZW5hbWUqPVVURi04JydXaGF0c0FwcCUyMEltYWdlJTIwMjAyNC0xMC0yNyUyMGF0JTIwMTguMDkuMDNfOGQwMmNhYzIuanBnIiwiY29udGVudF90eXBlIjoiaW1hZ2UvanBlZyIsInNlcnZpY2VfbmFtZSI6ImxvY2FsIn0sImV4cCI6IjIwMjYtMDItMDRUMjM6Mzc6MjYuMzI4WiIsInB1ciI6ImJsb2Jfa2V5In19--9411d8ac43c8ec5840e8ea69d3ca2e532704d627/WhatsApp%20Image%202024-10-27%20at%2018.09.03_8d02cac2.jpg" for 73.44.6.8 at 2026-02-04 23:32:35 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by ActiveStorage::DiskController#show as JPEG
+  Parameters: {"encoded_key" => "[FILTERED]", "filename" => "WhatsApp Image 2024-10-27 at 18.09.03_8d02cac2"}
+Completed 304 Not Modified in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started DELETE "/logout" for 73.44.6.8 at 2026-02-04 23:58:48 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token" => "[FILTERED]"}
+Redirected to https://curly-guacamole-xrjr4wp4qj2pw5-3000.app.github.dev/login
+↳ app/controllers/sessions_controller.rb:25:in 'SessionsController#destroy'
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)
+
+
+Started GET "/login" for 73.44.6.8 at 2026-02-04 23:58:48 +0000
+Cannot render console from 73.44.6.8! Allowed networks: 127.0.0.0/127.255.255.255, ::1
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 0.9ms | GC: 0.0ms)
+  [1m[36mUser Load (23.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT 1 /*action='new',application='Vandalsquat',controller='sessions'*/[0m
+  ↳ app/controllers/application_controller.rb:6:in 'ApplicationController#current_user'
+  Rendered layout layouts/application.html.erb (Duration: 26.4ms | GC: 0.0ms)
+Completed 200 OK in 27ms (Views: 0.1ms | ActiveRecord: 26.9ms (1 query, 0 cached) | GC: 0.0ms)
+
+
