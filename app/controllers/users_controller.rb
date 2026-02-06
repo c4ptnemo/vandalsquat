@@ -21,17 +21,9 @@ class UsersController < ApplicationController
 
   # Two-Factor Authentication Management
   
-  def two_factor
-    @user = current_user
-    
-    if @user.otp_enabled?
-      # Already enabled - show backup codes
-      render :two_factor_enabled
-    else
-      # Not enabled - show setup
-      render :two_factor_setup
-    end
-  end
+def two_factor
+  @user = current_user
+end
 
   def enable_two_factor
     @user = current_user
