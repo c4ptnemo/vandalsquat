@@ -66,3 +66,6 @@ group :development do
   gem "web-console"
   gem "dotenv-rails"
 end
+
+gem 'rotp'      # Time-based one-time passwords
+gem 'rqrcode'   # QR code generation

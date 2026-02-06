@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :update_email, :update_password]
+  before_action :require_login, only: [:show, :update_email, :update_password, :two_factor, :enable_two_factor, :disable_two_factor, :verify_two_factor_setup]
 
   def new
     @user = User.new
@@ -19,6 +19,78 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  # Two-Factor Authentication Management
+  
+  def two_factor
+    @user = current_user
+    
+    if @user.otp_enabled?
+      # Already enabled - show backup codes
+      render :two_factor_enabled
+    else
+      # Not enabled - show setup
+      render :two_factor_setup
+    end
+  end
+
+  def enable_two_factor
+    @user = current_user
+    
+    # Generate OTP secret and backup codes
+    @user.enable_two_factor!
+    
+    # Generate QR code
+    require 'rqrcode'
+    qrcode = RQRCode::QRCode.new(@user.otp_provisioning_uri)
+    @qr_code_svg = qrcode.as_svg(
+      module_size: 4,
+      fill: 'ffffff',
+      color: '000000'
+    )
+    
+    @backup_codes = @user.backup_codes
+    
+    render :two_factor_verify_setup
+  end
+
+  def verify_two_factor_setup
+    @user = current_user
+    code = params[:otp_code]
+    
+    if @user.verify_otp(code)
+      redirect_to two_factor_path, notice: "Two-factor authentication enabled successfully!"
+    else
+      flash.now[:alert] = "Invalid code. Please try again."
+      
+      # Regenerate QR code for display
+      require 'rqrcode'
+      qrcode = RQRCode::QRCode.new(@user.otp_provisioning_uri)
+      @qr_code_svg = qrcode.as_svg(
+        module_size: 4,
+        fill: 'ffffff',
+        color: '000000'
+      )
+      @backup_codes = @user.backup_codes
+      
+      render :two_factor_verify_setup, status: :unprocessable_entity
+    end
+  end
+
+  def disable_two_factor
+    @user = current_user
+    
+    unless @user.authenticate(params[:password])
+      flash[:alert] = "Incorrect password"
+      redirect_to two_factor_path
+      return
+    end
+    
+    @user.disable_two_factor!
+    redirect_to two_factor_path, notice: "Two-factor authentication disabled."
+  end
+
+  # Email/Password Updates (optional email now)
+  
   def update_email
     @user = current_user
 
@@ -53,7 +125,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:username, :email, :password, :password_confirmation)
   end
 
   def email_params
