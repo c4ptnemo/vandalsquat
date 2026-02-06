@@ -80,18 +80,6 @@ class User < ApplicationRecord
     JSON.parse(otp_backup_codes)
   end
 
-  private
-
-  def downcase_username
-    self.username = username.downcase.strip if username.present?
-  end
-
-  def generate_backup_codes
-    # Generate 10 random backup codes
-    10.times.map { SecureRandom.hex(4).upcase }
-  end
-
-
   def trust_device(request)
     trusted_devices.create(
       user_agent: request.user_agent,
@@ -102,6 +90,17 @@ class User < ApplicationRecord
 
   def revoke_all_devices!
     trusted_devices.destroy_all
+  end
+
+  private
+
+  def downcase_username
+    self.username = username.downcase.strip if username.present?
+  end
+
+  def generate_backup_codes
+    # Generate 10 random backup codes
+    10.times.map { SecureRandom.hex(4).upcase }
   end
 
 end
