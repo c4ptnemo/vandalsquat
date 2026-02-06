@@ -1,0 +1,74 @@
+<div class="auth-container">
+  <div class="auth-box auth-box--wide">
+    <h2>Trusted Devices</h2>
+
+    <% if flash[:notice] %>
+      <p style="padding: 12px; background: #1a2d1a; border: 1px solid #2d5f2d; border-radius: 4px; color: #88d988; margin-bottom: 20px;">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+
+    <p style="color: #bdbdbd; margin-bottom: 20px;">
+      Devices that can skip two-factor authentication for 7 days. Maximum 2 devices.
+    </p>
+
+    <% active_devices = @user.trusted_devices.active.order(last_used_at: :desc) %>
+    
+    <% if active_devices.any? %>
+      <div style="margin-bottom: 24px;">
+        <h3 style="margin-bottom: 16px;">Active Devices (<%= active_devices.count %>/2)</h3>
+        
+        <% active_devices.each do |device| %>
+          <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 4px; padding: 16px; margin-bottom: 12px;">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+              <div>
+                <div style="font-size: 1.1rem; margin-bottom: 4px;">
+                  <%= device.user_agent.to_s.include?('Mobile') || device.user_agent.to_s.include?('iPhone') || device.user_agent.to_s.include?('Android') ? '📱' : '💻' %>
+                  <strong><%= device.device_description %></strong>
+                </div>
+                <div style="font-size: 0.9rem; color: #999;">
+                  Last used: <%= device.last_used_at ? time_ago_in_words(device.last_used_at) + ' ago' : 'Never' %>
+                </div>
+                <div style="font-size: 0.9rem; color: #999;">
+                  Expires: <%= time_ago_in_words(device.expires_at) %> from now
+                </div>
+                <% if device.ip_address.present? %>
+                  <div style="font-size: 0.85rem; color: #666;">
+                    IP: <%= device.ip_address %>
+                  </div>
+                <% end %>
+              </div>
+              
+              <div>
+                <%= button_to "Remove", 
+                      revoke_trusted_device_path(device), 
+                      method: :delete,
+                      data: { confirm: "Remove this trusted device?" },
+                      style: "background: #d32f2f; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem;" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+      <div style="padding-top: 20px; border-top: 1px solid #222;">
+        <%= button_to "Revoke All Trusted Devices", 
+              revoke_all_trusted_devices_path,
+              method: :delete,
+              data: { confirm: "Are you sure? You'll need to enter 2FA codes on all devices next time." },
+              style: "background: #d32f2f; color: white; padding: 12px 24px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;" %>
+      </div>
+    <% else %>
+      <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 4px; padding: 24px; text-align: center; color: #999;">
+        <p style="margin: 0; font-size: 1.1rem;">No trusted devices</p>
+        <p style="margin: 8px 0 0 0; font-size: 0.9rem;">
+          Check "Remember this device" when logging in with 2FA to trust a device.
+        </p>
+      </div>
+    <% end %>
+
+    <p class="auth-alt" style="margin-top: 24px;">
+      <%= link_to "← Back to Two-Factor Settings", two_factor_path %>
+    </p>
+  </div>
+</div>

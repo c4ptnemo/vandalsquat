@@ -82,6 +82,28 @@
       </div>
     <% end %>
 
+    <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
+
+    <!-- Trusted Devices Section -->
+    <section style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 12px;">Trusted Devices</h3>
+      <p style="color: #bdbdbd; margin-bottom: 12px;">
+        Manage devices that can skip two-factor authentication for 7 days.
+      </p>
+      
+      <% active_devices_count = @user.trusted_devices.active.count %>
+      
+      <p style="margin-bottom: 16px;">
+        <% if active_devices_count > 0 %>
+          <span style="color: #4caf50;">✓ <%= active_devices_count %> active trusted device<%= active_devices_count > 1 ? 's' : '' %></span>
+        <% else %>
+          <span style="color: #999;">No trusted devices</span>
+        <% end %>
+      </p>
+      
+      <%= link_to "Manage Trusted Devices →", trusted_devices_path, style: "color: #4caf50; text-decoration: underline;" %>
+    </section>
+
     <p class="auth-alt">
       <%= link_to "← Back to Account", account_path %>
     </p>
