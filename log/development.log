@@ -25074,3 +25074,28 @@ Migrating to AddDeviceMetadataToTrustedDevices (20260206204345)
 [dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
 [dotenv] Loaded [33m.env[0m
   [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
+[dotenv] Loaded [33m.env[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(5762967617521542855) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Vandalsquat'*/[0m
+Migrating to AddUserToTrustedDevices (20260206210136)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN /*application='Vandalsquat'*/[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "trusted_devices" ADD "user_id" bigint NOT NULL /*application='Vandalsquat'*/[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_trusted_devices_on_user_id" ON "trusted_devices" ("user_id") /*application='Vandalsquat'*/[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "trusted_devices" ADD CONSTRAINT "fk_rails_96c1dacf00"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+ /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20260206210136') RETURNING "version" /*application='Vandalsquat'*/[0m
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[35mCOMMIT /*application='Vandalsquat'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(5762967617521542855) /*application='Vandalsquat'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO public /*application='Vandalsquat'*/[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Vandalsquat'*/[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
+[dotenv] Loaded [33m.env[0m
