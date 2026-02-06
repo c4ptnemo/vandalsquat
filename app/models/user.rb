@@ -3,8 +3,6 @@ class User < ApplicationRecord
 
   has_many :entries, dependent: :destroy
 
-  has_many :trusted_devices, dependent: :destroy
-
   # Username validation (now required instead of email)
   validates :username, 
     presence: true, 
@@ -80,22 +78,6 @@ class User < ApplicationRecord
     JSON.parse(otp_backup_codes)
   end
 
-  def trust_device(request)
-    trusted_devices
-      .find_or_initialize_by(
-        user_agent: request.user_agent,
-        ip_address: request.remote_ip
-      )
-      .tap do |device|
-        device.last_used_at = Time.current
-        device.save!
-      end
-  end
-
-  def revoke_all_devices!
-    trusted_devices.destroy_all
-  end
-
   private
 
   def downcase_username
@@ -106,5 +88,4 @@ class User < ApplicationRecord
     # Generate 10 random backup codes
     10.times.map { SecureRandom.hex(4).upcase }
   end
-
 end

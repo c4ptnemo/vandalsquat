@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :update_email, :update_password, :two_factor, :enable_two_factor, :disable_two_factor, :verify_two_factor_setup, :trusted_devices, :revoke_trusted_device, :revoke_all_trusted_devices]
+  before_action :require_login, only: [:show, :update_email, :update_password, :two_factor, :enable_two_factor, :disable_two_factor, :verify_two_factor_setup]
 
   def new
     @user = User.new
@@ -21,9 +21,9 @@ class UsersController < ApplicationController
 
   # Two-Factor Authentication Management
   
-  def two_factor
-    @user = current_user
-  end
+def two_factor
+  @user = current_user
+end
 
   def enable_two_factor
     @user = current_user
@@ -79,30 +79,6 @@ class UsersController < ApplicationController
     
     @user.disable_two_factor!
     redirect_to two_factor_path, notice: "Two-factor authentication disabled."
-  end
-
-  # Trusted Devices Management
-  
-  def trusted_devices
-    @user = current_user
-  end
-
-  def revoke_trusted_device
-    @user = current_user
-    device = @user.trusted_devices.find(params[:id])
-    device.destroy
-    
-    redirect_to trusted_devices_path, notice: "Trusted device removed."
-  end
-
-  def revoke_all_trusted_devices
-    @user = current_user
-    @user.revoke_all_devices!
-    
-    # Also clear the cookie
-    cookies.delete(:device_token)
-    
-    redirect_to trusted_devices_path, notice: "All trusted devices have been revoked."
   end
 
   # Email/Password Updates (optional email now)

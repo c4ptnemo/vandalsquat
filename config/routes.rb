@@ -26,9 +26,4 @@ delete '/account/two-factor/disable', to: 'users#disable_two_factor', as: 'disab
 # 2FA login verification
 get '/login/verify', to: 'sessions#two_factor_verify', as: 'two_factor_verify'
 post '/login/verify', to: 'sessions#two_factor_authenticate', as: 'two_factor_authenticate'
-
-# Trusted Devices Management
-get '/account/trusted-devices', to: 'users#trusted_devices', as: 'trusted_devices'
-delete '/account/trusted-devices/:id', to: 'users#revoke_trusted_device', as: 'revoke_trusted_device'
-delete '/account/trusted-devices', to: 'users#revoke_all_trusted_devices', as: 'revoke_all_trusted_devices'
 end
