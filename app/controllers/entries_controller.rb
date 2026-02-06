@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-# Updated EntriesController with EXIF Scrubbing
-# Replace your existing app/controllers/entries_controller.rb with this
-
 class EntriesController < ApplicationController
   before_action :require_login
   before_action :set_entry, only: [:edit, :update, :destroy]
@@ -73,10 +70,14 @@ class EntriesController < ApplicationController
 
     # CRITICAL: Scrub EXIF before attaching photo
     if params.dig(:entry, :photo).present?
+      scrubbed_file = nil
       begin
         scrubbed_file = ExifScrubberService.scrub(params[:entry][:photo])
+        
+        # Attach using the file path, not the tempfile object
+        # This prevents Active Storage from trying to read a closed file
         @entry.photo.attach(
-          io: scrubbed_file,
+          io: File.open(scrubbed_file.path),
           filename: params[:entry][:photo].original_filename,
           content_type: params[:entry][:photo].content_type
         )
@@ -84,8 +85,22 @@ class EntriesController < ApplicationController
         flash.now[:alert] = "Photo upload failed: #{e.message}"
         render :details, status: :unprocessable_entity
         return
+      rescue => e
+        Rails.logger.error "Unexpected error during photo upload: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        flash.now[:alert] = "Photo upload failed. Please try again."
+        render :details, status: :unprocessable_entity
+        return
       ensure
-        scrubbed_file&.close! # Clean up temp file
+        # Clean up temp file after Active Storage is done
+        if scrubbed_file
+          begin
+            scrubbed_file.close
+            scrubbed_file.unlink
+          rescue => e
+            Rails.logger.warn "Failed to clean up temp file: #{e.message}"
+          end
+        end
       end
     end
 
@@ -103,10 +118,13 @@ class EntriesController < ApplicationController
   def update
     # CRITICAL: Scrub EXIF before updating photo
     if params.dig(:entry, :photo).present?
+      scrubbed_file = nil
       begin
         scrubbed_file = ExifScrubberService.scrub(params[:entry][:photo])
+        
+        # Attach using the file path
         @entry.photo.attach(
-          io: scrubbed_file,
+          io: File.open(scrubbed_file.path),
           filename: params[:entry][:photo].original_filename,
           content_type: params[:entry][:photo].content_type
         )
@@ -114,8 +132,22 @@ class EntriesController < ApplicationController
         flash.now[:alert] = "Photo upload failed: #{e.message}"
         render :edit, status: :unprocessable_entity
         return
+      rescue => e
+        Rails.logger.error "Unexpected error during photo update: #{e.message}"
+        Rails.logger.error e.backtrace.join("\n")
+        flash.now[:alert] = "Photo upload failed. Please try again."
+        render :edit, status: :unprocessable_entity
+        return
       ensure
-        scrubbed_file&.close! # Clean up temp file
+        # Clean up temp file
+        if scrubbed_file
+          begin
+            scrubbed_file.close
+            scrubbed_file.unlink
+          rescue => e
+            Rails.logger.warn "Failed to clean up temp file: #{e.message}"
+          end
+        end
       end
     end
 
