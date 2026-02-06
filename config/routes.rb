@@ -26,4 +26,5 @@ delete '/account/two-factor/disable', to: 'users#disable_two_factor', as: 'disab
 # 2FA login verification
 get '/login/verify', to: 'sessions#two_factor_verify', as: 'two_factor_verify'
 post '/login/verify', to: 'sessions#two_factor_authenticate', as: 'two_factor_authenticate'
+
 end
