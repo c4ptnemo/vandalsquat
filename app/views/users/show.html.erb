@@ -1,196 +1,99 @@
-<div class="auth-container">
-  <div class="auth-box">
-    <h1 class="auth-brand">
-      <div class="auth-logo">
-        <%= image_tag "vandalsquat-logo.png",
-              alt: "VandalSquat",
-              class: "auth-logo-img",
-              loading: "eager" %>
-      </div>
-    </h1>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VandalSquat – My Account</title>
+  </head>
 
-    <h2>Create account</h2>
+  <body>
+    <div class="auth-container">
+      <div class="auth-box auth-box--wide">
+        <h2>My Account</h2>
 
-    <!-- Error Messages Display -->
-    <% if @user&.errors&.any? %>
-      <div class="auth-error" style="margin-bottom: 20px; padding: 12px; background: #2d1515; border: 1px solid #7d2828; border-radius: 4px; color: #ff6b6b;">
-        <% @user.errors.full_messages.each do |message| %>
-          <p style="margin: 4px 0;"><%= message %></p>
+        <% if flash[:success] %>
+          <p class="auth-success"><%= flash[:success] %></p>
         <% end %>
+
+        <% if flash[:alert] %>
+          <p class="auth-error"><%= flash[:alert] %></p>
+        <% end %>
+
+        <!-- Two-Factor Authentication -->
+        <section class="account-section">
+          <h3>Security</h3>
+          <p style="color: #bdbdbd; margin-bottom: 12px;">
+            <% if current_user.otp_enabled? %>
+              ✅ Two-factor authentication is <strong style="color: #4caf50;">enabled</strong>
+            <% else %>
+              ⚠️ Two-factor authentication is <strong style="color: #ff9800;">disabled</strong>
+            <% end %>
+          </p>
+          <p>
+            <%= link_to "Manage Two-Factor Authentication →", two_factor_path, style: "color: #4caf50; text-decoration: underline;" %>
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
+
+        <!-- Change email -->
+        <section class="account-section">
+          <h3>Change Email</h3>
+
+          <%= form_with url: "/account/email", scope: :user, method: :patch, local: true do |f| %>
+            <p>
+              <label>
+                New email
+                <%= f.email_field :email, required: true, value: current_user.email, placeholder: "Optional - for account recovery" %>
+              </label>
+              <span style="font-size: 0.8rem; color: #ff9800; display: block; margin-top: 4px;">
+                ⚠️ Adding an email reduces anonymity
+              </span>
+            </p>
+
+            <p>
+              <label>
+                Current password
+                <input type="password" name="current_password" required>
+              </label>
+            </p>
+
+            <p><%= f.submit "Update email" %></p>
+          <% end %>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
+
+        <!-- Change password -->
+        <section class="account-section">
+          <h3>Change Password</h3>
+
+          <%= form_with url: "/account/password", scope: :user, method: :patch, local: true do |f| %>
+            <p>
+              <label>
+                New password
+                <%= f.password_field :password, required: true %>
+              </label>
+            </p>
+
+            <p>
+              <label>
+                Confirm new password
+                <%= f.password_field :password_confirmation, required: true %>
+              </label>
+            </p>
+
+            <p>
+              <label>
+                Current password
+                <input type="password" name="current_password" required>
+              </label>
+            </p>
+
+            <p><%= f.submit "Update password" %></p>
+          <% end %>
+        </section>
       </div>
-    <% end %>
-
-    <!-- Privacy Notice -->
-    <div style="margin-bottom: 20px; padding: 12px; background: #1a2d1a; border: 1px solid #2d5f2d; border-radius: 4px; color: #88d988;">
-      <p style="margin: 0; font-size: 0.9rem;">
-        🔒 <strong>Anonymous signup</strong> - No email required. Your privacy is protected.
-      </p>
     </div>
-
-    <!-- Required Video Section -->
-    <div style="margin-bottom: 24px; padding: 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 4px;">
-      <p style="margin: 0 0 12px 0; font-size: 0.9rem; color: #e0e0e0;">
-        <strong>Required:</strong> Watch this 44-second video before creating your account
-      </p>
-      
-      <!-- YouTube Video Embed -->
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 12px;">
-        <iframe 
-          id="required-video"
-          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
-          src="https://www.youtube.com/embed/6ik9Ga0FvLI?si=PxZbaaBHaD5sdwsd&enablejsapi=1"
-          title="Required Video"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <!-- Checkbox (initially disabled) -->
-      <label style="display: flex; align-items: center; cursor: pointer;">
-        <input 
-          type="checkbox" 
-          id="video-confirmation"
-          style="margin-right: 8px;"
-          disabled
-          required>
-        <span id="checkbox-label" style="font-size: 0.9rem; color: #999;">
-          ⏳ Please watch the video (time remaining: <span id="timer">45</span>s)
-        </span>
-      </label>
-    </div>
-
-    <%= form_with model: @user, url: signup_path, scope: :user, method: :post, local: true, id: "signup-form" do |f| %>
-      <p>
-        <label>Username<br>
-          <%= f.text_field :username, required: true, value: @user&.username, placeholder: "Choose a username" %>
-          <span style="font-size: 0.8rem; color: #999; display: block; margin-top: 4px;">
-            Letters, numbers, and underscores only (3-20 characters)
-          </span>
-        </label>
-      </p>
-
-      <p>
-        <label>Email (optional)<br>
-          <%= f.email_field :email, value: @user&.email, placeholder: "Optional - for account recovery" %>
-          <span style="font-size: 0.8rem; color: #ff9800; display: block; margin-top: 4px;">
-            ⚠️ Adding an email reduces anonymity
-          </span>
-        </label>
-      </p>
-
-      <p>
-        <label>Password<br>
-          <%= f.password_field :password, required: true %>
-        </label>
-      </p>
-
-      <p>
-        <label>Confirm password<br>
-          <%= f.password_field :password_confirmation, required: true %>
-        </label>
-      </p>
-
-      <p style="padding: 12px; background: #2d1a1a; border: 1px solid #5d2828; border-radius: 4px; font-size: 0.85rem; color: #ffcccc;">
-        ⚠️ <strong>Important:</strong> Without an email, you cannot recover your password if forgotten. 
-        Write it down or use a password manager.
-      </p>
-
-      <p>
-        <%= f.submit "Create account", id: "submit-btn", disabled: true, style: "opacity: 0.5; cursor: not-allowed;" %>
-      </p>
-    <% end %>
-
-    <p class="auth-alt">
-      Already have an account?
-      <%= link_to "Log in", login_path %>
-    </p>
-  </div>
-</div>
-
-<script>
-  // Video verification system
-  (function() {
-    const checkbox = document.getElementById('video-confirmation');
-    const checkboxLabel = document.getElementById('checkbox-label');
-    const submitBtn = document.getElementById('submit-btn');
-    const timerSpan = document.getElementById('timer');
-    const form = document.getElementById('signup-form');
-    
-    let secondsRemaining = 45;
-    let videoStarted = false;
-    let timerInterval = null;
-    
-    // YouTube API - detect if video is playing
-    let player;
-    function onYouTubeIframeAPIReady() {
-      player = new YT.Player('required-video', {
-        events: {
-          'onStateChange': onPlayerStateChange
-        }
-      });
-    }
-    
-    function onPlayerStateChange(event) {
-      // YT.PlayerState.PLAYING = 1
-      if (event.data === 1 && !videoStarted) {
-        videoStarted = true;
-        startTimer();
-      }
-    }
-    
-    // Load YouTube iframe API
-    const tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
-    
-    // Fallback: Start timer when page loads (in case API fails)
-    setTimeout(() => {
-      if (!videoStarted) {
-        startTimer();
-      }
-    }, 3000);
-    
-    function startTimer() {
-      timerInterval = setInterval(() => {
-        secondsRemaining--;
-        timerSpan.textContent = secondsRemaining;
-        
-        if (secondsRemaining <= 0) {
-          clearInterval(timerInterval);
-          enableCheckbox();
-        }
-      }, 1000);
-    }
-    
-    function enableCheckbox() {
-      checkbox.disabled = false;
-      checkboxLabel.innerHTML = '✓ I have watched the required video';
-      checkboxLabel.style.color = '#4caf50';
-    }
-    
-    // Enable submit button only when checkbox is checked
-    checkbox.addEventListener('change', function() {
-      if (this.checked) {
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
-        submitBtn.style.cursor = 'pointer';
-      } else {
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = '0.5';
-        submitBtn.style.cursor = 'not-allowed';
-      }
-    });
-    
-    // Prevent form submission if checkbox not checked
-    form.addEventListener('submit', function(e) {
-      if (!checkbox.checked) {
-        e.preventDefault();
-        alert('Please confirm you have watched the required video.');
-        return false;
-      }
-    });
-  })();
-</script>
+  </body>
+</html>

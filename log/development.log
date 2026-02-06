@@ -25099,3 +25099,5 @@ FOREIGN KEY ("user_id")
   [1m[35mSQL (0.1ms)[0m  [1m[35mSET search_path TO "$user", public /*application='Vandalsquat'*/[0m
 [dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
 [dotenv] Loaded [33m.env[0m
+[dotenv] Set [36mMAPBOX_PUBLIC_TOKEN[0m, [36mCLOUDINARY_CLOUD_NAME[0m, [36mCLOUDINARY_API_KEY[0m, [36mCLOUDINARY_API_SECRET[0m
+[dotenv] Loaded [33m.env[0m
