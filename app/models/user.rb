@@ -81,11 +81,15 @@ class User < ApplicationRecord
   end
 
   def trust_device(request)
-    trusted_devices.create(
-      user_agent: request.user_agent,
-      ip_address: request.remote_ip,
-      last_used_at: Time.current
-    )
+    trusted_devices
+      .find_or_initialize_by(
+        user_agent: request.user_agent,
+        ip_address: request.remote_ip
+      )
+      .tap do |device|
+        device.last_used_at = Time.current
+        device.save!
+      end
   end
 
   def revoke_all_devices!
