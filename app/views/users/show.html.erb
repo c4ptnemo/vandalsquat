@@ -19,6 +19,23 @@
           <p class="auth-error"><%= flash[:alert] %></p>
         <% end %>
 
+        <!-- Two-Factor Authentication -->
+        <section class="account-section">
+          <h3>Security</h3>
+          <p style="color: #bdbdbd; margin-bottom: 12px;">
+            <% if current_user.otp_enabled? %>
+              ✅ Two-factor authentication is <strong style="color: #4caf50;">enabled</strong>
+            <% else %>
+              ⚠️ Two-factor authentication is <strong style="color: #ff9800;">disabled</strong>
+            <% end %>
+          </p>
+          <p>
+            <%= link_to "Manage Two-Factor Authentication →", two_factor_path, style: "color: #4caf50; text-decoration: underline;" %>
+          </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
+
         <!-- Change email -->
         <section class="account-section">
           <h3>Change Email</h3>
@@ -27,8 +44,11 @@
             <p>
               <label>
                 New email
-                <%= f.email_field :email, required: true, value: current_user.email %>
+                <%= f.email_field :email, required: true, value: current_user.email, placeholder: "Optional - for account recovery" %>
               </label>
+              <span style="font-size: 0.8rem; color: #ff9800; display: block; margin-top: 4px;">
+                ⚠️ Adding an email reduces anonymity
+              </span>
             </p>
 
             <p>
