@@ -1,0 +1,47 @@
+<div class="auth-container">
+  <div class="auth-box">
+    <h1 class="auth-brand">
+      <div class="auth-logo">
+        <%= image_tag "vandalsquat-logo.png",
+              alt: "VandalSquat",
+              class: "auth-logo-img",
+              loading: "eager" %>
+      </div>
+    </h1>
+
+    <h2>Two-Factor Authentication</h2>
+
+    <% if flash[:alert] %>
+      <p class="auth-error"><%= flash[:alert] %></p>
+    <% end %>
+
+    <p style="margin-bottom: 20px; color: #bdbdbd;">
+      Enter the 6-digit code from your authenticator app.
+    </p>
+
+    <%= form_with url: two_factor_authenticate_path, method: :post, local: true do |f| %>
+      <p>
+        <label>Authentication Code<br>
+          <%= text_field_tag :otp_code, nil, 
+                required: true, 
+                placeholder: "000000",
+                maxlength: 6,
+                pattern: "[0-9]{6}",
+                style: "font-size: 1.2rem; letter-spacing: 0.3em; text-align: center;" %>
+        </label>
+      </p>
+
+      <p>
+        <%= submit_tag "Verify" %>
+      </p>
+    <% end %>
+
+    <p style="margin-top: 20px; font-size: 0.9rem; color: #999;">
+      Lost your device? Use one of your backup codes instead.
+    </p>
+
+    <p class="auth-alt">
+      <%= link_to "Cancel", login_path %>
+    </p>
+  </div>
+</div>

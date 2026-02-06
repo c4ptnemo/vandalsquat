@@ -1,0 +1,90 @@
+<div class="auth-container">
+  <div class="auth-box">
+    <h2>Two-Factor Authentication</h2>
+
+    <% if flash[:notice] %>
+      <p style="padding: 12px; background: #1a2d1a; border: 1px solid #2d5f2d; border-radius: 4px; color: #88d988; margin-bottom: 20px;">
+        <%= flash[:notice] %>
+      </p>
+    <% end %>
+
+    <% if @user.otp_enabled? %>
+      <!-- 2FA is enabled -->
+      <div style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; margin-bottom: 16px;">
+          <span style="font-size: 2rem; margin-right: 12px;">✅</span>
+          <div>
+            <h3 style="margin: 0; color: #4caf50;">Two-Factor Authentication Enabled</h3>
+            <p style="margin: 4px 0 0 0; color: #bdbdbd; font-size: 0.9rem;">
+              Your account is protected with 2FA
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 4px; padding: 16px; margin-bottom: 16px;">
+          <h4 style="margin: 0 0 12px 0;">Your Backup Codes</h4>
+          <p style="color: #bdbdbd; font-size: 0.9rem; margin-bottom: 12px;">
+            Use these codes if you lose access to your authenticator app. Each can only be used once.
+          </p>
+          <div style="font-family: monospace; color: #4caf50;">
+            <% @user.backup_codes.each do |code| %>
+              <div style="padding: 4px 0;"><%= code %></div>
+            <% end %>
+          </div>
+          <% if @user.backup_codes.empty? %>
+            <p style="color: #ff9800; margin-top: 12px;">
+              ⚠️ All backup codes have been used. Consider disabling and re-enabling 2FA to generate new codes.
+            </p>
+          <% end %>
+        </div>
+
+        <%= form_with url: disable_two_factor_path, method: :delete, local: true do |f| %>
+          <p>
+            <label>Enter your password to disable 2FA<br>
+              <%= password_field_tag :password, nil, required: true, placeholder: "Your password" %>
+            </label>
+          </p>
+          <p>
+            <%= submit_tag "Disable Two-Factor Authentication", 
+                  style: "background: #d32f2f;",
+                  data: { confirm: "Are you sure? This will make your account less secure." } %>
+          </p>
+        <% end %>
+      </div>
+
+    <% else %>
+      <!-- 2FA is not enabled -->
+      <div style="margin-bottom: 24px;">
+        <div style="display: flex; align-items: center; margin-bottom: 16px;">
+          <span style="font-size: 2rem; margin-right: 12px;">⚠️</span>
+          <div>
+            <h3 style="margin: 0;">Two-Factor Authentication Disabled</h3>
+            <p style="margin: 4px 0 0 0; color: #bdbdbd; font-size: 0.9rem;">
+              Add an extra layer of security to your account
+            </p>
+          </div>
+        </div>
+
+        <div style="background: #1a2d1a; border: 1px solid #2d5f2d; border-radius: 4px; padding: 16px; margin-bottom: 16px;">
+          <h4 style="margin: 0 0 8px 0; color: #88d988;">Why enable 2FA?</h4>
+          <ul style="margin: 0; padding-left: 20px; color: #bdbdbd;">
+            <li>Protects your account even if your password is compromised</li>
+            <li>Uses authenticator app on your phone</li>
+            <li>Industry-standard security (TOTP)</li>
+            <li>Backup codes for emergency access</li>
+          </ul>
+        </div>
+
+        <%= link_to "Enable Two-Factor Authentication", 
+              enable_two_factor_path, 
+              method: :post,
+              class: "btn",
+              style: "display: inline-block; background: #4caf50; color: white; padding: 12px 24px; border-radius: 4px; text-decoration: none; text-align: center;" %>
+      </div>
+    <% end %>
+
+    <p class="auth-alt">
+      <%= link_to "← Back to Account", account_path %>
+    </p>
+  </div>
+</div>

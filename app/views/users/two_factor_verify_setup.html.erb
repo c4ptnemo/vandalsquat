@@ -1,0 +1,66 @@
+<div class="auth-container">
+  <div class="auth-box" style="max-width: 600px;">
+    <h2>Set Up Two-Factor Authentication</h2>
+
+    <% if flash[:alert] %>
+      <p class="auth-error"><%= flash[:alert] %></p>
+    <% end %>
+
+    <div style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 12px; font-size: 1.1rem;">Step 1: Scan QR Code</h3>
+      <p style="color: #bdbdbd; margin-bottom: 16px;">
+        Use an authenticator app like Google Authenticator, Authy, or 1Password.
+      </p>
+      
+      <!-- QR Code -->
+      <div style="background: white; padding: 20px; border-radius: 8px; display: inline-block;">
+        <%= @qr_code_svg.html_safe %>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 12px; font-size: 1.1rem;">Step 2: Save Backup Codes</h3>
+      <p style="color: #ff9800; margin-bottom: 12px;">
+        ⚠️ <strong>Important:</strong> Save these codes in a safe place. You'll need them if you lose your device.
+      </p>
+      
+      <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 4px; padding: 16px; font-family: monospace;">
+        <% @backup_codes.each do |code| %>
+          <div style="padding: 4px 0; color: #4caf50;"><%= code %></div>
+        <% end %>
+      </div>
+      
+      <p style="margin-top: 12px; font-size: 0.85rem; color: #999;">
+        Each code can only be used once. Store them securely (password manager, encrypted notes, etc.)
+      </p>
+    </div>
+
+    <div style="margin-bottom: 24px;">
+      <h3 style="margin-bottom: 12px; font-size: 1.1rem;">Step 3: Verify</h3>
+      <p style="color: #bdbdbd; margin-bottom: 16px;">
+        Enter the 6-digit code from your authenticator app to confirm setup.
+      </p>
+      
+      <%= form_with url: verify_two_factor_setup_path, method: :post, local: true do |f| %>
+        <p>
+          <label>Authentication Code<br>
+            <%= text_field_tag :otp_code, nil, 
+                  required: true, 
+                  placeholder: "000000",
+                  maxlength: 6,
+                  pattern: "[0-9]{6}",
+                  style: "font-size: 1.2rem; letter-spacing: 0.3em; text-align: center;" %>
+          </label>
+        </p>
+
+        <p>
+          <%= submit_tag "Enable Two-Factor Authentication", style: "background: #4caf50;" %>
+        </p>
+      <% end %>
+    </div>
+
+    <p class="auth-alt">
+      <%= link_to "Cancel", two_factor_path %>
+    </p>
+  </div>
+</div>
