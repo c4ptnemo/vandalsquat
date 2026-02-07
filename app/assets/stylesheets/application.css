@@ -114,9 +114,6 @@ input[type="button"]:hover,
 }
 
 .navbar.navbar--stacked .brand-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   text-decoration: none;
 }
 
@@ -130,7 +127,7 @@ input[type="button"]:hover,
 .navbar.navbar--stacked .nav-center {
   display: flex;
   justify-content: center;
-  align-items: center;  /* This aligns items vertically */
+  align-items: baseline;
   gap: 28px;
   flex-wrap: wrap;
 }
@@ -149,6 +146,7 @@ input[type="button"]:hover,
 .logout-form-inline {
   display: inline;
   margin: 0;
+  line-height: 1;
 }
 
 .logout-btn-inline {
@@ -156,12 +154,13 @@ input[type="button"]:hover,
   color: #bdbdbd;
   border: none;
   padding: 0;
-  margin: 0;  /* Add this */
+  margin: 0;
   font-size: 0.95rem;
   cursor: pointer;
   font-family: inherit;
   font-weight: normal;
-  line-height: 1;  /* Add this to match link height */
+  line-height: 1;
+  vertical-align: baseline;
 }
 
 .logout-btn-inline:hover {
