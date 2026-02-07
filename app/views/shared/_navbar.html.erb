@@ -1,5 +1,5 @@
 <nav class="navbar navbar--stacked" id="site-navbar">
-  <!-- Hamburger button (mobile only via CSS) -->
+  <!-- Floating hamburger button (mobile only via CSS) -->
   <button
     class="hamburger-btn"
     id="hamburger-btn"
@@ -13,7 +13,6 @@
     <span></span>
   </button>
 
-  <!-- Centered logo + centered links underneath (desktop) -->
   <div class="nav-stack">
     <a href="/" class="brand brand-logo" aria-label="VandalSquat home">
       <%= image_tag "vandalsquat-logo.png",
@@ -39,6 +38,42 @@
     </div>
   </div>
 
-  <!-- Overlay (mobile only via CSS) -->
   <div class="nav-overlay" id="nav-overlay"></div>
 </nav>
+
+<script>
+  (function () {
+    const nav = document.getElementById("site-navbar");
+    const btn = document.getElementById("hamburger-btn");
+    const overlay = document.getElementById("nav-overlay");
+    const menu = document.getElementById("mobile-menu");
+
+    if (!nav || !btn || !overlay || !menu) return;
+
+    function openMenu() {
+      nav.classList.add("is-open");
+      btn.classList.add("active");
+      btn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMenu() {
+      nav.classList.remove("is-open");
+      btn.classList.remove("active");
+      btn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    btn.addEventListener("click", () => {
+      nav.classList.contains("is-open") ? closeMenu() : openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+  })();
+</script>
