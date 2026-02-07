@@ -1125,8 +1125,3 @@ input[type="button"]:hover,
     padding: 8px 4px;
   }
 }
-
-/* TEMPORARY DEBUG - DELETE AFTER FINDING ISSUE */
-* {
-  outline: 1px solid red !important;
-}
