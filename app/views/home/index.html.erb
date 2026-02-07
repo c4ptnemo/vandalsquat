@@ -90,6 +90,7 @@
     });
 
     // --- State ---
+    // Single source of truth for markers: window.entryMarkers
     window.mapInstance = map;
     window.allEntries = entries;
     window.entryMarkers = [];
@@ -128,7 +129,9 @@
       `;
     }
 
+    // IMPORTANT: this MUTATES window.entryMarkers (does not reassign)
     function createEntryMarkers(entriesToRender = entries) {
+      // remove existing markers
       window.entryMarkers.forEach((m) => m.remove());
       window.entryMarkers.length = 0;
 
@@ -170,6 +173,7 @@
       window.entryMarkers.forEach((m) => m.addTo(map));
     }
 
+    // expose renderer for global filter functions
     window.renderMapboxMarkers = createEntryMarkers;
 
     // --- UI overlay for New Entry Mode ---
@@ -184,12 +188,12 @@
     overlay.style.display = "none";
     overlay.style.zIndex = "2";
 
-    overlay.innerHTML = `
-      <div style="font-weight: 600; margin-bottom: 6px; color: #000;">New Entry Mode</div>
-      <div style="margin-bottom: 8px; color: #000;">Click the map to drop a pin, then continue.</div>
-      <button id="continue-to-details" disabled>Continue to details</button>
-      <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
-    `;
+overlay.innerHTML = `
+  <div style="font-weight: 600; margin-bottom: 6px; color: #000;">New Entry Mode</div>
+  <div style="margin-bottom: 8px; color: #000;">Click the map to drop a pin, then continue.</div>
+  <button id="continue-to-details" disabled>Continue to details</button>
+  <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
+`;
 
     mapEl.style.position = "relative";
     mapEl.appendChild(overlay);
@@ -261,6 +265,7 @@
     cancelBtn.addEventListener("click", () => exitNewEntryMode());
 
     // --- New Entry toggle control (+) ---
+// --- New Entry toggle control (+) ---
     class NewEntryControl {
       onAdd() {
         const btn = document.createElement("button");
@@ -303,6 +308,26 @@
         const container = document.createElement("div");
         container.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
         container.style.zIndex = "1000";
+        container.appendChild(btn);
+
+        this._container = container;
+        return container;
+      }
+
+      onRemove() {
+        this._container.parentNode.removeChild(this._container);
+      }
+    }
+
+    map.addControl(new NewEntryControl(), "top-right");
+    
+        btn.addEventListener("click", () => {
+          if (newEntryMode) exitNewEntryMode();
+          else enterNewEntryMode();
+        });
+
+        const container = document.createElement("div");
+        container.className = "mapboxgl-ctrl";
         container.appendChild(btn);
 
         this._container = container;
@@ -380,6 +405,7 @@
     const allEntries = window.allEntries;
     if (!allEntries || !window.renderMapboxMarkers) return;
 
+    // selected pin types
     const pinTypeCheckboxes = document.querySelectorAll(
       '.checkbox-group-horizontal input[type="checkbox"]'
     );
@@ -387,8 +413,10 @@
       .filter((cb) => cb.checked)
       .map((cb) => cb.value);
 
+    // writer
     const writerFilter = document.getElementById("writer-filter").value.toLowerCase();
 
+    // date range
     const dateFrom = document.getElementById("date-from-filter").value;
     const dateTo = document.getElementById("date-to-filter").value;
 
@@ -396,14 +424,17 @@
     const toDate = dateTo ? new Date(dateTo + "T23:59:59") : null;
 
     const filteredEntries = allEntries.filter((e) => {
+      // pin type
       const pinType = e.pin_type || "Spot";
       if (selectedPinTypes.length > 0 && !selectedPinTypes.includes(pinType)) return false;
 
+      // writer
       if (writerFilter) {
         const w = (e.writer || "").toLowerCase();
         if (!w.includes(writerFilter)) return false;
       }
 
+      // date
       if ((fromDate || toDate) && e.found_on) {
         const d = new Date(e.found_on);
         if (fromDate && d < fromDate) return false;
@@ -413,7 +444,9 @@
       return true;
     });
 
+    // ✅ re-render markers (this removes old + adds new)
     window.renderMapboxMarkers(filteredEntries);
+
     updateMapFilterCount();
   }
 
