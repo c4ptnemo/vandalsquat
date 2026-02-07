@@ -1,3 +1,15 @@
+/* Prevent horizontal scroll on mobile */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: "Mont";
   src: url("/assets/Mont-HeavyDEMO.woff2") format("woff2");
@@ -1113,4 +1125,9 @@ input[type="button"]:hover,
   .checkbox-label-compact {
     padding: 8px 4px;
   }
+}
+
+/* TEMPORARY DEBUG - DELETE AFTER FINDING ISSUE */
+* {
+  outline: 1px solid red !important;
 }
