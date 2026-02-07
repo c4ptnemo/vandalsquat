@@ -93,7 +93,7 @@ input[type="button"]:hover,
 }
 
 /* =========================
-   NAVBAR - CENTERED LOGO & LINKS
+   NAVBAR - CENTERED LOGO & LINKS (DESKTOP)
    ========================= */
 
 .navbar.navbar--stacked {
@@ -166,6 +166,63 @@ input[type="button"]:hover,
 .logout-btn-inline:hover {
   color: #fff;
   background: transparent;
+}
+
+/* =========================
+   HAMBURGER MENU (MOBILE ONLY)
+   ========================= */
+
+/* Hamburger button - hidden on desktop */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  z-index: 1001;
+}
+
+.hamburger-btn span {
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 3px;
+  transition: all 0.25s ease;
+  transform-origin: left center;
+}
+
+.hamburger-btn.active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-btn.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-btn.active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile overlay backdrop */
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.nav-overlay.active {
+  opacity: 1;
 }
 
 /* =========================
@@ -522,7 +579,7 @@ input[type="button"]:hover,
 
 .filter-grid > .filter-group:nth-child(1) { grid-column: 1; }
 .filter-grid > .filter-group:nth-child(2) { grid-column: 2; }
-.filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
+filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
 .filter-grid > .filter-group:nth-child(4) { grid-column: 1; }
 .filter-grid > .filter-group:nth-child(5) { grid-column: 2 / 4; }
 
@@ -830,8 +887,8 @@ input[type="button"]:hover,
 }
 
 @media (max-width: 768px) {
-  body { 
-    font-size: 14px; 
+  body {
+    font-size: 14px;
   }
 
   /* Hide Mapbox attribution completely on mobile */
@@ -839,27 +896,76 @@ input[type="button"]:hover,
     display: none !important;
   }
 
-  /* Much more compact navbar on mobile */
+  /* MOBILE NAV: hamburger + slide-down from top-left */
+  .hamburger-btn {
+    display: flex;
+  }
+
+  /* Make the header compact on mobile (logo stays visible) */
   .navbar.navbar--stacked {
-    padding: 6px 12px 6px 12px;
+    padding: 12px 16px;
+    justify-content: flex-start;
   }
 
   .navbar.navbar--stacked .nav-stack {
-    gap: 6px;
+    width: 100%;
+    align-items: flex-start;
+    gap: 0;
   }
 
   .navbar.navbar--stacked .brand-img {
-    height: 24px;
+    height: 32px;
+    max-width: 85vw;
   }
 
+  /* Turn the link row into a hidden panel that drops down */
   .navbar.navbar--stacked .nav-center {
-    gap: 16px;
-    font-size: 0.75rem;
+    position: fixed;
+    top: -100%;
+    left: 0;
+    width: min(320px, 88vw);
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+
+    background: #161616;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+
+    padding: 72px 18px 18px 18px;
+    z-index: 1000;
+    transition: top 0.25s ease;
+
+    box-shadow: 4px 6px 18px rgba(0, 0, 0, 0.55);
+    border-right: 1px solid #222;
+    border-bottom: 1px solid #222;
+  }
+
+  .navbar.navbar--stacked .nav-center.active {
+    top: 0;
   }
 
   .navbar.navbar--stacked .nav-center a,
   .logout-btn-inline {
-    font-size: 0.75rem;
+    font-size: 1.1rem;
+    padding: 14px 0;
+    width: 100%;
+    border-bottom: 1px solid #333;
+  }
+
+  .logout-form-inline {
+    width: 100%;
+    display: block;
+  }
+
+  .logout-btn-inline {
+    display: block;
+    text-align: left;
+  }
+
+  .nav-overlay {
+    display: block;
   }
 
   /* Auth pages */
@@ -1037,16 +1143,6 @@ input[type="button"]:hover,
 }
 
 @media (max-width: 480px) {
-  .navbar.navbar--stacked .nav-center {
-    gap: 12px;
-    font-size: 0.75rem;
-  }
-
-  .navbar.navbar--stacked .nav-center a,
-  .logout-btn-inline {
-    font-size: 0.75rem;
-  }
-
   .entries-header h2 {
     font-size: 1.4rem;
   }
@@ -1085,16 +1181,16 @@ input[type="button"]:hover,
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .checkbox-group-horizontal {
     flex-wrap: wrap;
   }
-  
+
   .date-range-compact {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .date-range-compact input {
     width: 100%;
   }

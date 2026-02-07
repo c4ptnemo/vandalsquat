@@ -1,5 +1,19 @@
-<nav class="navbar navbar--stacked">
-  <!-- Centered logo + centered links underneath -->
+<nav class="navbar navbar--stacked" id="site-navbar">
+  <!-- Hamburger button (mobile only via CSS) -->
+  <button
+    class="hamburger-btn"
+    id="hamburger-btn"
+    type="button"
+    aria-label="Open menu"
+    aria-controls="mobile-menu"
+    aria-expanded="false"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Centered logo + centered links underneath (desktop) -->
   <div class="nav-stack">
     <a href="/" class="brand brand-logo" aria-label="VandalSquat home">
       <%= image_tag "vandalsquat-logo.png",
@@ -8,10 +22,11 @@
             loading: "eager" %>
     </a>
 
-    <div class="nav-center">
+    <div class="nav-center" id="mobile-menu">
       <a href="/">Home</a>
       <a href="/entries">Entries</a>
       <a href="/account">My Account</a>
+
       <% if logged_in? %>
         <%= button_to "Log out",
               logout_path,
@@ -23,4 +38,7 @@
       <% end %>
     </div>
   </div>
+
+  <!-- Overlay (mobile only via CSS) -->
+  <div class="nav-overlay" id="nav-overlay"></div>
 </nav>
