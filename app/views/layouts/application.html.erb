@@ -2,10 +2,12 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Vandalsquat" %></title>
-    <meta name="viewport" content="device-width, initial-scale=1.0, maximum-scale=5.0">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Vandalsquat">
     <meta name="mobile-web-app-capable" content="yes">
+
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
 
@@ -14,22 +16,93 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
 
-<body>
-  <%= render "shared/navbar" if logged_in? %>
+  <body>
 
-  <%= yield %>
-  
-</body>
+    <nav class="navbar navbar--stacked">
+      <!-- Hamburger button - mobile only -->
+      <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
+      <!-- Centered logo + links -->
+      <div class="nav-stack">
+        <a href="/" class="brand brand-logo" aria-label="VandalSquat home">
+          <%= image_tag "vandalsquat-logo.png",
+                alt: "VandalSquat",
+                class: "brand-img",
+                loading: "eager" %>
+        </a>
+
+        <div class="nav-center" id="nav-menu">
+          <a href="/">Home</a>
+          <a href="/entries">Entries</a>
+          <a href="/account">My Account</a>
+
+          <% if logged_in? %>
+            <%= button_to "Log out",
+                  logout_path,
+                  method: :delete,
+                  class: "logout-btn-inline",
+                  form: { class: "logout-form-inline" } %>
+          <% else %>
+            <a href="/login">Login</a>
+          <% end %>
+        </div>
+      </div>
+
+      <!-- Mobile overlay backdrop -->
+      <div class="nav-overlay" id="nav-overlay"></div>
+    </nav>
+
+    <script>
+      (function() {
+        const hamburger = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const overlay = document.getElementById('nav-overlay');
+
+        if (!hamburger) return;
+
+        function openMenu() {
+          hamburger.classList.add('active');
+          navMenu.classList.add('active');
+          overlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+          hamburger.classList.remove('active');
+          navMenu.classList.remove('active');
+          overlay.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.contains('active') ? closeMenu() : openMenu();
+        });
+
+        overlay.addEventListener('click', closeMenu);
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && hamburger.classList.contains('active')) {
+            closeMenu();
+          }
+        });
+
+        navMenu.querySelectorAll('a, button').forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+      })();
+    </script>
+
+    <%= yield %>
+  </body>
 </html>
