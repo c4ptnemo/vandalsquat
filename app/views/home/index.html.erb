@@ -70,6 +70,35 @@
       </div>
     </div>
   </div>
+
+  <!-- FAB Button - Fixed Position -->
+  <button 
+    id="fab-new-entry" 
+    type="button"
+    aria-label="Toggle New Entry Mode"
+    style="
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid #333;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      font-size: 32px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1000;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    "
+  >+</button>
 </div>
 
 <script>
@@ -90,7 +119,6 @@
     });
 
     // --- State ---
-    // Single source of truth for markers: window.entryMarkers
     window.mapInstance = map;
     window.allEntries = entries;
     window.entryMarkers = [];
@@ -129,9 +157,7 @@
       `;
     }
 
-    // IMPORTANT: this MUTATES window.entryMarkers (does not reassign)
     function createEntryMarkers(entriesToRender = entries) {
-      // remove existing markers
       window.entryMarkers.forEach((m) => m.remove());
       window.entryMarkers.length = 0;
 
@@ -173,7 +199,6 @@
       window.entryMarkers.forEach((m) => m.addTo(map));
     }
 
-    // expose renderer for global filter functions
     window.renderMapboxMarkers = createEntryMarkers;
 
     // --- UI overlay for New Entry Mode ---
@@ -188,12 +213,12 @@
     overlay.style.display = "none";
     overlay.style.zIndex = "2";
 
-overlay.innerHTML = `
-  <div style="font-weight: 600; margin-bottom: 6px; color: #000;">New Entry Mode</div>
-  <div style="margin-bottom: 8px; color: #000;">Click the map to drop a pin, then continue.</div>
-  <button id="continue-to-details" disabled>Continue to details</button>
-  <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
-`;
+    overlay.innerHTML = `
+      <div style="font-weight: 600; margin-bottom: 6px; color: #000;">New Entry Mode</div>
+      <div style="margin-bottom: 8px; color: #000;">Click the map to drop a pin, then continue.</div>
+      <button id="continue-to-details" disabled>Continue to details</button>
+      <button id="cancel-new-entry" style="margin-left: 8px;">Cancel</button>
+    `;
 
     mapEl.style.position = "relative";
     mapEl.appendChild(overlay);
@@ -204,6 +229,10 @@ overlay.innerHTML = `
     function enterNewEntryMode() {
       newEntryMode = true;
       overlay.style.display = "block";
+      fabBtn.textContent = "×";
+      fabBtn.style.fontSize = "40px";
+      fabBtn.style.background = "#EF4444";
+      fabBtn.style.color = "#fff";
 
       hideEntryMarkers();
 
@@ -220,6 +249,10 @@ overlay.innerHTML = `
     function exitNewEntryMode() {
       newEntryMode = false;
       overlay.style.display = "none";
+      fabBtn.textContent = "+";
+      fabBtn.style.fontSize = "32px";
+      fabBtn.style.background = "#fff";
+      fabBtn.style.color = "#000";
 
       if (newEntryMarker) {
         newEntryMarker.remove();
@@ -228,6 +261,35 @@ overlay.innerHTML = `
 
       showEntryMarkers();
     }
+
+    // --- FAB Button Event Handlers ---
+    const fabBtn = document.getElementById("fab-new-entry");
+    
+    fabBtn.addEventListener("mousedown", () => {
+      fabBtn.style.transform = "scale(0.95)";
+    });
+    
+    fabBtn.addEventListener("mouseup", () => {
+      fabBtn.style.transform = "scale(1)";
+    });
+    
+    fabBtn.addEventListener("touchstart", (e) => {
+      fabBtn.style.transform = "scale(0.95)";
+    }, { passive: true });
+    
+    fabBtn.addEventListener("touchend", (e) => {
+      fabBtn.style.transform = "scale(1)";
+    }, { passive: true });
+
+    fabBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (newEntryMode) {
+        exitNewEntryMode();
+      } else {
+        enterNewEntryMode();
+      }
+    });
 
     // --- Map click behavior ---
     map.on("click", (e) => {
@@ -263,83 +325,6 @@ overlay.innerHTML = `
     });
 
     cancelBtn.addEventListener("click", () => exitNewEntryMode());
-
-    // --- New Entry toggle control (+) ---
-// --- New Entry toggle control (+) ---
-    class NewEntryControl {
-      onAdd() {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.title = "Toggle New Entry Mode";
-        btn.textContent = "+";
-        btn.style.width = "64px";
-        btn.style.height = "64px";
-        btn.style.borderRadius = "50%";
-        btn.style.border = "2px solid #333";
-        btn.style.background = "#fff";
-        btn.style.fontSize = "36px";
-        btn.style.cursor = "pointer";
-        btn.style.fontWeight = "300";
-        btn.style.boxShadow = "0 2px 8px rgba(0,0,0,0.3)";
-        btn.style.display = "flex";
-        btn.style.alignItems = "center";
-        btn.style.justifyContent = "center";
-        btn.style.padding = "0";
-        btn.style.margin = "0";
-        btn.style.position = "relative";
-        btn.style.zIndex = "1000";
-        btn.style.touchAction = "manipulation";
-        btn.style.userSelect = "none";
-        btn.style.webkitTapHighlightColor = "transparent";
-
-        const handleToggle = (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          if (newEntryMode) {
-            exitNewEntryMode();
-          } else {
-            enterNewEntryMode();
-          }
-        };
-
-        btn.addEventListener("click", handleToggle);
-        btn.addEventListener("touchstart", handleToggle, { passive: false });
-
-        const container = document.createElement("div");
-        container.className = "mapboxgl-ctrl mapboxgl-ctrl-group";
-        container.style.zIndex = "1000";
-        container.appendChild(btn);
-
-        this._container = container;
-        return container;
-      }
-
-      onRemove() {
-        this._container.parentNode.removeChild(this._container);
-      }
-    }
-
-    map.addControl(new NewEntryControl(), "top-right");
-    
-        btn.addEventListener("click", () => {
-          if (newEntryMode) exitNewEntryMode();
-          else enterNewEntryMode();
-        });
-
-        const container = document.createElement("div");
-        container.className = "mapboxgl-ctrl";
-        container.appendChild(btn);
-
-        this._container = container;
-        return container;
-      }
-
-      onRemove() {
-        this._container.parentNode.removeChild(this._container);
-      }
-    }
-
-    map.addControl(new NewEntryControl(), "top-right");
 
     // --- On load: markers + fit bounds ---
     map.on("load", () => {
@@ -405,7 +390,6 @@ overlay.innerHTML = `
     const allEntries = window.allEntries;
     if (!allEntries || !window.renderMapboxMarkers) return;
 
-    // selected pin types
     const pinTypeCheckboxes = document.querySelectorAll(
       '.checkbox-group-horizontal input[type="checkbox"]'
     );
@@ -413,10 +397,8 @@ overlay.innerHTML = `
       .filter((cb) => cb.checked)
       .map((cb) => cb.value);
 
-    // writer
     const writerFilter = document.getElementById("writer-filter").value.toLowerCase();
 
-    // date range
     const dateFrom = document.getElementById("date-from-filter").value;
     const dateTo = document.getElementById("date-to-filter").value;
 
@@ -424,17 +406,14 @@ overlay.innerHTML = `
     const toDate = dateTo ? new Date(dateTo + "T23:59:59") : null;
 
     const filteredEntries = allEntries.filter((e) => {
-      // pin type
       const pinType = e.pin_type || "Spot";
       if (selectedPinTypes.length > 0 && !selectedPinTypes.includes(pinType)) return false;
 
-      // writer
       if (writerFilter) {
         const w = (e.writer || "").toLowerCase();
         if (!w.includes(writerFilter)) return false;
       }
 
-      // date
       if ((fromDate || toDate) && e.found_on) {
         const d = new Date(e.found_on);
         if (fromDate && d < fromDate) return false;
@@ -444,9 +423,7 @@ overlay.innerHTML = `
       return true;
     });
 
-    // ✅ re-render markers (this removes old + adds new)
     window.renderMapboxMarkers(filteredEntries);
-
     updateMapFilterCount();
   }
 
