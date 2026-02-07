@@ -839,23 +839,27 @@ input[type="button"]:hover,
     display: none !important;
   }
 
-  /* Smaller navbar on mobile */
+  /* Much more compact navbar on mobile */
   .navbar.navbar--stacked {
-    padding: 8px 12px 12px 12px;
+    padding: 8px 12px 8px 12px;
+  }
+
+  .navbar.navbar--stacked .nav-stack {
+    gap: 8px;
   }
 
   .navbar.navbar--stacked .brand-img {
-    height: 28px;
+    height: 24px;
   }
 
   .navbar.navbar--stacked .nav-center {
-    gap: 16px;
-    font-size: 0.8rem;
+    gap: 12px;
+    font-size: 0.75rem;
   }
 
   .navbar.navbar--stacked .nav-center a,
   .logout-btn-inline {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   /* Auth pages */
