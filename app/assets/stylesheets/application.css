@@ -841,11 +841,11 @@ input[type="button"]:hover,
 
   /* Much more compact navbar on mobile */
   .navbar.navbar--stacked {
-    padding: 8px 12px 8px 12px;
+    padding: 6px 12px 6px 12px;
   }
 
   .navbar.navbar--stacked .nav-stack {
-    gap: 8px;
+    gap: 6px;
   }
 
   .navbar.navbar--stacked .brand-img {
@@ -853,7 +853,7 @@ input[type="button"]:hover,
   }
 
   .navbar.navbar--stacked .nav-center {
-    gap: 12px;
+    gap: 16px;
     font-size: 0.75rem;
   }
 
