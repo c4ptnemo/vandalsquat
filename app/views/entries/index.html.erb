@@ -149,10 +149,6 @@
                 <p><strong>Date:</strong> <%= entry.found_on || "—" %></p>
                 <p><strong>Location:</strong> <%= entry.address.presence || "—" %></p>
                 
-                <% if entry.latitude && entry.longitude %>
-                  <p><strong>Coordinates:</strong> <%= "#{entry.latitude}, #{entry.longitude}" %></p>
-                <% end %>
-                
                 <% if entry.notes.present? %>
                   <p><strong>Notes:</strong> <%= entry.notes %></p>
                 <% end %>
