@@ -924,43 +924,32 @@ input[type="button"]:hover,
     pointer-events: auto !important;
   }
 
-  /* Full-width drawer, starts BELOW header so it does NOT cover it */
-  .navbar.navbar--stacked .nav-center {
-    position: fixed !important;
-    top: var(--mobile-header-h) !important;
-    left: -100vw !important;
+/* Half-width drawer (mobile) */
+.navbar.navbar--stacked .nav-center {
+  position: fixed !important;
+  top: var(--mobile-header-h) !important;
+  left: -75vw !important;
 
-    width: 100vw !important;
+  width: 75vw !important;
+  max-width: 340px !important; /* prevents giant drawers on tablets */
+  height: calc(100dvh - var(--mobile-header-h)) !important;
 
-    /* Use "safe bottom" so it doesn't run under Android nav bar */
-    height: calc(
-  100dvh
-  - var(--mobile-header-h)
-  - var(--safe-bottom)
-  - var(--android-buffer)
-) !important;
+  overflow-y: auto !important;
+  background: #161616 !important;
 
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
 
-    max-height: none !important;
-    overflow-y: auto !important;
+  padding: 20px 20px 32px 20px !important;
+  z-index: 99999 !important;
+  transition: left 0.25s ease !important;
 
-    background: #161616 !important;
+  border-top: 1px solid #222 !important;
+  box-shadow: 8px 0 26px rgba(0,0,0,0.6) !important;
+}
 
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 0 !important;
-
-    padding: 18px 18px 24px 18px !important;
-
-    /* Must beat overlay + all map UI */
-    z-index: 99999 !important;
-
-    transition: left 0.25s ease !important;
-
-    border-top: 1px solid #222 !important;
-    box-shadow: 0 10px 26px rgba(0,0,0,0.55) !important;
-  }
 
   /* Open state */
   #site-navbar.is-open .nav-center,
