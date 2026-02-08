@@ -6,9 +6,7 @@ html, body {
   padding: 0;
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 @font-face {
   font-family: "Mont";
@@ -26,9 +24,7 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 /* =========================
    GLOBAL BUTTON STYLES
@@ -113,9 +109,7 @@ input[type="button"]:hover,
   gap: 12px;
 }
 
-.navbar.navbar--stacked .brand-logo {
-  text-decoration: none;
-}
+.navbar.navbar--stacked .brand-logo { text-decoration: none; }
 
 .navbar.navbar--stacked .brand-img {
   height: 44px;
@@ -138,9 +132,7 @@ input[type="button"]:hover,
   font-size: 0.95rem;
 }
 
-.navbar.navbar--stacked .nav-center a:hover {
-  color: #fff;
-}
+.navbar.navbar--stacked .nav-center a:hover { color: #fff; }
 
 /* Inline logout button - styled like nav links */
 .logout-form-inline {
@@ -172,57 +164,18 @@ input[type="button"]:hover,
    HAMBURGER MENU (MOBILE ONLY)
    ========================= */
 
-/* Hamburger button - hidden on desktop */
-.hamburger-btn {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 32px;
-  height: 32px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  position: absolute;
-  left: 16px;
-  top: 16px;
-  z-index: 1001;
-}
+/* Hidden on desktop */
+.hamburger-btn { display: none; }
 
-.hamburger-btn span {
-  width: 100%;
-  height: 3px;
-  background: #fff;
-  border-radius: 3px;
-  transition: all 0.25s ease;
-  transform-origin: left center;
-}
-
-.hamburger-btn.active span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger-btn.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger-btn.active span:nth-child(3) {
-  transform: translateY(-9px) rotate(-45deg);
-}
-
-/* Mobile overlay backdrop */
+/* Overlay backdrop */
 .nav-overlay {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  background: rgba(0,0,0,0.65);
   opacity: 0;
+  pointer-events: none;
   transition: opacity 0.2s ease;
-}
-
-.nav-overlay.active {
-  opacity: 1;
 }
 
 /* =========================
@@ -245,9 +198,7 @@ input[type="button"]:hover,
   border: 1px solid #222;
 }
 
-.auth-box--wide {
-  max-width: 520px;
-}
+.auth-box--wide { max-width: 520px; }
 
 .auth-logo {
   display: flex;
@@ -373,9 +324,7 @@ input[type="button"]:hover,
   text-decoration: none;
 }
 
-.auth-alt a:hover {
-  text-decoration: underline;
-}
+.auth-alt a:hover { text-decoration: underline; }
 
 .current-photo {
   margin: 12px 0;
@@ -441,9 +390,7 @@ input[type="button"]:hover,
   transition: opacity 0.2s ease;
 }
 
-.entry-photo img:hover {
-  opacity: 0.9;
-}
+.entry-photo img:hover { opacity: 0.9; }
 
 .entry-photo-placeholder {
   color: #444;
@@ -510,9 +457,7 @@ input[type="button"]:hover,
   border-radius: 4px;
 }
 
-.search-input::placeholder {
-  color: #666;
-}
+.search-input::placeholder { color: #666; }
 
 .search-input:focus {
   outline: none;
@@ -579,7 +524,7 @@ input[type="button"]:hover,
 
 .filter-grid > .filter-group:nth-child(1) { grid-column: 1; }
 .filter-grid > .filter-group:nth-child(2) { grid-column: 2; }
-filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
+.filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
 .filter-grid > .filter-group:nth-child(4) { grid-column: 1; }
 .filter-grid > .filter-group:nth-child(5) { grid-column: 2 / 4; }
 
@@ -613,9 +558,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   border-color: #555;
 }
 
-.filter-group input[type="text"]::placeholder {
-  color: #666;
-}
+.filter-group input[type="text"]::placeholder { color: #666; }
 
 .checkbox-group {
   display: flex;
@@ -660,9 +603,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   font-size: 0.85rem;
 }
 
-.date-range input {
-  flex: 1;
-}
+.date-range input { flex: 1; }
 
 .filter-actions {
   display: flex;
@@ -671,9 +612,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   border-top: 1px solid #222;
 }
 
-.filter-actions .btn {
-  flex: 1;
-}
+.filter-actions .btn { flex: 1; }
 
 /* =========================
    MAP FILTERS
@@ -700,9 +639,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   width: fit-content;
 }
 
-.map-filter-toggle:hover {
-  background: #f9f9f9;
-}
+.map-filter-toggle:hover { background: #f9f9f9; }
 
 .map-filter-content {
   margin-top: 8px;
@@ -759,9 +696,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   white-space: nowrap;
 }
 
-.checkbox-label-compact input {
-  cursor: pointer;
-}
+.checkbox-label-compact input { cursor: pointer; }
 
 .pin-dot {
   width: 12px;
@@ -779,9 +714,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   color: #666;
 }
 
-.date-range-compact input {
-  width: 130px;
-}
+.date-range-compact input { width: 130px; }
 
 .btn-clear-filters {
   padding: 8px 16px;
@@ -793,9 +726,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   white-space: nowrap;
 }
 
-.btn-clear-filters:hover {
-  background: #e5e7eb;
-}
+.btn-clear-filters:hover { background: #e5e7eb; }
 
 .btn-apply-filters {
   padding: 8px 16px;
@@ -877,469 +808,131 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
    ========================= */
 
 /* Hide Mapbox info button */
-.mapboxgl-ctrl-attrib-button {
-  display: none !important;
-}
-
+.mapboxgl-ctrl-attrib-button { display: none !important; }
 .mapboxgl-ctrl-attrib {
   font-size: 9px;
   background: rgba(255, 255, 255, 0.5) !important;
 }
 
 @media (max-width: 768px) {
-  body {
-    font-size: 14px;
-    
+  :root {
+    /* Approx mobile header height (logo row). Adjust if needed. */
+    --mobile-header-h: 56px;
   }
+
+  body { font-size: 14px; }
 
   /* Hide Mapbox attribution completely on mobile */
-  .mapboxgl-ctrl-bottom-right {
-    display: none !important;
-  }
+  .mapboxgl-ctrl-bottom-right { display: none !important; }
 
-  /* MOBILE NAV: hamburger + slide-down from top-left */
-  .hamburger-btn {
-    display: flex;
-  }
-
-  /* Make the header compact on mobile (logo stays visible) */
+  /* Header stays visible */
   .navbar.navbar--stacked {
-    padding: 12px 16px;
-    justify-content: flex-start;
+    padding: 12px 16px !important;
+    justify-content: flex-start !important;
+    z-index: 10 !important;
   }
 
   .navbar.navbar--stacked .nav-stack {
-    width: 100%;
-    align-items: flex-start;
-    gap: 0;
+    width: 100% !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
   }
 
   .navbar.navbar--stacked .brand-img {
-    height: 32px;
-    max-width: 85vw;
+    height: 30px !important;
+    max-width: 85vw !important;
   }
 
-  /* Turn the link row into a hidden panel that drops down */
-  .navbar.navbar--stacked .nav-center {
-    position: fixed;
-    top: -100%;
-    left: 0;
-    width: min(320px, 88vw);
-    height: auto;
-    max-height: 80vh;
-    overflow-y: auto;
-
-    background: #161616;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-
-    padding: 72px 18px 18px 18px;
-    z-index: 1000;
-    transition: top 0.25s ease;
-
-    box-shadow: 4px 6px 18px rgba(0, 0, 0, 0.55);
-    border-right: 1px solid #222;
-    border-bottom: 1px solid #222;
-  }
-
-  .navbar.navbar--stacked .nav-center.active {
-    top: 0;
-  }
-
-  .navbar.navbar--stacked .nav-center a,
-  .logout-btn-inline {
-    font-size: 1.1rem;
-    padding: 14px 0;
-    width: 100%;
-    border-bottom: 1px solid #333;
-  }
-
-  .logout-form-inline {
-    width: 100%;
-    display: block;
-  }
-
-  .logout-btn-inline {
-    display: block;
-    text-align: left;
-  }
-
-  .nav-overlay {
-    display: block;
-  }
-
-  /* Auth pages */
-  .auth-container {
-    padding: 16px;
-  }
-
-  .auth-box {
-    padding: 24px 20px;
-  }
-
-  .auth-logo-img {
-    height: 44px;
-  }
-
-  /* Map */
-  #home-map {
-    height: 70vh !important;
-  }
-
-  /* Map filters */
-  .map-filter-panel {
-    left: 8px;
-    right: 8px;
-    top: 8px;
-  }
-
-  .map-filter-toggle {
-    font-size: 0.85rem;
-    padding: 8px 12px;
-  }
-
-  .map-filter-content {
-    padding: 12px;
-    max-height: 60vh;
-    overflow-y: auto;
-  }
-
-  .filter-group-compact label {
-    font-size: 0.75rem;
-  }
-
-  .filter-group-compact input {
-    font-size: 0.85rem;
-    padding: 8px;
-  }
-
-  .checkbox-label-compact {
-    font-size: 0.8rem;
-  }
-
-  .btn-apply-filters,
-  .btn-clear-filters {
-    font-size: 0.8rem;
-    padding: 8px 12px;
-  }
-
-  .mapboxgl-ctrl {
-    margin: 8px !important;
-  }
-
-  /* Entries page */
-  .entries-main {
-    padding: 24px 16px;
-  }
-
-  .entries-header h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
-  }
-
-  .search-wrapper {
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .search-form {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .search-input {
-    width: 100%;
-    min-width: 100%;
-  }
-
-  .search-btn,
-  .clear-btn {
-    width: 100%;
-  }
-
-  .filter-toggle-btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .filter-panel {
-    padding: 16px;
-  }
-
-  .filter-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  .filter-grid > .filter-group {
-    grid-column: 1 !important;
-  }
-
-  .filter-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .filter-actions .btn {
-    width: 100%;
-  }
-
-  .entries-container {
-    gap: 40px;
-  }
-
-  .entry-row {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .entry-photo {
-    aspect-ratio: 16 / 9;
-  }
-
-  .entry-text p {
-    font-size: 0.95rem;
-  }
-
-  /* Forms - prevent iOS zoom */
-  .auth-box input[type="text"],
-  .auth-box input[type="email"],
-  .auth-box input[type="password"],
-  .auth-box input[type="date"],
-  .auth-box input[type="number"],
-  .auth-box textarea,
-  .auth-box select {
-    font-size: 16px;
-  }
-
-  .auth-box button,
-  .auth-box input[type="submit"] {
-    padding: 12px;
-    font-size: 1rem;
-  }
-
-  /* Touch-friendly buttons */
-  button,
-  .btn,
-  input[type="submit"] {
-    min-height: 44px;
-    font-size: 0.9rem;
-  }
-
-  /* Lightbox */
-  .lightbox-image {
-    max-width: 95%;
-    max-height: 85%;
-  }
-
-  .lightbox-close {
-    top: 10px;
-    right: 10px;
-    font-size: 36px;
-    width: 44px;
-    height: 44px;
-  }
-}
-
-@media (max-width: 480px) {
-  .entries-header h2 {
-    font-size: 1.4rem;
-  }
-
-  .entry-text p {
-    font-size: 0.9rem;
-  }
-
-  .date-range {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .date-range input {
-    width: 100%;
-  }
-
-  .date-range span {
-    text-align: center;
-    padding: 4px 0;
-  }
-}
-
-@media (max-width: 768px) and (orientation: landscape) {
-  #home-map {
-    height: 85vh !important;
-  }
-
-  .map-filter-content {
-    max-height: 70vh;
-  }
-}
-
-@media (max-width: 1024px) {
-  .map-filter-content {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .checkbox-group-horizontal {
-    flex-wrap: wrap;
-  }
-
-  .date-range-compact {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .date-range-compact input {
-    width: 100%;
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  a, button, input[type="submit"], .btn {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  button:hover,
-  .btn:hover,
-  input[type="submit"]:hover {
-    background: transparent;
-    color: #bdbdbd;
-    border-color: #333;
-  }
-
-  .btn-apply-filters:hover {
-    background: #3B82F6;
-    color: #fff;
-  }
-
-  input[type="checkbox"] {
-    width: 20px;
-    height: 20px;
-  }
-
-  .checkbox-label,
-  .checkbox-label-compact {
-    padding: 8px 4px;
-  }
-}
-/* ======================================================
-   MOBILE NAV OVERRIDE: LEFT DRAWER + CHUNKY HAMBURGER ICON
-   ====================================================== */
-@media (max-width: 768px) {
-
-  /* Keep header normal; make sure it doesn't fight the drawer */
-  .navbar.navbar--stacked {
-    position: relative !important;
-    z-index: 10 !important;
-    padding: 12px 16px !important;
-  }
-
-  /* Push logo right so it never sits under the floating button */
-  .navbar.navbar--stacked .brand-logo {
-    margin-left: 56px !important;
-  }
-
-  /* ---------- Chunky hamburger button (like your screenshot) ---------- */
+  /* Hamburger: compact */
   .hamburger-btn {
     display: flex !important;
     position: fixed !important;
     left: 12px !important;
     top: 12px !important;
-
-    width: 44px !important;
-    height: 44px !important;
-
-    padding: 10px 9px !important;         /* inner spacing like the icon */
+    width: 32px !important;
+    height: 32px !important;
+    padding: 6px !important;
     border: 0 !important;
-    border-radius: 10px !important;
-
-    background: #2b2f3a !important;       /* dark square background */
+    border-radius: 7px !important;
+    background: #2b2f3a !important;
     box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
-
     z-index: 100000 !important;
-    cursor: pointer !important;
 
     flex-direction: column !important;
     justify-content: center !important;
     gap: 6px !important;
+    cursor: pointer !important;
   }
 
   .hamburger-btn span {
     display: block !important;
     width: 100% !important;
-    height: 4px !important;              /* thicker bars */
-    background: #ffffff !important;
-    border-radius: 999px !important;      /* pill ends */
-    transition: none !important;          /* no animation */
+    height: 3px !important;
+    background: #fff !important;
+    border-radius: 999px !important;
+    transition: none !important; /* no animation */
   }
 
-  /* If you previously had "morph into X" rules, kill them */
-  .hamburger-btn.active span:nth-child(1),
-  .hamburger-btn.active span:nth-child(2),
-  .hamburger-btn.active span:nth-child(3) {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-
-  /* Optional: show X when open (no animation). If you don't want this,
-     delete these 2 blocks. */
+  /* Optional: show X when open, no morph animation */
   .hamburger-btn.active span { display: none !important; }
   .hamburger-btn.active::before {
     content: "✕";
     color: #fff;
-    font-size: 24px;
-    line-height: 44px;
+    font-size: 18px;
+    line-height: 32px;
     margin: auto;
   }
 
-  /* ---------- Overlay (blocks page only when open) ---------- */
-  .nav-overlay {
-    display: block !important;
-    position: fixed !important;
-    inset: 0 !important;
-    background: rgba(0, 0, 0, 0.65) !important;
-
-    opacity: 0 !important;
-    pointer-events: none !important;
-
-    z-index: 99998 !important;
-    transition: opacity 0.2s ease !important;
+  /* Push logo right so it doesn't sit under button */
+  .navbar.navbar--stacked .brand-logo {
+    margin-left: 40px !important;
+    margin-top: 6px !important;
   }
 
-  #site-navbar.is-open .nav-overlay {
+  /* Overlay (active only when open) */
+  .nav-overlay {
+    display: block !important;
+    z-index: 99998 !important;
+  }
+
+  /* Support BOTH toggles:
+     - #site-navbar.is-open (preferred)
+     - .nav-overlay.active / .nav-center.active (older) */
+  #site-navbar.is-open .nav-overlay,
+  .nav-overlay.active {
     opacity: 1 !important;
     pointer-events: auto !important;
   }
 
-  /* ---------- LEFT DRAWER: full height ---------- */
+  /* Full-width drawer, starts BELOW header so it does NOT cover it */
   .navbar.navbar--stacked .nav-center {
     position: fixed !important;
-    top: 0 !important;
-    left: -100% !important;               /* offscreen to the left */
-    height: 100vh !important;             /* full screen height */
-    width: min(320px, 86vw) !important;
+    top: var(--mobile-header-h) !important;
+    left: -100vw !important;
+
+    width: 100vw !important;
+    height: calc(100dvh - var(--mobile-header-h)) !important;
+    max-height: none !important;
+    overflow-y: auto !important;
 
     background: #161616 !important;
 
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
+    gap: 0 !important;
 
-    padding: 72px 18px 18px 18px !important; /* space so it clears the button */
-    overflow-y: auto !important;
-
+    padding: 18px 18px 24px 18px !important;
     z-index: 99999 !important;
     transition: left 0.25s ease !important;
 
-    box-shadow: 8px 0 22px rgba(0,0,0,0.55) !important;
-    border-right: 1px solid #222 !important;
+    border-top: 1px solid #222 !important;
+    box-shadow: 0 10px 26px rgba(0,0,0,0.55) !important;
   }
 
-  #site-navbar.is-open .nav-center {
+  /* Open state */
+  #site-navbar.is-open .nav-center,
+  .navbar.navbar--stacked .nav-center.active {
     left: 0 !important;
   }
 
@@ -1361,7 +954,7 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
     text-align: left !important;
   }
 
-  /* ---------- Make sure drawer beats Mapbox + your Filters panel ---------- */
+  /* Make sure menu always beats Mapbox + Filters */
   .map-filter-panel,
   #home-map,
   .mapboxgl-map,
@@ -1369,36 +962,113 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
   .mapboxgl-control-container {
     z-index: 1 !important;
   }
+
+  /* MAP: fill to bottom of device screen WITHOUT getting hidden under header */
+  #home-map {
+    height: calc(100dvh - var(--mobile-header-h)) !important;
+  }
+
+  /* Auth pages */
+  .auth-container { padding: 16px; }
+  .auth-box { padding: 24px 20px; }
+  .auth-logo-img { height: 44px; }
+
+  /* Map filters */
+  .map-filter-panel { left: 8px; right: 8px; top: 8px; }
+  .map-filter-toggle { font-size: 0.85rem; padding: 8px 12px; }
+  .map-filter-content { padding: 12px; max-height: 60vh; overflow-y: auto; }
+  .filter-group-compact label { font-size: 0.75rem; }
+  .filter-group-compact input { font-size: 0.85rem; padding: 8px; }
+  .checkbox-label-compact { font-size: 0.8rem; }
+  .btn-apply-filters, .btn-clear-filters { font-size: 0.8rem; padding: 8px 12px; }
+  .mapboxgl-ctrl { margin: 8px !important; }
+
+  /* Entries page */
+  .entries-main { padding: 24px 16px; }
+  .entries-header h2 { font-size: 1.6rem; margin-bottom: 20px; }
+  .search-wrapper { flex-direction: column; gap: 12px; margin-bottom: 12px; }
+  .search-form { width: 100%; flex-direction: column; }
+  .search-input { width: 100%; min-width: 100%; }
+  .search-btn, .clear-btn { width: 100%; }
+  .filter-toggle-btn { width: 100%; justify-content: center; }
+  .filter-panel { padding: 16px; }
+  .filter-grid { grid-template-columns: 1fr !important; gap: 16px; }
+  .filter-grid > .filter-group { grid-column: 1 !important; }
+  .filter-actions { flex-direction: column; gap: 8px; }
+  .filter-actions .btn { width: 100%; }
+  .entries-container { gap: 40px; }
+  .entry-row { grid-template-columns: 1fr; gap: 20px; }
+  .entry-photo { aspect-ratio: 16 / 9; }
+  .entry-text p { font-size: 0.95rem; }
+
+  /* Forms - prevent iOS zoom */
+  .auth-box input[type="text"],
+  .auth-box input[type="email"],
+  .auth-box input[type="password"],
+  .auth-box input[type="date"],
+  .auth-box input[type="number"],
+  .auth-box textarea,
+  .auth-box select {
+    font-size: 16px;
+  }
+
+  .auth-box button,
+  .auth-box input[type="submit"] {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  /* Touch-friendly buttons */
+  button, .btn, input[type="submit"] {
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+
+  /* Lightbox */
+  .lightbox-image { max-width: 95%; max-height: 85%; }
+  .lightbox-close { top: 10px; right: 10px; font-size: 36px; width: 44px; height: 44px; }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
+  .entries-header h2 { font-size: 1.4rem; }
+  .entry-text p { font-size: 0.9rem; }
+  .date-range { flex-direction: column; align-items: stretch; }
+  .date-range input { width: 100%; }
+  .date-range span { text-align: center; padding: 4px 0; }
+}
 
-  /* 1) Make hamburger ~25% smaller */
-  .hamburger-btn {
-    width: 32px !important;     /* was 44px */
-    height: 32px !important;    /* was 44px */
-    padding: 6px !important;    /* tighter interior */
-    border-radius: 7px !important;
+@media (max-width: 768px) and (orientation: landscape) {
+  /* Keep same bottom-fill behavior in landscape */
+  #home-map { height: calc(100dvh - 56px) !important; }
+  .map-filter-content { max-height: 70vh; }
+}
+
+@media (max-width: 1024px) {
+  .map-filter-content { flex-direction: column; align-items: stretch; }
+  .checkbox-group-horizontal { flex-wrap: wrap; }
+  .date-range-compact { flex-direction: column; align-items: stretch; }
+  .date-range-compact input { width: 100%; }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  a, button, input[type="submit"], .btn {
+    min-height: 44px;
+    min-width: 44px;
   }
 
-  .hamburger-btn span {
-    height: 3px !important;     /* slightly thinner bars */
-    gap: 0 !important;
+  button:hover,
+  .btn:hover,
+  input[type="submit"]:hover {
+    background: transparent;
+    color: #bdbdbd;
+    border-color: #333;
   }
 
-  /* If using the ✕ close icon */
-  .hamburger-btn.active::before {
-    font-size: 18px !important;
-    line-height: 32px !important;
+  .btn-apply-filters:hover {
+    background: #3B82F6;
+    color: #fff;
   }
 
-  /* 2) Bring logo back left + slightly down */
-  .navbar.navbar--stacked .brand-logo {
-    margin-left: 40px !important;   /* was 56px */
-    margin-top: 6px !important;     /* nudge downward */
-  }
-
-  .navbar.navbar--stacked .brand-img {
-    height: 30px !important;        /* subtle scale-down to match button */
-  }
+  input[type="checkbox"] { width: 20px; height: 20px; }
+  .checkbox-label, .checkbox-label-compact { padding: 8px 4px; }
 }
