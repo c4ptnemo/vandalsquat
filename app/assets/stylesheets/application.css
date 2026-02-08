@@ -1370,3 +1370,35 @@ filter-grid > .filter-group:nth-child(3) { grid-column: 3; }
     z-index: 1 !important;
   }
 }
+
+@media (max-width: 768px) {
+
+  /* 1) Make hamburger ~25% smaller */
+  .hamburger-btn {
+    width: 32px !important;     /* was 44px */
+    height: 32px !important;    /* was 44px */
+    padding: 6px !important;    /* tighter interior */
+    border-radius: 7px !important;
+  }
+
+  .hamburger-btn span {
+    height: 3px !important;     /* slightly thinner bars */
+    gap: 0 !important;
+  }
+
+  /* If using the ✕ close icon */
+  .hamburger-btn.active::before {
+    font-size: 18px !important;
+    line-height: 32px !important;
+  }
+
+  /* 2) Bring logo back left + slightly down */
+  .navbar.navbar--stacked .brand-logo {
+    margin-left: 40px !important;   /* was 56px */
+    margin-top: 6px !important;     /* nudge downward */
+  }
+
+  .navbar.navbar--stacked .brand-img {
+    height: 30px !important;        /* subtle scale-down to match button */
+  }
+}
