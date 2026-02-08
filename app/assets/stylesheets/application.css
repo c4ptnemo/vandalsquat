@@ -807,11 +807,17 @@ input[type="button"]:hover,
    MOBILE RESPONSIVE
    ========================= */
 
-/* Hide Mapbox info button */
+/* Hide Mapbox "i" info button only (keep attribution + controls) */
 .mapboxgl-ctrl-attrib-button { display: none !important; }
 .mapboxgl-ctrl-attrib {
   font-size: 9px;
   background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Safe-area helpers (Android/iOS) */
+:root {
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
 }
 
 @media (max-width: 768px) {
@@ -822,14 +828,18 @@ input[type="button"]:hover,
 
   body { font-size: 14px; }
 
-  /* Hide Mapbox attribution completely on mobile */
-  .mapboxgl-ctrl-bottom-right { display: none !important; }
+  /* IMPORTANT:
+     Do NOT hide attribution unless you intentionally want it gone.
+     If you want attribution hidden, uncomment this line.
+  */
+  /* .mapboxgl-ctrl-bottom-right { display: none !important; } */
 
   /* Header stays visible */
   .navbar.navbar--stacked {
     padding: 12px 16px !important;
     justify-content: flex-start !important;
     z-index: 10 !important;
+    position: relative !important;
   }
 
   .navbar.navbar--stacked .nav-stack {
@@ -856,6 +866,8 @@ input[type="button"]:hover,
     border-radius: 7px !important;
     background: #2b2f3a !important;
     box-shadow: 0 6px 18px rgba(0,0,0,0.35) !important;
+
+    /* Always on top */
     z-index: 100000 !important;
 
     flex-direction: column !important;
@@ -892,12 +904,19 @@ input[type="button"]:hover,
   /* Overlay (active only when open) */
   .nav-overlay {
     display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: rgba(0,0,0,0.7) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+
+    /* Must sit above map + map UI, below menu */
     z-index: 99998 !important;
   }
 
   /* Support BOTH toggles:
      - #site-navbar.is-open (preferred)
-     - .nav-overlay.active / .nav-center.active (older) */
+     - .nav-overlay.active (older) */
   #site-navbar.is-open .nav-overlay,
   .nav-overlay.active {
     opacity: 1 !important;
@@ -911,7 +930,10 @@ input[type="button"]:hover,
     left: -100vw !important;
 
     width: 100vw !important;
-    height: calc(100dvh - var(--mobile-header-h)) !important;
+
+    /* Use "safe bottom" so it doesn't run under Android nav bar */
+    height: calc(100dvh - var(--mobile-header-h) - var(--safe-bottom)) !important;
+
     max-height: none !important;
     overflow-y: auto !important;
 
@@ -923,7 +945,10 @@ input[type="button"]:hover,
     gap: 0 !important;
 
     padding: 18px 18px 24px 18px !important;
+
+    /* Must beat overlay + all map UI */
     z-index: 99999 !important;
+
     transition: left 0.25s ease !important;
 
     border-top: 1px solid #222 !important;
@@ -954,18 +979,24 @@ input[type="button"]:hover,
     text-align: left !important;
   }
 
-  /* Make sure menu always beats Mapbox + Filters */
-  .map-filter-panel,
-  #home-map,
-  .mapboxgl-map,
-  .mapboxgl-canvas-container,
-  .mapboxgl-control-container {
-    z-index: 1 !important;
+  /* ===== MAP LAYERING FIX =====
+     Do NOT force Mapbox controls to z-index: 1.
+     Keep the map normal; only ensure the MENU is higher.
+  */
+
+  /* Map should live below the header */
+  #home-map {
+    height: calc(100dvh - var(--mobile-header-h) - var(--safe-bottom)) !important;
   }
 
-  /* MAP: fill to bottom of device screen WITHOUT getting hidden under header */
-  #home-map {
-    height: calc(100dvh - var(--mobile-header-h)) !important;
+  /* Keep Mapbox controls ABOVE the map (default-ish) */
+  .mapboxgl-control-container {
+    z-index: 5 !important;
+  }
+
+  /* Your filter panel should be above the map, below menu */
+  .map-filter-panel {
+    z-index: 6 !important;
   }
 
   /* Auth pages */
@@ -1039,7 +1070,7 @@ input[type="button"]:hover,
 
 @media (max-width: 768px) and (orientation: landscape) {
   /* Keep same bottom-fill behavior in landscape */
-  #home-map { height: calc(100dvh - 56px) !important; }
+  #home-map { height: calc(100dvh - 56px - env(safe-area-inset-bottom, 0px)) !important; }
   .map-filter-content { max-height: 70vh; }
 }
 
@@ -1071,27 +1102,4 @@ input[type="button"]:hover,
 
   input[type="checkbox"] { width: 20px; height: 20px; }
   .checkbox-label, .checkbox-label-compact { padding: 8px 4px; }
-}
-
-/* Respect mobile safe areas (iOS + Android/Chrome) */
-:root {
-  --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-top: env(safe-area-inset-top, 0px);
-}
-
-/* Map should not sit under the system nav area */
-@media (max-width: 768px) {
-  #home-map {
-    height: calc(100dvh - var(--safe-bottom)) !important;
-    padding-bottom: var(--safe-bottom);
-  }
-}
-
-@media (max-width: 768px) {
-  #home-map,
-  .mapboxgl-map,
-  .mapboxgl-canvas-container,
-  .mapboxgl-canvas {
-    height: calc(100dvh - var(--safe-bottom)) !important;
-  }
 }
