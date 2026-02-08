@@ -817,8 +817,9 @@ input[type="button"]:hover,
 /* Safe-area helpers (Android/iOS) */
 :root {
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --safe-top: env(safe-area-inset-top, 0px);
+  --android-buffer: 24px; /* extra space for gesture/nav bar */
 }
+
 
 @media (max-width: 768px) {
   :root {
@@ -932,7 +933,13 @@ input[type="button"]:hover,
     width: 100vw !important;
 
     /* Use "safe bottom" so it doesn't run under Android nav bar */
-    height: calc(100dvh - var(--mobile-header-h) - var(--safe-bottom)) !important;
+    height: calc(
+  100dvh
+  - var(--mobile-header-h)
+  - var(--safe-bottom)
+  - var(--android-buffer)
+) !important;
+
 
     max-height: none !important;
     overflow-y: auto !important;
@@ -985,9 +992,15 @@ input[type="button"]:hover,
   */
 
   /* Map should live below the header */
-  #home-map {
-    height: calc(100dvh - var(--mobile-header-h) - var(--safe-bottom)) !important;
-  }
+#home-map {
+  height: calc(
+    100dvh
+    - var(--mobile-header-h)
+    - var(--safe-bottom)
+    - var(--android-buffer)
+  ) !important;
+}
+
 
   /* Keep Mapbox controls ABOVE the map (default-ish) */
   .mapboxgl-control-container {
@@ -1102,4 +1115,12 @@ input[type="button"]:hover,
 
   input[type="checkbox"] { width: 20px; height: 20px; }
   .checkbox-label, .checkbox-label-compact { padding: 8px 4px; }
+}
+
+@media (max-width: 768px) {
+  .mapboxgl-ctrl-group,
+  .add-entry-btn,
+  .fab {
+    margin-bottom: calc(var(--safe-bottom) + var(--android-buffer)) !important;
+  }
 }
