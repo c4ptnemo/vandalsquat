@@ -1072,3 +1072,26 @@ input[type="button"]:hover,
   input[type="checkbox"] { width: 20px; height: 20px; }
   .checkbox-label, .checkbox-label-compact { padding: 8px 4px; }
 }
+
+/* Respect mobile safe areas (iOS + Android/Chrome) */
+:root {
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-top: env(safe-area-inset-top, 0px);
+}
+
+/* Map should not sit under the system nav area */
+@media (max-width: 768px) {
+  #home-map {
+    height: calc(100dvh - var(--safe-bottom)) !important;
+    padding-bottom: var(--safe-bottom);
+  }
+}
+
+@media (max-width: 768px) {
+  #home-map,
+  .mapboxgl-map,
+  .mapboxgl-canvas-container,
+  .mapboxgl-canvas {
+    height: calc(100dvh - var(--safe-bottom)) !important;
+  }
+}
