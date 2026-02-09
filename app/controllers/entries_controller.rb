@@ -157,22 +157,6 @@ class EntriesController < ApplicationController
     redirect_to entries_path, notice: "Entry deleted."
   end
 
-  private
-
-  def set_entry
-    @entry = current_user.entries.find(params[:id])
-  end
-
-  def entry_params
-    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
-  end
-
-  # Same as entry_params but without :photo (handled separately to scrub EXIF)
-  def entry_params_without_photo
-    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :pin_type)
-  end
-end
-
 def download_all
   require 'zip'
   require 'tempfile'
@@ -294,3 +278,20 @@ def download_all
     temp_file.unlink
   end
 end
+
+  private
+
+  def set_entry
+    @entry = current_user.entries.find(params[:id])
+  end
+
+  def entry_params
+    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
+  end
+
+  # Same as entry_params but without :photo (handled separately to scrub EXIF)
+  def entry_params_without_photo
+    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :pin_type)
+  end
+end
+
