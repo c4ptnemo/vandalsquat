@@ -92,7 +92,20 @@
 
             <p><%= f.submit "Update password" %></p>
           <% end %>
+          
         </section>
+
+        <div style="margin-top: 40px; padding-top: 40px; border-top: 2px solid #333;">
+          <h3 style="color: #ff6b6b; margin-bottom: 16px;">Danger Zone</h3>
+          
+          <%= button_to "Delete My Account", 
+                delete_account_path, 
+                method: :delete,
+                class: "btn-danger",
+                data: { 
+                  confirm: "Are you sure? This will permanently delete your account and all your entries. This action cannot be undone!" 
+                } %>
+        </div>
       </div>
     </div>
   </body>

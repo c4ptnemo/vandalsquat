@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:show, :update_email, :update_password, :two_factor, :enable_two_factor, :disable_two_factor, :verify_two_factor_setup]
+  before_action :require_login, only: [:show, :update_email, :update_password, :two_factor, :enable_two_factor, :disable_two_factor, :verify_two_factor_setup, :destroy]
 
   def new
     @user = User.new
@@ -19,11 +19,32 @@ class UsersController < ApplicationController
     @user = current_user
   end
 
+  def destroy
+    @user = current_user
+    
+    # Require password confirmation for security
+    unless @user.authenticate(params[:password])
+      redirect_to account_path, alert: "Incorrect password. Account not deleted."
+      return
+    end
+    
+    # Delete all user's entries and associated photos from Cloudinary
+    @user.entries.destroy_all
+    
+    # Delete the user account
+    @user.destroy
+    
+    # Log them out
+    reset_session
+    
+    redirect_to root_path, notice: "Your account has been permanently deleted."
+  end
+
   # Two-Factor Authentication Management
   
-def two_factor
-  @user = current_user
-end
+  def two_factor
+    @user = current_user
+  end
 
   def enable_two_factor
     @user = current_user

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get   "/account", to: "users#show"
   patch "/account/email", to: "users#update_email"
   patch "/account/password", to: "users#update_password"
+  delete '/account', to: 'users#destroy', as: :delete_account
 
   # Entries
   resources :entries, only: [:index, :new, :create, :edit, :update, :destroy]
