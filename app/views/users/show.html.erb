@@ -97,6 +97,7 @@
 
         <hr style="border: none; border-top: 1px solid #222; margin: 32px 0;" />
 
+
         <!-- Danger Zone - Delete Account -->
         <section class="account-section">
           <h3 style="color: #ff6b6b; margin-bottom: 8px;">Danger Zone</h3>
@@ -104,7 +105,7 @@
             Once you delete your account, there is no going back. All your entries and photos will be permanently deleted.
           </p>
 
-          <%= form_with url: delete_account_path, method: :delete, local: true, data: { turbo_confirm: "Are you absolutely sure? This will permanently delete your account and all your entries. This action cannot be undone!" } do |f| %>
+          <%= form_with url: delete_account_path, method: :delete, local: true, id: "delete-account-form" do |f| %>
             <p>
               <label>
                 Enter your password to confirm deletion
@@ -113,10 +114,46 @@
             </p>
 
             <p>
-              <%= f.submit "Delete My Account Permanently", class: "btn-danger" %>
+              <label style="display: flex; align-items: flex-start; gap: 8px; cursor: pointer; color: #ff6b6b;">
+                <input type="checkbox" name="confirm_deletion" id="confirm-deletion-checkbox" required style="margin-top: 4px; width: 18px; height: 18px;">
+                <span style="flex: 1;">
+                  I understand this action cannot be undone. My account and all entries will be permanently deleted and cannot be recovered.
+                </span>
+              </label>
+            </p>
+
+            <p>
+              <%= f.submit "Delete My Account Permanently", class: "btn-danger", id: "delete-account-btn" %>
             </p>
           <% end %>
         </section>
+
+        <script>
+          // Disable submit button until checkbox is checked
+          document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('delete-account-form');
+            const checkbox = document.getElementById('confirm-deletion-checkbox');
+            const submitBtn = document.getElementById('delete-account-btn');
+            
+            // Initially disable button
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.5';
+            submitBtn.style.cursor = 'not-allowed';
+            
+            // Enable/disable based on checkbox
+            checkbox.addEventListener('change', function() {
+              if (this.checked) {
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+              } else {
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.5';
+                submitBtn.style.cursor = 'not-allowed';
+              }
+            });
+          });
+        </script>
       </div>
     </div>
   </body>
