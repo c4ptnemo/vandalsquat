@@ -71,3 +71,5 @@ gem 'rotp'      # Time-based one-time passwords
 gem 'rqrcode'   # QR code generation
 
 gem 'rack-attack'
+
+gem 'rubyzip'

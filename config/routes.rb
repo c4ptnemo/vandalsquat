@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   # Entries
   resources :entries, only: [:index, :new, :create, :edit, :update, :destroy]
   get "/entries/new/details", to: "entries#details"
+  get '/entries/download', to: 'entries#download_all', as: :download_entries
 
   # Two-Factor Authentication routes
 get '/account/two-factor', to: 'users#two_factor', as: 'two_factor'

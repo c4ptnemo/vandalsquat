@@ -172,3 +172,125 @@ class EntriesController < ApplicationController
     params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :pin_type)
   end
 end
+
+def download_all
+  require 'zip'
+  require 'tempfile'
+  
+  @entries = current_user.entries.includes(photo_attachment: :blob)
+  
+  if @entries.empty?
+    redirect_to entries_path, alert: "You have no entries to download."
+    return
+  end
+  
+  # Create temporary zip file
+  temp_file = Tempfile.new(['vandalsquat_entries', '.zip'])
+  
+  begin
+    Zip::File.open(temp_file.path, Zip::File::CREATE) do |zipfile|
+      # Group entries by writer name
+      entries_by_writer = @entries.group_by { |e| e.writer_name.presence || "Unknown" }
+      
+      entries_by_writer.each do |writer_name, entries|
+        # Sanitize folder name (remove invalid characters)
+        safe_writer_name = writer_name.gsub(/[^0-9A-Za-z.\-_]/, '_')
+        
+        entries.each_with_index do |entry, index|
+          folder_prefix = "#{safe_writer_name}/"
+          
+          # Add photo if attached
+          if entry.photo.attached?
+            begin
+              photo_data = entry.photo.download
+              extension = File.extname(entry.photo.filename.to_s)
+              photo_filename = "#{folder_prefix}#{index + 1}_photo#{extension}"
+              zipfile.get_output_stream(photo_filename) { |f| f.write(photo_data) }
+            rescue => e
+              Rails.logger.error "Failed to download photo for entry #{entry.id}: #{e.message}"
+            end
+          end
+          
+          # Add text file with entry details
+          details_txt = <<~TEXT
+            VandalSquat Entry
+            
+            Writer: #{entry.writer_name}
+            Date Found: #{entry.found_on}
+            Location: #{entry.latitude}, #{entry.longitude}
+            Pin Type: #{entry.pin_type}
+            Notes: #{entry.notes}
+            
+            Created: #{entry.created_at}
+            Entry ID: #{entry.id}
+          TEXT
+          
+          txt_filename = "#{folder_prefix}#{index + 1}_details.txt"
+          zipfile.get_output_stream(txt_filename) { |f| f.write(details_txt) }
+          
+          # Add JSON file with entry details
+          details_json = {
+            id: entry.id,
+            writer_name: entry.writer_name,
+            found_on: entry.found_on,
+            latitude: entry.latitude,
+            longitude: entry.longitude,
+            pin_type: entry.pin_type,
+            notes: entry.notes,
+            created_at: entry.created_at,
+            updated_at: entry.updated_at,
+            photo_url: entry.photo.attached? ? url_for(entry.photo) : nil
+          }.to_json
+          
+          json_filename = "#{folder_prefix}#{index + 1}_details.json"
+          zipfile.get_output_stream(json_filename) { |f| f.write(details_json) }
+        end
+      end
+      
+      # Add overall summary file
+      summary = "VandalSquat Export\n"
+      summary += "=" * 50 + "\n\n"
+      summary += "User: #{current_user.username}\n"
+      summary += "Total Entries: #{@entries.count}\n"
+      summary += "Export Date: #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+      summary += "Writers: #{entries_by_writer.keys.join(', ')}\n\n"
+      summary += "=" * 50 + "\n\n"
+      
+      entries_by_writer.each do |writer, entries|
+        summary += "#{writer} (#{entries.count} entries)\n"
+        entries.each_with_index do |entry, i|
+          summary += "  #{i + 1}. #{entry.found_on} - #{entry.pin_type}\n"
+        end
+        summary += "\n"
+      end
+      
+      zipfile.get_output_stream("_README.txt") { |f| f.write(summary) }
+      
+      # Add master JSON with all entries
+      all_entries_json = @entries.map do |entry|
+        {
+          id: entry.id,
+          writer_name: entry.writer_name,
+          found_on: entry.found_on,
+          latitude: entry.latitude,
+          longitude: entry.longitude,
+          pin_type: entry.pin_type,
+          notes: entry.notes,
+          created_at: entry.created_at,
+          photo_url: entry.photo.attached? ? url_for(entry.photo) : nil
+        }
+      end.to_json
+      
+      zipfile.get_output_stream("all_entries.json") { |f| f.write(all_entries_json) }
+    end
+    
+    # Send file to user
+    send_file temp_file.path, 
+              filename: "vandalsquat_#{current_user.username}_#{Date.today}.zip",
+              type: 'application/zip',
+              disposition: 'attachment'
+  ensure
+    temp_file.close
+    temp_file.unlink
+  end
+end

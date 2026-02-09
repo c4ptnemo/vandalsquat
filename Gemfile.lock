@@ -322,6 +322,7 @@ GEM
     ruby-vips (2.3.0)
       ffi (~> 1.12)
       logger
+    rubyzip (3.2.2)
     securerandom (0.4.1)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
@@ -408,6 +409,7 @@ DEPENDENCIES
   rotp
   rqrcode
   rubocop-rails-omakase
+  rubyzip
   solid_cable
   solid_cache
   solid_queue
