@@ -70,6 +70,4 @@ end
 gem 'rotp'      # Time-based one-time passwords
 gem 'rqrcode'   # QR code generation
 
-gem 'activestorage-validator'
-
 gem 'rack-attack'
