@@ -14,34 +14,10 @@
         <h2>Entries</h2>
         
         <div style="max-width: 1200px; margin: 0 auto 24px auto; padding: 0 20px; text-align: center;">
-  <%= link_to "📥 Download All My Entries", download_entries_path, class: "btn", style: "background: #3B82F6; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;" %>
+  <%= link_to "Download All My Entries", download_entries_path, class: "btn", style: "background: #3B82F6; color: #fff; padding: 12px 24px; text-decoration: none; border-radius: 4px; display: inline-block;" %>
 </div>
 ```
 
----
-
-## What gets downloaded:
-
-**ZIP structure:**
-```
-vandalsquat_username_2026-02-09.zip
-├── _README.txt (summary of all entries)
-├── all_entries.json (master JSON file)
-├── BANKSY/
-│   ├── 1_photo.jpg
-│   ├── 1_details.txt
-│   ├── 1_details.json
-│   ├── 2_photo.jpg
-│   ├── 2_details.txt
-│   └── 2_details.json
-├── COPE2/
-│   ├── 1_photo.jpg
-│   ├── 1_details.txt
-│   └── 1_details.json
-└── Unknown/
-    ├── 1_photo.jpg
-    ├── 1_details.txt
-    └── 1_details.json
 
         <div class="search-wrapper">
           <%= form_with url: entries_path, method: :get, local: true, class: "search-form" do |form| %>
