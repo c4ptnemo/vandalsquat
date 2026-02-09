@@ -172,7 +172,7 @@ def download_all
   temp_file = Tempfile.new(['vandalsquat_entries', '.zip'])
   
   begin
-    Zip::File.open(temp_file.path, Zip::File::CREATE) do |zipfile|
+    Zip::File.open(temp_file.path, create: true) do |zipfile|  # CHANGED THIS LINE
       # Group entries by writer name
       entries_by_writer = @entries.group_by { |e| e.writer_name.presence || "Unknown" }
       
