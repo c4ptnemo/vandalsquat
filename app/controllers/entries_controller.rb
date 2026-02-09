@@ -158,9 +158,6 @@ class EntriesController < ApplicationController
   end
 
 def download_all
-  require 'zip'
-  require 'tempfile'
-  
   @entries = current_user.entries.includes(photo_attachment: :blob)
   
   if @entries.empty?
@@ -168,108 +165,93 @@ def download_all
     return
   end
   
-  # Create temporary zip file
-  temp_file = Tempfile.new(['vandalsquat_entries', '.zip'])
+  # Group entries by writer name
+  entries_by_writer = @entries.group_by { |e| e.writer_name.presence || "Unknown" }
+  
+  # Create CSV export
+  csv_data = CSV.generate do |csv|
+    csv << ["Entry ID", "Writer", "Date Found", "Latitude", "Longitude", "Address", "Pin Type", "Notes", "Photo URL", "Created At"]
+    
+    @entries.each do |entry|
+      csv << [
+        entry.id,
+        entry.writer_name,
+        entry.found_on,
+        entry.latitude,
+        entry.longitude,
+        entry.address,
+        entry.pin_type,
+        entry.notes,
+        entry.photo.attached? ? url_for(entry.photo) : "No photo",
+        entry.created_at
+      ]
+    end
+  end
+  
+  # Create JSON export
+  json_data = {
+    export_date: Time.current,
+    username: current_user.username,
+    total_entries: @entries.count,
+    writers: entries_by_writer.keys,
+    entries: @entries.map do |entry|
+      {
+        id: entry.id,
+        writer_name: entry.writer_name,
+        found_on: entry.found_on,
+        latitude: entry.latitude,
+        longitude: entry.longitude,
+        address: entry.address,
+        pin_type: entry.pin_type,
+        notes: entry.notes,
+        photo_url: entry.photo.attached? ? url_for(entry.photo) : nil,
+        created_at: entry.created_at,
+        updated_at: entry.updated_at
+      }
+    end
+  }.to_json(pretty: true)
+  
+  # Create README
+  readme = <<~TEXT
+    VandalSquat Data Export
+    ==================================================
+    
+    Username: #{current_user.username}
+    Export Date: #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}
+    Total Entries: #{@entries.count}
+    
+    Files Included:
+    - entries.csv: Spreadsheet format (open in Excel/Google Sheets)
+    - entries.json: Machine-readable format
+    - README.txt: This file
+    
+    Photos are NOT included in this export to keep download fast.
+    Photo URLs are included in both CSV and JSON files.
+    You can download photos by visiting the URLs or viewing them on vandalsquat.org
+    
+    ==================================================
+    
+    Entries by Writer:
+    #{entries_by_writer.map { |writer, entries| "  #{writer}: #{entries.count} entries" }.join("\n")}
+    
+    ==================================================
+  TEXT
+  
+  # Create zip with metadata only
+  require 'zip'
+  require 'tempfile'
+  require 'csv'
+  
+  temp_file = Tempfile.new(['vandalsquat_export', '.zip'])
   
   begin
-    Zip::File.open(temp_file.path, create: true) do |zipfile|  # CHANGED THIS LINE
-      # Group entries by writer name
-      entries_by_writer = @entries.group_by { |e| e.writer_name.presence || "Unknown" }
-      
-      entries_by_writer.each do |writer_name, entries|
-        # Sanitize folder name (remove invalid characters)
-        safe_writer_name = writer_name.gsub(/[^0-9A-Za-z.\-_]/, '_')
-        
-        entries.each_with_index do |entry, index|
-          folder_prefix = "#{safe_writer_name}/"
-          
-          # Add photo if attached
-          if entry.photo.attached?
-            begin
-              photo_data = entry.photo.blob.download
-              extension = File.extname(entry.photo.filename.to_s)
-              photo_filename = "#{folder_prefix}#{index + 1}_photo#{extension}"
-              zipfile.get_output_stream(photo_filename) { |f| f.write(photo_data) }
-            rescue => e
-              Rails.logger.error "Failed to download photo for entry #{entry.id}: #{e.message}"
-            end
-          end
-          
-          # Add text file with entry details
-          details_txt = <<~TEXT
-            VandalSquat Entry
-            
-            Writer: #{entry.writer_name}
-            Date Found: #{entry.found_on}
-            Location: #{entry.latitude}, #{entry.longitude}
-            Pin Type: #{entry.pin_type}
-            Notes: #{entry.notes}
-            
-            Created: #{entry.created_at}
-            Entry ID: #{entry.id}
-          TEXT
-          
-          txt_filename = "#{folder_prefix}#{index + 1}_details.txt"
-          zipfile.get_output_stream(txt_filename) { |f| f.write(details_txt) }
-          
-          # Add JSON file with entry details
-          details_json = {
-            id: entry.id,
-            writer_name: entry.writer_name,
-            found_on: entry.found_on,
-            latitude: entry.latitude,
-            longitude: entry.longitude,
-            pin_type: entry.pin_type,
-            notes: entry.notes,
-            created_at: entry.created_at,
-            updated_at: entry.updated_at,
-            photo_url: entry.photo.attached? ? url_for(entry.photo) : nil
-          }.to_json
-          
-          json_filename = "#{folder_prefix}#{index + 1}_details.json"
-          zipfile.get_output_stream(json_filename) { |f| f.write(details_json) }
-        end
-      end
-      
-      # Add overall summary file
-      summary = "VandalSquat Export\n"
-      summary += "=" * 50 + "\n\n"
-      summary += "User: #{current_user.username}\n"
-      summary += "Total Entries: #{@entries.count}\n"
-      summary += "Export Date: #{Time.current.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-      summary += "Writers: #{entries_by_writer.keys.join(', ')}\n\n"
-      summary += "=" * 50 + "\n\n"
-      
-      entries_by_writer.each do |writer, entries|
-        summary += "#{writer} (#{entries.count} entries)\n"
-        entries.each_with_index do |entry, i|
-          summary += "  #{i + 1}. #{entry.found_on} - #{entry.pin_type}\n"
-        end
-        summary += "\n"
-      end
-      
-      zipfile.get_output_stream("_README.txt") { |f| f.write(summary) }
-      
-      # Add master JSON with all entries
-      all_entries_json = @entries.map do |entry|
-        {
-          id: entry.id,
-          writer_name: entry.writer_name,
-          found_on: entry.found_on,
-          latitude: entry.latitude,
-          longitude: entry.longitude,
-          pin_type: entry.pin_type,
-          notes: entry.notes,
-          created_at: entry.created_at,
-          photo_url: entry.photo.attached? ? url_for(entry.photo) : nil
-        }
-      end.to_json
-      
-      zipfile.get_output_stream("all_entries.json") { |f| f.write(all_entries_json) }
+    Zip::File.open(temp_file.path, create: true) do |zipfile|
+      zipfile.get_output_stream("README.txt") { |f| f.write(readme) }
+      zipfile.get_output_stream("entries.csv") { |f| f.write(csv_data) }
+      zipfile.get_output_stream("entries.json") { |f| f.write(json_data) }
     end
     
-    # Send file to user
-    send_file temp_file.path, 
+    send_file temp_file.path,
               filename: "vandalsquat_#{current_user.username}_#{Date.today}.zip",
               type: 'application/zip',
               disposition: 'attachment'
@@ -278,20 +260,3 @@ def download_all
     temp_file.unlink
   end
 end
-
-  private
-
-  def set_entry
-    @entry = current_user.entries.find(params[:id])
-  end
-
-  def entry_params
-    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :photo, :pin_type)
-  end
-
-  # Same as entry_params but without :photo (handled separately to scrub EXIF)
-  def entry_params_without_photo
-    params.require(:entry).permit(:writer_name, :notes, :found_on, :latitude, :longitude, :pin_type)
-  end
-end
-
