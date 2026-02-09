@@ -15,6 +15,11 @@ class User < ApplicationRecord
     uniqueness: { case_sensitive: false, allow_blank: true },
     format: { with: URI::MailTo::EMAIL_REGEXP, allow_blank: true }
 
+  # Password strength requirement - ADD THIS
+  validates :password, 
+    length: { minimum: 8, message: "must be at least 8 characters" },
+    if: :password_required?
+
   # Normalize username to lowercase
   before_save :downcase_username
 
@@ -87,5 +92,11 @@ class User < ApplicationRecord
   def generate_backup_codes
     # Generate 10 random backup codes
     10.times.map { SecureRandom.hex(4).upcase }
+  end
+
+  # ADD THIS METHOD
+  def password_required?
+    # Require password on new records or when password is being changed
+    password_digest.nil? || password.present?
   end
 end

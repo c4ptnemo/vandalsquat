@@ -41,5 +41,7 @@ module Vandalsquat
     
     config.autoload_paths << Rails.root.join("app/services")
 
+    config.middleware.use Rack::Attack
+
   end
 end
