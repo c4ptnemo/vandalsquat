@@ -186,7 +186,7 @@ def download_all
           # Add photo if attached
           if entry.photo.attached?
             begin
-              photo_data = entry.photo.download
+              photo_data = entry.photo.blob.download
               extension = File.extname(entry.photo.filename.to_s)
               photo_filename = "#{folder_prefix}#{index + 1}_photo#{extension}"
               zipfile.get_output_stream(photo_filename) { |f| f.write(photo_data) }
