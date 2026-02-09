@@ -73,3 +73,5 @@ gem 'rqrcode'   # QR code generation
 gem 'rack-attack'
 
 gem 'rubyzip'
+
+gem 'csv'
